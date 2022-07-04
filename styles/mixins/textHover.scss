@@ -1,0 +1,22 @@
+@mixin textHover {
+    animation-name: colorLoop;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: translateY(-2px);
+
+    @keyframes colorLoop {
+        0% {
+            color: var(--seagreen500);
+        }
+        33% {
+            color: var(--sienna500);
+        }
+        66% {
+            color: var(--seagreen400);
+        }
+        100% {
+            color: var(--sienna400);
+        }
+    }
+}
