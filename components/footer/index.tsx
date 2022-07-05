@@ -1,5 +1,19 @@
+import { format } from 'date-fns'
+import { FcLike } from 'react-icons/fc'
+
+import styles from './Footer.module.scss'
+
 const Footer = () => {
-    return <div>Footer</div>
+    const today = format(new Date(), 'yyyy')
+
+    return (
+        <footer className={styles.Footer}>
+            <span className={styles.footerText}>
+                Made with <FcLike /> by EZPZ Coders
+            </span>
+            <span className={styles.copyright}>&copy;{today}</span>
+        </footer>
+    )
 }
 
 export default Footer

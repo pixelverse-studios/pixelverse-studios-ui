@@ -4,6 +4,7 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     transform: translateY(-2px);
+    transition: 0.3s;
 
     @keyframes colorLoop {
         0% {

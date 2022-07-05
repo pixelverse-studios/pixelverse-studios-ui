@@ -1,13 +1,14 @@
 @import '../../styles/mixins/textHover.scss';
 
 .Nav {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
+    padding: 0 1rem;
     border-bottom: 1px solid lightgray;
-    background-color: var(--slate);
+    background-color: var(--slate500);
 
     .logo {
         flex-grow: 1;
