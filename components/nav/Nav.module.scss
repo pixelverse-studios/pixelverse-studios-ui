@@ -1,0 +1,47 @@
+@import '../../styles/mixins/textHover.scss';
+
+.Nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid lightgray;
+    background-color: var(--slate500);
+
+    .logo {
+        flex-grow: 1;
+        font-size: 1.3rem;
+        color: var(--off-white);
+    }
+
+    ul {
+        flex-grow: 1.25;
+        height: var(--nav-height);
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0;
+
+        li {
+            list-style: none;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            color: var(--off-white);
+
+            a {
+                font-size: 1.3rem;
+
+                &:hover {
+                    @include textHover;
+                }
+            }
+
+            &.active {
+                font-weight: bold;
+                color: var(--seagreen500);
+            }
+        }
+    }
+}
