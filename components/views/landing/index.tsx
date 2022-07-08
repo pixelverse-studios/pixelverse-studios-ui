@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { FaHandsHelping, FaBullseye, FaClock } from 'react-icons/fa'
 
 import backgroundImg from '../../../assets/city-buildings.jpg'
-
 import styles from './Landing.module.scss'
 
 const Landing = () => {
@@ -38,7 +37,35 @@ const Landing = () => {
                     </div>
                 </button>
             </div>
-            <div>Why use us? List options horizontally</div>
+            <div className={styles.useUsBlock}>
+                <h2>Why use us?</h2>
+                <div className={styles.reasonsList}>
+                    <div className={styles.reason}>
+                        <FaClock />
+                        <span className={styles.primary}>Efficient</span>
+                        <span className={styles.secondary}>
+                            Your timeline is our schedule. We work fast, yet
+                            efficiently to get you set to meet your goals.
+                        </span>
+                    </div>
+                    <div className={styles.reason}>
+                        <FaBullseye />
+                        <span className={styles.primary}>Accurate</span>
+                        <span className={styles.secondary}>
+                            Attention to detail is key. You can trust us to
+                            provide an excellent, finished product every time.
+                        </span>
+                    </div>
+                    <div className={styles.reason}>
+                        <FaHandsHelping />
+                        <span className={styles.primary}>Caring</span>
+                        <span className={styles.secondary}>
+                            We treat our clients like family. Your project will
+                            be our priority.
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div>
                 about the team, with link to about page. more in depth about
                 each person
