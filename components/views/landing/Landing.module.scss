@@ -175,42 +175,53 @@
     }
 
     .meetTheTeamBlock {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-
-        .devCard {
+        h1 {
             padding: 1rem;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+            text-align: center;
+            background-color: cadetblue;
+            color: var(--off-white);
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+        .teamBlock {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
 
-            * {
-                color: var(--off-white);
-            }
+            .devCard {
+                padding: 1rem;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
 
-            &:nth-of-type(1) {
-                background-color: var(--skyblue500);
-            }
-            &:nth-of-type(2) {
-                background-color: var(--seagreen600);
-            }
-            &:nth-of-type(3) {
-                background-color: var(--sienna500);
-            }
+                * {
+                    color: var(--off-white);
+                }
 
-            svg {
-                font-size: 12rem;
-            }
+                &:nth-of-type(1) {
+                    background-color: var(--skyblue500);
+                }
+                &:nth-of-type(2) {
+                    background-color: var(--seagreen600);
+                }
+                &:nth-of-type(3) {
+                    background-color: var(--sienna500);
+                }
 
-            h2 {
-                margin-bottom: 0;
-                font-weight: 400;
-            }
+                svg {
+                    font-size: 12rem;
+                }
 
-            .role {
-                font-size: 1.2rem;
+                h2 {
+                    margin-bottom: 0;
+                    font-weight: 400;
+                }
+
+                .role {
+                    font-size: 1.2rem;
+                }
             }
         }
     }

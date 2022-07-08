@@ -11,22 +11,25 @@ const LoadingRibbon = () => (
 const MeetTheTeam = () => {
     return (
         <div className={styles.meetTheTeamBlock}>
-            <div className={styles.devCard}>
-                <FaUserCircle className={styles.headshot} />
-                <h2>Phil Arfuso</h2>
-                <span className={styles.role}>Lead Developer</span>
-            </div>
-            <div className={styles.devCard}>
-                <LoadingRibbon />
-                <FaUserCircle className={styles.headshot} />
-                <h2>Kevin LaCarrubba</h2>
-                <span className={styles.role}>Developer</span>
-            </div>
-            <div className={styles.devCard}>
-                <LoadingRibbon />
-                <FaUserCircle className={styles.headshot} />
-                <h2>Sami Fares</h2>
-                <span className={styles.role}>Developer</span>
+            <h1>Meet the team</h1>
+            <div className={styles.teamBlock}>
+                <div className={styles.devCard}>
+                    <FaUserCircle className={styles.headshot} />
+                    <h2>Phil Arfuso</h2>
+                    <span className={styles.role}>Lead Developer</span>
+                </div>
+                <div className={styles.devCard}>
+                    <LoadingRibbon />
+                    <FaUserCircle className={styles.headshot} />
+                    <h2>Kevin LaCarrubba</h2>
+                    <span className={styles.role}>Developer</span>
+                </div>
+                <div className={styles.devCard}>
+                    <LoadingRibbon />
+                    <FaUserCircle className={styles.headshot} />
+                    <h2>Sami Fares</h2>
+                    <span className={styles.role}>Developer</span>
+                </div>
             </div>
         </div>
     )
