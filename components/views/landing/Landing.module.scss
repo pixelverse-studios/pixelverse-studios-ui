@@ -3,7 +3,7 @@
 .LandingPageContent {
     z-index: 3;
     display: grid;
-    grid-template-rows: calc(100vh - var(--nav-height)) 1fr 1fr;
+    grid-template-rows: calc(100vh - var(--nav-height)) auto auto;
 
     .missionStatement {
         * {
@@ -127,7 +127,7 @@
         }
     }
 
-    .useUsBlock {
+    .whyUsBlock {
         padding: 2.5rem 5rem 5rem 5rem;
         background-color: var(--off-white);
         display: flex;
@@ -168,8 +168,90 @@
                 .secondary {
                     font-size: 1.15rem;
                     color: var(--slate600);
+                    letter-spacing: -1px;
                 }
             }
+        }
+    }
+
+    .meetTheTeamBlock {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .devCard {
+            padding: 1rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            * {
+                color: var(--off-white);
+            }
+
+            &:nth-of-type(1) {
+                background-color: var(--skyblue500);
+            }
+            &:nth-of-type(2) {
+                background-color: var(--seagreen600);
+            }
+            &:nth-of-type(3) {
+                background-color: var(--sienna500);
+            }
+
+            svg {
+                font-size: 12rem;
+            }
+
+            h2 {
+                margin-bottom: 0;
+                font-weight: 400;
+            }
+
+            .role {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .ribbon {
+        $default-right: 10px;
+        $default-top: -3px;
+        $default-width: 6rem;
+        $default-height: 4.5rem;
+
+        position: absolute;
+        right: var(--right, $default-right);
+        top: var(--top, $default-top);
+
+        filter: drop-shadow(2px 3px 2px rgba(var(--off-black), 0.5));
+
+        .ribbonContent {
+            color: white;
+            font-size: 1.25rem;
+            text-align: center;
+            font-weight: 400;
+            background: crimson
+                linear-gradient(
+                    45deg,
+                    rgba(black, 0) 0%,
+                    rgba(white, 0.25) 100%
+                );
+            padding: 8px 2px 4px;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                100% calc(100% - 25px),
+                50% 100%,
+                0 calc(100% - 25px)
+            );
+
+            width: var(--width, $default-width);
+            min-height: var(--height, $default-height);
+
+            transition: clip-path 1s, padding 1s, background 1s;
         }
     }
 }

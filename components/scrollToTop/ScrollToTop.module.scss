@@ -8,5 +8,10 @@
     svg {
         font-size: 2rem;
         cursor: pointer;
+
+        &:hover {
+            transition: 0.25s;
+            color: var(--sienna500);
+        }
     }
 }
