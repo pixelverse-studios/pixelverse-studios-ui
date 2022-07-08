@@ -5,6 +5,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    z-index: var(--high-zindex);
 
     .footerText {
         font-size: 1rem;

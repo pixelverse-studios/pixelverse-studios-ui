@@ -8,9 +8,7 @@ const Footer = () => {
 
     return (
         <footer className={styles.Footer}>
-            <span className={styles.footerText}>
-                Made with <FcLike /> by EZPZ Coders
-            </span>
+            <span className={styles.footerText}>Created by EZPZ Coders</span>
             <span className={styles.copyright}>&copy;{today}</span>
         </footer>
     )

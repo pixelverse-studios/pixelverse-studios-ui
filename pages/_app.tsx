@@ -10,9 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <main>
             <Nav />
-            <div className="PageContent">
-                <Component {...pageProps} />
-            </div>
+            <Component {...pageProps} />
             <ScrollToTop />
             <Footer />
         </main>
