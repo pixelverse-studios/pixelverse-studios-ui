@@ -3,6 +3,7 @@
     bottom: 2rem;
     right: 2rem;
     transition: 0.5s;
+    z-index: calc(var(--high-zindex) + 1);
 
     svg {
         font-size: 2rem;

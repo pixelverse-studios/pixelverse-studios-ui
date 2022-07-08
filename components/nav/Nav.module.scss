@@ -7,8 +7,9 @@
     align-items: center;
     gap: 1rem;
     padding: 0 1rem;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--slate600);
     background-color: var(--slate500);
+    z-index: var(--high-zindex);
 
     .logo {
         flex-grow: 1;
