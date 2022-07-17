@@ -219,8 +219,34 @@
                     font-weight: 400;
                 }
 
+                .headshot {
+                    background-color: grey;
+                    background-position: top;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 16rem;
+                    width: 16rem;
+                    border-radius: 50%;
+                }
+
                 .role {
                     font-size: 1.2rem;
+                }
+
+                .exp {
+                    display: flex;
+                    color: var(--slate400);
+                    font-style: italic;
+                    font-size: 1rem;
+                    align-items: center;
+
+                    svg {
+                        font-size: 1rem;
+                        color: var(--slate400);
+                        font-style: italic;
+                        font-size: 1rem;
+                        margin-right: 0.5rem;
+                    }
                 }
             }
         }

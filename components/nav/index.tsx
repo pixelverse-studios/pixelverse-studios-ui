@@ -17,12 +17,6 @@ const Nav = () => {
             <ul>
                 <li
                     className={
-                        router.pathname.includes('about') ? styles.active : ''
-                    }>
-                    <Link href="/about">About</Link>
-                </li>
-                <li
-                    className={
                         router.pathname.includes('services')
                             ? styles.active
                             : ''
