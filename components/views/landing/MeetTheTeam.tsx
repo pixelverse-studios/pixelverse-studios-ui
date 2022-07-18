@@ -1,5 +1,6 @@
-import { FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle, FaClock } from 'react-icons/fa'
 
+import philsHeadshot from '../../../assets/phil-headshot.jpg'
 import styles from './Landing.module.scss'
 
 const LoadingRibbon = () => (
@@ -14,9 +15,18 @@ const MeetTheTeam = () => {
             <h1>Meet the team</h1>
             <div className={styles.teamBlock}>
                 <div className={styles.devCard}>
-                    <FaUserCircle className={styles.headshot} />
+                    <div
+                        className={styles.headshot}
+                        style={{
+                            backgroundImage: `url('${philsHeadshot.src}')`
+                        }}
+                    />
                     <h2>Phil Arfuso</h2>
                     <span className={styles.role}>Lead Developer</span>
+                    <div className={styles.exp}>
+                        <FaClock />
+                        4+ years
+                    </div>
                 </div>
                 <div className={styles.devCard}>
                     <LoadingRibbon />
