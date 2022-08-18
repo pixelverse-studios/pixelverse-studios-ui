@@ -1,8 +1,27 @@
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly'
+import { useMutation } from '@apollo/client'
+
+import { ADD_NEW_CLIENT } from '../../../lib/gql/clients'
 
 const ContactUs = () => {
+    const [addNewClient] = useMutation(ADD_NEW_CLIENT, {
+        onCompleted(data) {
+            console.log(data)
+            // handle success
+        },
+        onError(err) {
+            console.log(err)
+            // display error banner
+        }
+    })
+
     const onEventScheduled = (e: any) => {
-        console.log(e)
+        addNewClient({
+            variables: {
+                eventUri: e.data.payload.event.uri,
+                inviteeUri: e.data.payload.invitee.uri
+            }
+        })
     }
 
     useCalendlyEventListener({
@@ -10,12 +29,10 @@ const ContactUs = () => {
     })
 
     return (
-        // <CalendlyEventListener onEventScheduled={onEventScheduled}>
         <InlineWidget
             styles={{ height: '100vh' }}
             url="https://calendly.com/ezpzcoding"
         />
-        // </CalendlyEventListener>
     )
 }
 
