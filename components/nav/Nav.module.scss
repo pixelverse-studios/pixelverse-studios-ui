@@ -13,12 +13,18 @@
 
     .logo {
         flex-grow: 1;
-        font-size: 1.3rem;
-        color: var(--off-white);
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        img {
+            cursor: pointer;
+            height: 3rem;
+        }
     }
 
     ul {
-        flex-grow: 1.25;
+        flex-grow: 0.5;
         height: var(--nav-height);
         display: flex;
         justify-content: space-evenly;

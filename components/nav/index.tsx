@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import logo from '../../assets/logo.svg'
 import styles from './Nav.module.scss'
 
 const Nav = () => {
@@ -10,15 +10,11 @@ const Nav = () => {
     return (
         <nav className={styles.Nav}>
             <div className={styles.logo}>
-                <Link href="/">EZPZ Coding LLC</Link>
+                <Link href="/">
+                    <img src={logo.src} alt="logo" />
+                </Link>
             </div>
             <ul>
-                <li
-                    className={
-                        router.pathname.includes('about') ? styles.active : ''
-                    }>
-                    <Link href="/about">About</Link>
-                </li>
                 <li
                     className={
                         router.pathname.includes('services')
