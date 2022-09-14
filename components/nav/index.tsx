@@ -25,11 +25,9 @@ const Nav = () => {
                 </li>
                 <li
                     className={
-                        router.pathname.includes('portfolio')
-                            ? styles.active
-                            : ''
+                        router.pathname.includes('works') ? styles.active : ''
                     }>
-                    <Link href="/portfolio">Portfolio</Link>
+                    <Link href="/works">Works</Link>
                 </li>
                 <li
                     className={
