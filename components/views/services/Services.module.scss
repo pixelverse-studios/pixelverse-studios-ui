@@ -1,0 +1,159 @@
+.ServicesPageContent {
+    display: flex;
+    flex-direction: column;
+
+    .contentBlock {
+        padding: 2rem 4rem;
+
+        @media screen and (max-width: 1000px) {
+            padding: 1.5rem;
+        }
+
+        &:nth-of-type(1) {
+            background-color: var(--sienna500);
+        }
+
+        &:nth-of-type(2) {
+            background-color: var(--skyblue500);
+        }
+
+        &:nth-of-type(3) {
+            background-color: var(--seagreen500);
+        }
+
+        h1 {
+            margin: 1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .baseCard {
+            border: 1px solid var(--off-black);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            :global(.ant-card-body) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                text-align: center;
+                padding: 0;
+                word-break: break-word;
+                line-height: 2rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        .mainContentBlock {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-gap: 5rem;
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .serviceDiagram {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .mainServiceCard {
+                    :global(.ant-card-body) {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        padding: 4rem 1rem;
+                    }
+                }
+
+                .subServices {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+                    grid-gap: 1rem;
+
+                    .subServiceCard {
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                        padding: 2rem 1rem;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 1000px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .jourenyBlock {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 5rem;
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .journeyCards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+                grid-gap: 1rem;
+
+                .journeyCard {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    padding: 2rem 1rem;
+                }
+            }
+
+            @media screen and (max-width: 1000px) {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
+    .workFlowBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        :global(.ant-timeline-item-content) {
+            border: 1px solid var(--off-black);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem;
+            text-align: justify !important;
+            letter-spacing: 1px;
+        }
+    }
+
+    .separator {
+        &:nth-of-type(1) {
+            background-color: var(--skyblue500);
+            path {
+                fill: var(--sienna500);
+            }
+        }
+        &:nth-of-type(2) {
+            background-color: var(--seagreen500);
+            path {
+                fill: var(--skyblue500);
+            }
+        }
+        &:nth-of-type(3) {
+            background-color: var(--seagreen500);
+            path {
+                fill: var(--skyblue500);
+            }
+        }
+    }
+}

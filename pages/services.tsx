@@ -1,5 +1,7 @@
-const Services = () => {
-    return <div>Services</div>
+import Services from '../components/views/services'
+
+const ServicesPage = () => {
+    return <Services />
 }
 
-export default Services
+export default ServicesPage

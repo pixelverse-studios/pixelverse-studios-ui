@@ -26,7 +26,8 @@
 
     .contactRow {
         height: 7.65vh;
-        background-color: var(--off-white);
+        background-color: var(--sienna500);
+        color: var(--off-white);
         padding: 1rem;
         display: flex;
         align-items: center;
@@ -47,7 +48,6 @@
 
             animation: grow 0.75s ease-in-out 6 alternate;
             margin-right: 10px;
-            // color: var(--sienna500);
         }
     }
 
@@ -92,7 +92,8 @@
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.2rem;
+            text-align: justify;
         }
     }
 
