@@ -31,18 +31,18 @@ const MeetTheTeam = () => {
                 </div>
                 <div className={styles.devCard}>
                     <LoadingRibbon />
+                    <FaUserCircle className={styles.headshot} />
+                    <h2>Kevin LaCarrubba</h2>
+                    <span className={styles.role}>Developer</span>
+                </div>
+                <div className={styles.devCard}>
+                    <LoadingRibbon />
                     <div
                         className={styles.headshot}
                         style={{
                             backgroundImage: `url('${samisHeadshot.src}')`
                         }}
                     />
-                    <h2>Kevin LaCarrubba</h2>
-                    <span className={styles.role}>Developer</span>
-                </div>
-                <div className={styles.devCard}>
-                    <LoadingRibbon />
-                    <FaUserCircle className={styles.headshot} />
                     <h2>Sami Fares</h2>
                     <span className={styles.role}>Developer</span>
                 </div>
