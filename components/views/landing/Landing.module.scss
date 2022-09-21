@@ -187,6 +187,7 @@
         .teamBlock {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            // grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
 
             .devCard {
                 padding: 1rem;
@@ -248,6 +249,10 @@
                         margin-right: 0.5rem;
                     }
                 }
+            }
+
+            @media screen and (max-width: 850px) {
+                grid-template-columns: 1fr;
             }
         }
     }
