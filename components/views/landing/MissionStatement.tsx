@@ -16,6 +16,7 @@ const MissionStatement = () => {
                     backgroundImage: `url('${backgroundImg.src}')`
                 }}
             />
+            {/* <img src={backgroundImg.src} alt="landingPageBG" /> */}
             <h1>
                 Websites made <span>EZPZ</span>
             </h1>

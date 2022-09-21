@@ -78,9 +78,9 @@ const Services = () => {
                         </Card>
                     </div>
                     <p>
-                        The first step in our journey is a kickoff meeting where
-                        you present your vision and we can prioritize your wants
-                        and needs.
+                        Once we have answers to those questions, and other key
+                        concepts for your project, here is the development
+                        process
                     </p>
                 </div>
             </div>
