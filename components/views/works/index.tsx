@@ -24,7 +24,7 @@ const WorksPage = () => {
                 <WorkCard
                     imgUrl={UnderConstructionImg.src}
                     title="Coming soon"
-                    description="We are always ready to help make your dream job a reality"
+                    description="We are always ready to help make your idea a reality"
                     pageLink=""
                 />
             </div>

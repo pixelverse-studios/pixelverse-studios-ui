@@ -26,3 +26,9 @@ main {
     display: grid;
     grid-template-rows: var(--nav-height) 1fr var(--footer-height);
 }
+
+span,
+p {
+    letter-spacing: 1px;
+    line-height: 24px;
+}

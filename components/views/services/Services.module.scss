@@ -15,6 +15,10 @@
 
         &:nth-of-type(2) {
             background-color: var(--skyblue500);
+
+            h1 {
+                color: var(--off-white);
+            }
         }
 
         &:nth-of-type(3) {
@@ -44,6 +48,12 @@
                 word-break: break-word;
                 line-height: 2rem;
                 letter-spacing: 1px;
+            }
+
+            &.journeyCard {
+                background: rgba(0, 0, 0, 0.2);
+                color: var(--off-white);
+                border-color: var(--off-black);
             }
         }
 
@@ -95,6 +105,7 @@
 
             p {
                 font-size: 1.2rem;
+                color: var(--off-white);
             }
 
             .journeyCards {
@@ -131,7 +142,7 @@
             box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 1rem;
-            text-align: justify !important;
+            text-align: center !important;
             letter-spacing: 1px;
         }
     }

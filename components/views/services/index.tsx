@@ -61,15 +61,20 @@ const Services = () => {
                     <div className={styles.journeyCards}>
                         <Card
                             className={`${styles.journeyCard} ${styles.baseCard}`}>
-                            What is the main purpose of the site?
+                            <span>What is the main purpose of the site?</span>
                         </Card>
                         <Card
                             className={`${styles.journeyCard} ${styles.baseCard}`}>
-                            What actions are the users required to take?
+                            <span>
+                                What actions are the users required to take?
+                            </span>
                         </Card>
                         <Card
                             className={`${styles.journeyCard} ${styles.baseCard}`}>
-                            What is the realistic timeline from start to launch?
+                            <span>
+                                What is the realistic timeline from start to
+                                launch?
+                            </span>
                         </Card>
                     </div>
                     <p>
@@ -90,26 +95,36 @@ const Services = () => {
                     </p>
                     <Timeline mode="alternate">
                         <Timeline.Item>
-                            Mockup/Wireframe design + Style and theme creation
-                            (with our graphic designer or you can provide your
-                            own assets)
+                            <span>
+                                Mockup/Wireframe design + Style and theme
+                                creation (with our graphic designer or you can
+                                provide your own assets)
+                            </span>
                         </Timeline.Item>
                         <Timeline.Item>
-                            Code development (according to an agreed upon time
-                            frame and schedule)
+                            <span>
+                                Code development (according to an agreed upon
+                                time frame and schedule)
+                            </span>
                         </Timeline.Item>
                         <Timeline.Item>
-                            Internal testing and Quality assurance. We want to
-                            make sure the website is flawless before giving a
-                            demo
+                            <span>
+                                Internal testing and Quality assurance. We want
+                                to make sure the website is flawless before
+                                giving a demo
+                            </span>
                         </Timeline.Item>
                         <Timeline.Item>
-                            Demo website to you, make small tweaks and changes
-                            if needed
+                            <span>
+                                Demo website to you, make small tweaks and
+                                changes if needed
+                            </span>
                         </Timeline.Item>
-                        <Timeline.Item>Website launch</Timeline.Item>
                         <Timeline.Item>
-                            Ongoing maintenance as needed
+                            <span>Website launch</span>
+                        </Timeline.Item>
+                        <Timeline.Item>
+                            <span>Ongoing maintenance as needed</span>
                         </Timeline.Item>
                     </Timeline>
                 </div>
