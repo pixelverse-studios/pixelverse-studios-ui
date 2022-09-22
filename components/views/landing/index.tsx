@@ -1,7 +1,6 @@
 import MissionStatement from './MissionStatement'
 import WhyUs from './WhyUs'
 import MeetTheTeam from './MeetTheTeam'
-import backgroundImg from '../../../assets/city-buildings.jpg'
 import styles from './Landing.module.scss'
 
 const Landing = () => {
