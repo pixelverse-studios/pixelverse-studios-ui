@@ -16,7 +16,7 @@
         width: 50vw;
         margin: 1rem auto;
         margin-top: 5rem;
-        gap: 1rem;
+        gap: 4rem;
 
         em {
             font-weight: 700;
@@ -28,7 +28,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             height: calc(100vh - var(--nav-height));
-            width: 100vw;
+            width: 100%;
             position: absolute;
             z-index: -1;
             top: var(--nav-height);
@@ -38,6 +38,7 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 0;
+            text-align: center;
 
             span {
                 font-size: 2.5rem;
@@ -47,6 +48,7 @@
 
         span {
             font-size: 1.3rem;
+            max-width: 32rem;
         }
 
         button {
@@ -125,6 +127,10 @@
             transition: 0.25s;
             color: var(--skyblue400);
         }
+
+        @media screen and (max-width: 750px) {
+            width: 75vw;
+        }
     }
 
     .whyUsBlock {
@@ -147,22 +153,22 @@
             grid-gap: 5rem;
 
             .reason {
-                text-align: justify;
                 display: grid;
                 grid-template-rows: 3rem 3rem 1fr;
                 grid-gap: 1rem;
                 align-items: flex-start;
-                justify-items: center;
 
                 svg {
                     font-size: 3rem;
                     color: var(--skyblue400);
+                    margin: auto;
                 }
 
                 .primary {
                     font-size: 1.75rem;
                     color: var(--off-black);
                     font-weight: 400;
+                    text-align: center;
                 }
 
                 .secondary {
@@ -170,6 +176,10 @@
                     color: var(--slate600);
                     letter-spacing: -1px;
                 }
+            }
+
+            @media screen and (max-width: 850px) {
+                grid-template-columns: 1fr;
             }
         }
     }
@@ -187,7 +197,6 @@
         .teamBlock {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            // grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
 
             .devCard {
                 padding: 1rem;
