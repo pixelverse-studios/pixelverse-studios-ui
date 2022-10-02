@@ -23,36 +23,16 @@ const Hamburger = ({ onClick, open }: { open: boolean; onClick: any }) => {
     )
 }
 
-const NavContent = () => {
-    const router = useRouter()
-
-    return (
-        <ul>
-            <li
-                className={
-                    router.pathname.includes('services') ? styles.active : ''
-                }>
-                <Link href="/services">Services</Link>
-            </li>
-            <li
-                className={
-                    router.pathname.includes('works') ? styles.active : ''
-                }>
-                <Link href="/works">Works</Link>
-            </li>
-            <li
-                className={
-                    router.pathname.includes('contact') ? styles.active : ''
-                }>
-                <Link href="/contact">Contact</Link>
-            </li>
-        </ul>
-    )
-}
-
 const MobileNavContent = () => {
     const router = useRouter()
     const [open, setOpen] = useState(false)
+
+    const onItemClick = (route: string) => {
+        setOpen(false)
+        setTimeout(() => {
+            router.push(route)
+        }, 500)
+    }
 
     return (
         <>
@@ -64,7 +44,35 @@ const MobileNavContent = () => {
                 onClose={() => setOpen(false)}
                 className="mobileNavDrawer"
                 closable={false}>
-                <NavContent />
+                <ul className={`${styles.mobileNav} ${styles.navContent}`}>
+                    <li
+                        className={
+                            router.pathname.includes('services')
+                                ? styles.active
+                                : ''
+                        }
+                        onClick={() => onItemClick('/services')}>
+                        <span>Services</span>
+                    </li>
+                    <li
+                        className={
+                            router.pathname.includes('works')
+                                ? styles.active
+                                : ''
+                        }
+                        onClick={() => onItemClick('/works')}>
+                        <span>Works</span>
+                    </li>
+                    <li
+                        className={
+                            router.pathname.includes('contact')
+                                ? styles.active
+                                : ''
+                        }
+                        onClick={() => onItemClick('/contact')}>
+                        <span>Contact</span>
+                    </li>
+                </ul>
             </Drawer>
         </>
     )
@@ -72,6 +80,8 @@ const MobileNavContent = () => {
 
 const mobileBreakpoint = 1000
 const Nav = () => {
+    const router = useRouter()
+
     const [showMobileNav, setShowMobileNav] = useState(false)
 
     useEffect(() => {
@@ -98,7 +108,36 @@ const Nav = () => {
                     <img src={logo.src} alt="logo" />
                 </Link>
             </div>
-            {showMobileNav ? <MobileNavContent /> : <NavContent />}
+            {showMobileNav ? (
+                <MobileNavContent />
+            ) : (
+                <ul className={styles.navContent}>
+                    <li
+                        className={
+                            router.pathname.includes('services')
+                                ? styles.active
+                                : ''
+                        }>
+                        <Link href="/services">Services</Link>
+                    </li>
+                    <li
+                        className={
+                            router.pathname.includes('works')
+                                ? styles.active
+                                : ''
+                        }>
+                        <Link href="/works">Works</Link>
+                    </li>
+                    <li
+                        className={
+                            router.pathname.includes('contact')
+                                ? styles.active
+                                : ''
+                        }>
+                        <Link href="/contact">Contact</Link>
+                    </li>
+                </ul>
+            )}
         </nav>
     )
 }
