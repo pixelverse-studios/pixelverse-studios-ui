@@ -23,10 +23,9 @@ const Services = () => {
                 <h1>LEARN MORE ABOUT OUR SERVICES</h1>
                 <div className={styles.mainContentBlock}>
                     <p>
-                        We hold ourselves to the highest standards. No
-                        shortcuts, no cutting corners, always in accordance with
-                        the best practices that will make your website stand out
-                        from all the rest.
+                        We hold ourselves to the highest standards, utilizing
+                        only the best practices to create a custom website that
+                        you can be proud of.
                     </p>
                     <div className={styles.serviceDiagram}>
                         <Card
@@ -61,26 +60,31 @@ const Services = () => {
                     <div className={styles.journeyCards}>
                         <Card
                             className={`${styles.journeyCard} ${styles.baseCard}`}>
-                            <span>What is the main purpose of the site?</span>
-                        </Card>
-                        <Card
-                            className={`${styles.journeyCard} ${styles.baseCard}`}>
                             <span>
-                                What actions are the users required to take?
+                                What are you looking to accomplish with the
+                                site?
                             </span>
                         </Card>
                         <Card
                             className={`${styles.journeyCard} ${styles.baseCard}`}>
                             <span>
-                                What is the realistic timeline from start to
-                                launch?
+                                What actions are your users intended to
+                                complete? (fill out a form, email for quote,
+                                etc).
+                            </span>
+                        </Card>
+                        <Card
+                            className={`${styles.journeyCard} ${styles.baseCard}`}>
+                            <span>
+                                What is your projected timeframe in regards to
+                                launching your website?
                             </span>
                         </Card>
                     </div>
                     <p>
-                        Once we have answers to those questions, and other key
-                        concepts for your project, here is the development
-                        process
+                        Once these questions are answered and we touch on some
+                        additional talking points, here is what our process
+                        looks like.
                     </p>
                 </div>
             </div>
@@ -90,8 +94,8 @@ const Services = () => {
                 <div className={styles.workFlowBlock}>
                     <p>
                         The first step in our journey is a kickoff meeting where
-                        you present your vision and we can prioritize your wants
-                        and needs.
+                        you present your vision so we can work together to
+                        accomplish your project in a timely manner.
                     </p>
                     <Timeline mode="alternate">
                         <Timeline.Item>
