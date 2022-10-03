@@ -32,3 +32,26 @@ p {
     letter-spacing: 1px;
     line-height: 24px;
 }
+
+.ant-drawer-mask {
+    opacity: 0 !important;
+}
+
+.ant-drawer-open.mobileNavDrawer {
+    height: calc(100% - 4rem) !important;
+    top: unset;
+
+    .ant-drawer-content-wrapper {
+        height: 100% !important;
+        background-color: transparent;
+
+        .ant-drawer-content {
+            background-color: transparent;
+
+            .ant-drawer-body {
+                background-color: var(--slate500);
+                border-top: 2px solid var(--off-white);
+            }
+        }
+    }
+}
