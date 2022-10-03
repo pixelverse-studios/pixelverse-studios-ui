@@ -1,4 +1,4 @@
-@import '../../../styles/mixins/textHover.scss';
+@use 'styles/mixins/textHover' as *;
 
 .LandingPageContent {
     z-index: 3;
@@ -128,7 +128,7 @@
             color: var(--skyblue400);
         }
 
-        @media screen and (max-width: 750px) {
+        @include set-max-width('small') {
             width: 75vw;
         }
     }

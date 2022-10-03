@@ -1,3 +1,5 @@
+@use 'styles/mixins/breakpoints' as breakpoints;
+
 .ServicesPageContent {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,7 @@
     .contentBlock {
         padding: 2rem 4rem;
 
-        @media screen and (max-width: 1000px) {
+        @include breakpoints.set-max-width('large') {
             padding: 1.5rem;
         }
 
@@ -93,7 +95,7 @@
                 }
             }
 
-            @media screen and (max-width: 1000px) {
+            @include breakpoints.set-max-width('large') {
                 grid-template-columns: 1fr;
             }
         }
@@ -120,7 +122,7 @@
                 }
             }
 
-            @media screen and (max-width: 1000px) {
+            @include breakpoints.set-max-width('large') {
                 grid-template-columns: 1fr;
             }
         }

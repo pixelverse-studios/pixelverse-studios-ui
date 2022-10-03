@@ -1,3 +1,5 @@
+@use 'styles/mixins/breakpoints' as breakpoints;
+
 .WorksPageContent {
     display: flex;
     flex-direction: column;
@@ -62,7 +64,7 @@
             position: relative;
         }
 
-        @media screen and (max-width: 750px) {
+        @include breakpoints.set-max-width('small') {
             li:nth-of-type(odd) {
                 float: unset;
                 padding-right: 1rem;
@@ -74,8 +76,9 @@
             }
 
             li {
-                width: 100vw;
+                width: calc(100vw - 2rem);
                 padding: 1rem;
+                margin: auto;
             }
         }
     }
