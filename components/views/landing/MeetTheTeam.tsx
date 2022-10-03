@@ -1,4 +1,4 @@
-import { FaUserCircle, FaClock } from 'react-icons/fa'
+import { FaUserCircle } from 'react-icons/fa'
 
 import samisHeadshot from '../../../assets/sami-headshot.jpeg'
 import philsHeadshot from '../../../assets/phil-headshot.jpg'
@@ -24,10 +24,6 @@ const MeetTheTeam = () => {
                     />
                     <h2>Phil Arfuso</h2>
                     <span className={styles.role}>Lead Developer</span>
-                    <div className={styles.exp}>
-                        <FaClock />
-                        4+ years
-                    </div>
                 </div>
                 <div className={styles.devCard}>
                     <LoadingRibbon />

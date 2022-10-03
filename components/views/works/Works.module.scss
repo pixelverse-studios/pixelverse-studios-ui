@@ -1,113 +1,82 @@
 .WorksPageContent {
-    $banner-height: 34.5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--off-white);
 
-    & > img {
-        position: absolute;
-        width: 100%;
-        -o-object-fit: cover;
-        object-fit: cover;
-        -o-object-position: top center;
-        object-position: top center;
-        z-index: -1;
-        height: $banner-height;
-        filter: contrast(0.5);
-    }
-
-    h2 {
-        z-index: 1;
-        color: var(--off-white);
-        font-size: 3rem;
+    .worksHero {
         display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 4rem;
         align-items: center;
         justify-content: center;
-        height: $banner-height;
-        padding-top: 2rem;
-    }
 
-    .contactRow {
-        height: 7.65vh;
-        background-color: var(--sienna500);
-        color: var(--off-white);
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.3rem;
-        letter-spacing: 0px;
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
 
-        a {
-            @keyframes grow {
-                from {
-                    text-shadow: 1.2rem;
-                }
-                to {
-                    font-size: 1.4rem;
+        p {
+            font-size: 1.5rem;
+            font-weight: 400;
+
+            a {
+                color: var(--seagreen500);
+
+                &:hover {
+                    color: var(--skyblue400);
                 }
             }
+        }
 
-            animation: grow 0.75s ease-in-out 6 alternate;
-            margin-right: 10px;
+        @media screen and (max-width: 575px) {
+            padding: 2rem;
         }
     }
 
     .projectsDisplay {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    }
-}
+        padding: 0;
+        list-style: none;
 
-.WorkCard {
-    position: relative;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .cardOverlay {
-        cursor: pointer;
-        opacity: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-        gap: 1rem;
-        text-align: justify;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        transition: 0.5s ease;
-        background-image: linear-gradient(var(--seagreen400), var(--slate400));
-
-        * {
-            color: var(--off-white);
+        li {
+            width: 48vw;
+            padding: 0 1.5rem;
         }
 
-        p {
-            font-size: 1.2rem;
-            text-align: justify;
+        li:nth-of-type(odd) {
+            float: left;
+            padding-right: 0.25rem;
         }
-    }
-
-    &:hover {
-        .cardOverlay {
-            opacity: 0.9;
-            cursor: inherit;
+        li:nth-of-type(even) {
+            float: right;
+            margin-top: 4rem;
+            padding-left: 0.25rem;
         }
-    }
 
-    &.activeLink:hover {
-        .cardOverlay {
-            opacity: 0.9;
-            cursor: pointer;
+        .imgDisplay {
+            padding-top: 55%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            position: relative;
+        }
+
+        @media screen and (max-width: 750px) {
+            li:nth-of-type(odd) {
+                float: unset;
+                padding-right: 1rem;
+            }
+            li:nth-of-type(even) {
+                float: unset;
+                padding-left: 1rem;
+                margin-top: unset;
+            }
+
+            li {
+                width: 100vw;
+                padding: 1rem;
+            }
         }
     }
 }

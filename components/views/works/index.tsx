@@ -1,33 +1,70 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Card } from 'antd'
 
-import WorkCard from './WorkCard'
+const { Meta } = Card
+
 import ModelInsightsImg from '../../../assets/works/model-insights.png'
-import UnderConstructionImg from '../../../assets/works/under-construction.png'
-import WorkBanner from '../../../assets/works/banner.jpg'
+import UnderConstructionImg from '../../../assets/works/under-construction.jpg'
 import styles from './Works.module.scss'
 
 const WorksPage = () => {
+    const router = useRouter()
+
+    const onItemClick = (page: string) => {
+        router.push(page)
+    }
+
     return (
         <section className={styles.WorksPageContent}>
-            <img src={WorkBanner.src} alt="banner" />
-            <h2>Featured Work</h2>
-            <div className={styles.contactRow}>
-                <Link href="/contact">Contact us </Link> now to get started
+            <div className={styles.worksHero}>
+                <h1>Our Standout Works</h1>
+                <p>
+                    No matter the size of the project, we always deliver top
+                    tier results. <Link href="/contact">Contact us </Link> now
+                    to get started.
+                </p>
             </div>
-            <div className={styles.projectsDisplay}>
-                <WorkCard
-                    imgUrl={ModelInsightsImg.src}
-                    title="Model Insights"
-                    description="A portal for a successful model to show her works, and let aspiring models book coaching sessions."
-                    pageLink="https://model-insights.netlify.com/"
-                />
-                <WorkCard
-                    imgUrl={UnderConstructionImg.src}
-                    title="Coming soon"
-                    description="We are always ready to help make your idea a reality"
-                    pageLink=""
-                />
-            </div>
+            <ul className={styles.projectsDisplay}>
+                <li>
+                    <a
+                        href="https://model-insights.netlify.app/"
+                        target="_blank">
+                        <Card
+                            hoverable
+                            cover={
+                                <div
+                                    className={styles.imgDisplay}
+                                    style={{
+                                        backgroundImage: `url(${ModelInsightsImg.src})`
+                                    }}
+                                />
+                            }>
+                            <Meta
+                                title="Model Insights"
+                                description="A portal for a successful model to show her works, and let aspiring models book coaching sessions."
+                            />
+                        </Card>
+                    </a>
+                </li>
+                <li>
+                    <Card
+                        hoverable
+                        cover={
+                            <div
+                                className={styles.imgDisplay}
+                                style={{
+                                    backgroundImage: `url(${UnderConstructionImg.src})`
+                                }}
+                            />
+                        }>
+                        <Meta
+                            title="More on the way"
+                            description="We are always ready to take on new projects, working diligently to make your ideas a reality."
+                        />
+                    </Card>
+                </li>
+            </ul>
         </section>
     )
 }
