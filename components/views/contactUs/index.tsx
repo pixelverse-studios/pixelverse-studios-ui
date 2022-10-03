@@ -28,12 +28,7 @@ const ContactUs = () => {
         onEventScheduled: onEventScheduled
     })
 
-    return (
-        <InlineWidget
-            styles={{ height: '100vh' }}
-            url="https://calendly.com/ezpzcoding"
-        />
-    )
+    return <InlineWidget url="https://calendly.com/ezpzcoding" />
 }
 
 export default ContactUs
