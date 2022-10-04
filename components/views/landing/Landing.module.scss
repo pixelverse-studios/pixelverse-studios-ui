@@ -31,7 +31,7 @@
             width: 100%;
             position: absolute;
             z-index: -1;
-            top: var(--nav-height);
+            top: 0;
             filter: grayscale(1) contrast(1) brightness(0.25);
         }
 
