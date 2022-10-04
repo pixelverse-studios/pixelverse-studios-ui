@@ -6,6 +6,7 @@ import Nav from '../components/nav'
 import Footer from '../components/footer'
 import ScrollToTop from '../components/scrollToTop'
 import { client } from '../lib/context/apolloProvider'
+import 'animate.css'
 import 'antd/dist/antd.css'
 import '../styles/globals.scss'
 
