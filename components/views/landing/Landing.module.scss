@@ -38,6 +38,7 @@
             margin-bottom: 0;
             text-align: center;
             z-index: 1;
+            line-height: 24px;
 
             span {
                 font-size: 2.5rem;
@@ -187,6 +188,7 @@
 
     .meetTheTeamBlock {
         h1 {
+            line-height: 24px;
             padding: 1rem;
             text-align: center;
             background-color: cadetblue;
@@ -238,6 +240,10 @@
                     height: 16rem;
                     width: 16rem;
                     border-radius: 50%;
+                }
+
+                .kevin {
+                    background-position: bottom center;
                 }
 
                 .role {
