@@ -33,6 +33,15 @@ p {
     line-height: 24px;
 }
 
+.routeChange {
+    background-color: #5d737e;
+    background-image: linear-gradient(
+        0deg,
+        #5d737e 0%,
+        #3066be 50%,
+        #5d737e 100%
+    );
+}
 .ant-drawer-mask {
     opacity: 0 !important;
 }
