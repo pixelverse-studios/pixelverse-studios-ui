@@ -130,7 +130,7 @@
             color: var(--skyblue400);
         }
 
-        @include set-max-width('small') {
+        @include breakpoints.set-max-width('small') {
             width: 75vw;
         }
     }
@@ -181,7 +181,7 @@
                 }
             }
 
-            @media screen and (max-width: 850px) {
+            @include breakpoints.set-max-width('small') {
                 grid-template-columns: 1fr;
             }
         }
@@ -268,7 +268,7 @@
                 }
             }
 
-            @media screen and (max-width: 850px) {
+            @include breakpoints.set-max-width('small') {
                 grid-template-columns: 1fr;
             }
         }
