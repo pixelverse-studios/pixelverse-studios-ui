@@ -1,8 +1,13 @@
 import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import useBreakpointSize, {
+    MOBILE_BREAKPOINT
+} from '../../utilities/hooks/useBreakpointSize'
+
 const RouteTransition = ({ children }: { children: any }) => {
     const { asPath } = useRouter()
+    const breakpoint = useBreakpointSize()
 
     const variants = {
         scaleDown: {
@@ -43,6 +48,10 @@ const RouteTransition = ({ children }: { children: any }) => {
                 delay: 0.5
             }
         }
+    }
+
+    if (breakpoint === MOBILE_BREAKPOINT) {
+        return children
     }
 
     return (

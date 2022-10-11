@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Drawer } from 'antd'
-import { FaBars } from 'react-icons/fa'
 
+import useBreakpointSize, {
+    MOBILE_BREAKPOINT
+} from '../../utilities/hooks/useBreakpointSize'
 import logo from '../../assets/logo.svg'
 import styles from './Nav.module.scss'
 
@@ -78,28 +80,15 @@ const MobileNavContent = () => {
     )
 }
 
-const mobileBreakpoint = 1000
 const Nav = () => {
     const router = useRouter()
+    const breakpoint = useBreakpointSize()
 
     const [showMobileNav, setShowMobileNav] = useState(false)
 
     useEffect(() => {
-        const onWindowResize = () => {
-            if (window.innerWidth <= mobileBreakpoint) {
-                return setShowMobileNav(true)
-            }
-
-            return setShowMobileNav(false)
-        }
-
-        if (window.innerWidth <= mobileBreakpoint) {
-            setShowMobileNav(true)
-        }
-        window.addEventListener('resize', onWindowResize)
-
-        return () => window.removeEventListener('resize', onWindowResize)
-    }, [])
+        setShowMobileNav(breakpoint === MOBILE_BREAKPOINT)
+    }, [breakpoint])
 
     return (
         <nav className={styles.Nav}>
