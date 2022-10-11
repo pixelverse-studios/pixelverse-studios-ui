@@ -132,6 +132,12 @@
 
         @include breakpoints.set-max-width('small') {
             width: 75vw;
+            gap: 2rem;
+            margin-top: 2rem;
+
+            h1 {
+                line-height: initial;
+            }
         }
     }
 

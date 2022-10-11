@@ -36,6 +36,13 @@ const MobileNavContent = () => {
 
     return (
         <>
+            <div className={styles.logo}>
+                <img
+                    src={logo.src}
+                    alt="logo"
+                    onClick={() => onItemClick('/')}
+                />
+            </div>
             <Hamburger onClick={setOpen} open={open} />
             <Drawer
                 maskClosable={false}
@@ -103,40 +110,42 @@ const Nav = () => {
 
     return (
         <nav className={styles.Nav}>
-            <div className={styles.logo}>
-                <Link href="/">
-                    <img src={logo.src} alt="logo" />
-                </Link>
-            </div>
             {showMobileNav ? (
                 <MobileNavContent />
             ) : (
-                <ul className={styles.navContent}>
-                    <li
-                        className={
-                            router.pathname.includes('services')
-                                ? styles.active
-                                : ''
-                        }>
-                        <Link href="/services">Services</Link>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('works')
-                                ? styles.active
-                                : ''
-                        }>
-                        <Link href="/works">Works</Link>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('contact')
-                                ? styles.active
-                                : ''
-                        }>
-                        <Link href="/contact">Contact</Link>
-                    </li>
-                </ul>
+                <>
+                    <div className={styles.logo}>
+                        <Link href="/">
+                            <img src={logo.src} alt="logo" />
+                        </Link>
+                    </div>
+                    <ul className={styles.navContent}>
+                        <li
+                            className={
+                                router.pathname.includes('services')
+                                    ? styles.active
+                                    : ''
+                            }>
+                            <Link href="/services">Services</Link>
+                        </li>
+                        <li
+                            className={
+                                router.pathname.includes('works')
+                                    ? styles.active
+                                    : ''
+                            }>
+                            <Link href="/works">Works</Link>
+                        </li>
+                        <li
+                            className={
+                                router.pathname.includes('contact')
+                                    ? styles.active
+                                    : ''
+                            }>
+                            <Link href="/contact">Contact</Link>
+                        </li>
+                    </ul>
+                </>
             )}
         </nav>
     )
