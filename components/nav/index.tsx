@@ -7,6 +7,7 @@ import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
 import logo from '../../assets/logo.svg'
+import { routes } from './routes'
 import styles from './Nav.module.scss'
 
 const Hamburger = ({ onClick, open }: { open: boolean; onClick: any }) => {
@@ -54,33 +55,18 @@ const MobileNavContent = () => {
                 className="mobileNavDrawer"
                 closable={false}>
                 <ul className={`${styles.mobileNav} ${styles.navContent}`}>
-                    <li
-                        className={
-                            router.pathname.includes('services')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/services')}>
-                        <span>Services</span>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('works')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/works')}>
-                        <span>Works</span>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('contact')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/contact')}>
-                        <span>Contact</span>
-                    </li>
+                    {routes.map(({ path, label }) => (
+                        <li
+                            key={path}
+                            className={
+                                router.pathname.includes(path)
+                                    ? styles.active
+                                    : ''
+                            }
+                            onClick={() => onItemClick(`${path}`)}>
+                            {label}
+                        </li>
+                    ))}
                 </ul>
             </Drawer>
         </>
@@ -109,30 +95,19 @@ const Nav = () => {
                         </Link>
                     </div>
                     <ul className={styles.navContent}>
-                        <li
-                            className={
-                                router.pathname.includes('services')
-                                    ? styles.active
-                                    : ''
-                            }>
-                            <Link href="/services">Services</Link>
-                        </li>
-                        <li
-                            className={
-                                router.pathname.includes('works')
-                                    ? styles.active
-                                    : ''
-                            }>
-                            <Link href="/works">Works</Link>
-                        </li>
-                        <li
-                            className={
-                                router.pathname.includes('contact')
-                                    ? styles.active
-                                    : ''
-                            }>
-                            <Link href="/contact">Contact</Link>
-                        </li>
+                        {routes.map(({ path, label }) => (
+                            <li
+                                key={path}
+                                className={
+                                    router.pathname.includes(path)
+                                        ? styles.active
+                                        : ''
+                                }>
+                                <Link key={label} href={`/${path}`}>
+                                    {label}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </>
             )}

@@ -16,12 +16,13 @@ const ContactUs = () => {
     })
 
     const onEventScheduled = (e: any) => {
-        addNewClient({
-            variables: {
-                eventUri: e.data.payload.event.uri,
-                inviteeUri: e.data.payload.invitee.uri
-            }
-        })
+        console.log(e)
+        // addNewClient({
+        //     variables: {
+        //         eventUri: e.data.payload.event.uri,
+        //         inviteeUri: e.data.payload.invitee.uri
+        //     }
+        // })
     }
 
     useCalendlyEventListener({
