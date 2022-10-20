@@ -77,3 +77,9 @@ p {
 .calendly-inline-widget {
     height: 100% !important;
 }
+
+.contentSize {
+    max-width: var(--max-page-width);
+    margin: auto;
+    padding: 1rem;
+}

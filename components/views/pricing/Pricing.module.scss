@@ -1,10 +1,8 @@
 @use 'styles/mixins/breakpoints' as breakpoints;
-// @use 'styles/mixins/card' as card;
 @import '/styles/mixins/textHover.scss';
 
 .PricingPageContent {
     height: 100%;
-    padding: 1rem;
 
     h2 {
         text-align: center;
@@ -14,9 +12,6 @@
     }
 
     .baseCard {
-        width: 70%;
-        margin: auto;
-
         border: 1px solid var(--off-black);
         background: rgba(0, 0, 0, 0.2);
         border-radius: 3px;
