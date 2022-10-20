@@ -54,7 +54,7 @@ const MobileNavContent = () => {
                 onClose={() => setOpen(false)}
                 className="mobileNavDrawer"
                 closable={false}>
-                <ul className={`${styles.mobileNav} ${styles.navContent}`}>
+                <ul className={styles.mobileNavContent}>
                     {routes.map(({ path, label }) => (
                         <li
                             key={path}
@@ -83,34 +83,38 @@ const Nav = () => {
         setShowMobileNav(breakpoint === MOBILE_BREAKPOINT)
     }, [breakpoint])
 
+    if (showMobileNav) {
+        return (
+            <nav className={styles.MobileNav}>
+                <MobileNavContent />
+            </nav>
+        )
+    }
+
     return (
         <nav className={styles.Nav}>
-            {showMobileNav ? (
-                <MobileNavContent />
-            ) : (
-                <>
-                    <div className={styles.logo}>
-                        <Link href="/">
-                            <img src={logo.src} alt="logo" />
-                        </Link>
-                    </div>
-                    <ul className={styles.navContent}>
-                        {routes.map(({ path, label }) => (
-                            <li
-                                key={path}
-                                className={
-                                    router.pathname.includes(path)
-                                        ? styles.active
-                                        : ''
-                                }>
-                                <Link key={label} href={`/${path}`}>
-                                    {label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
+            <div className={styles.navWrapper}>
+                <div className={styles.logo}>
+                    <Link href="/">
+                        <img src={logo.src} alt="logo" />
+                    </Link>
+                </div>
+                <ul className={styles.navContent}>
+                    {routes.map(({ path, label }) => (
+                        <li
+                            key={path}
+                            className={
+                                router.pathname.includes(path)
+                                    ? styles.active
+                                    : ''
+                            }>
+                            <Link key={label} href={`/${path}`}>
+                                {label}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </nav>
     )
 }
