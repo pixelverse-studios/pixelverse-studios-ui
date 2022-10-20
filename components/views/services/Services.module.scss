@@ -88,10 +88,16 @@
                     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
                     grid-gap: 1rem;
 
-                    .subServiceCard {
-                        font-size: 1.2rem;
-                        font-weight: 500;
-                        padding: 2rem 1rem;
+                    .subServiceGroup {
+                        display: grid;
+                        grid-template-rows: 1fr 1fr;
+                        grid-gap: 1rem;
+
+                        .subServiceCard {
+                            font-size: 1.2rem;
+                            font-weight: 500;
+                            padding: 2rem 1rem;
+                        }
                     }
                 }
             }

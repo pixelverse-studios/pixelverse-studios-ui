@@ -33,22 +33,26 @@ const Services = () => {
                             Custom Web Development
                         </Card>
                         <div className={styles.subServices}>
-                            <Card
-                                className={`${styles.subServiceCard} ${styles.baseCard}`}>
-                                Clean, modern UI
-                            </Card>
-                            <Card
-                                className={`${styles.subServiceCard} ${styles.baseCard}`}>
-                                Simple, streamlined UX
-                            </Card>
-                            <Card
-                                className={`${styles.subServiceCard} ${styles.baseCard}`}>
-                                Mobile responsive pages
-                            </Card>
-                            <Card
-                                className={`${styles.subServiceCard} ${styles.baseCard}`}>
-                                Content management system
-                            </Card>
+                            <div className={styles.subServiceGroup}>
+                                <Card
+                                    className={`${styles.subServiceCard} ${styles.baseCard}`}>
+                                    Clean, modern UI
+                                </Card>
+                                <Card
+                                    className={`${styles.subServiceCard} ${styles.baseCard}`}>
+                                    Simple, streamlined UX
+                                </Card>
+                            </div>
+                            <div className={styles.subServiceGroup}>
+                                <Card
+                                    className={`${styles.subServiceCard} ${styles.baseCard}`}>
+                                    Mobile responsive pages
+                                </Card>
+                                <Card
+                                    className={`${styles.subServiceCard} ${styles.baseCard}`}>
+                                    Content management system
+                                </Card>
+                            </div>
                         </div>
                     </div>
                 </div>
