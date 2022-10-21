@@ -3,13 +3,7 @@
 
 .PricingPageContent {
     height: 100%;
-
-    h2 {
-        text-align: center;
-        margin: 2rem 0;
-        font-size: 1.6rem;
-        @include textHover;
-    }
+    padding-top: 2rem;
 
     .baseCard {
         border: 1px solid var(--off-black);

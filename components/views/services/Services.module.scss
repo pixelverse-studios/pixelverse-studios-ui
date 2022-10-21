@@ -109,7 +109,7 @@
 
         .jourenyBlock {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             gap: 5rem;
 
             p {
@@ -131,9 +131,6 @@
                     font-weight: 500;
                     padding: 2rem 1rem;
                 }
-            }
-            @include breakpoints.set-max-width('large') {
-                flex-direction: column;
             }
         }
     }

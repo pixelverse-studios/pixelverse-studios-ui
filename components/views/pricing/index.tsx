@@ -10,7 +10,6 @@ const Pricing = () => {
     return (
         <section className={styles.PricingPageContent}>
             <div className="contentSize">
-                <h2>OUR PRICING</h2>
                 <div className={`${styles.mainServiceCard} ${styles.baseCard}`}>
                     <div className={styles.cardContent}>
                         <div className={styles.priceDisplay}>
