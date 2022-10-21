@@ -108,9 +108,9 @@
         }
 
         .jourenyBlock {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            grid-gap: 5rem;
+            display: flex;
+            flex-direction: row;
+            gap: 5rem;
 
             p {
                 font-size: 1.2rem;
@@ -118,9 +118,13 @@
             }
 
             .journeyCards {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-                grid-gap: 1rem;
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+
+                @include breakpoints.set-max-width('small') {
+                    flex-direction: column;
+                }
 
                 .journeyCard {
                     font-size: 1.2rem;
@@ -128,9 +132,8 @@
                     padding: 2rem 1rem;
                 }
             }
-
             @include breakpoints.set-max-width('large') {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
         }
     }
