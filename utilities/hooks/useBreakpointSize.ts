@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export const MOBILE_BREAKPOINT = 'mobile'
 export const REGULAR_BREAKPOINT = 'regular'
-const MOBILE_WIDTH = 1000
+const MOBILE_WIDTH = 800
 
 const useBreakpointSize = () => {
     const [breakpoint, setBreakpoint] = useState(REGULAR_BREAKPOINT)

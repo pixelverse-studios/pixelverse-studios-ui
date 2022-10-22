@@ -247,6 +247,11 @@
                     height: 16rem;
                     width: 16rem;
                     border-radius: 50%;
+
+                    @media screen and (max-width: 865px) {
+                        width: 14rem;
+                        height: 14rem;
+                    }
                 }
 
                 .kevin {
