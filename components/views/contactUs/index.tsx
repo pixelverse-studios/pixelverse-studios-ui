@@ -1,9 +1,7 @@
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly'
 import { useMutation } from '@apollo/client'
-import { useLazyQuery } from '@apollo/client'
 
 import { ADD_NEW_CLIENT } from '../../../lib/gql/mutations/clients'
-import { FETCH_ALL_CLIENTS } from '../../../lib/gql/queries/clients'
 
 const ContactUs = () => {
     const [addNewClient] = useMutation(ADD_NEW_CLIENT, {
@@ -30,18 +28,7 @@ const ContactUs = () => {
         onEventScheduled: onEventScheduled
     })
 
-    const [GetAllClients] = useLazyQuery(FETCH_ALL_CLIENTS)
-
-    const onFetchClick = () => {
-        GetAllClients()
-    }
-
-    return (
-        <div>
-            <button onClick={onFetchClick}>GET CLIENTS</button>
-            <InlineWidget url="https://calendly.com/ezpzcoding" />
-        </div>
-    )
+    return <InlineWidget url="https://calendly.com/ezpzcoding" />
 }
 
 export default ContactUs
