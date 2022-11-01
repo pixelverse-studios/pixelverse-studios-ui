@@ -75,6 +75,10 @@
                         margin: 0.5rem 0;
                     }
                 }
+
+                @include breakpoints.set-max-width('small') {
+                    grid-template-columns: 1fr;
+                }
             }
 
             .additionalPricingInfo {
@@ -107,5 +111,9 @@
                 }
             }
         }
+    }
+
+    @include breakpoints.set-max-width('small') {
+        height: calc(100vh - 4rem);
     }
 }
