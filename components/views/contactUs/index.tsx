@@ -1,7 +1,7 @@
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly'
 import { useMutation } from '@apollo/client'
 
-import { ADD_NEW_CLIENT } from '../../../lib/gql/clients'
+import { ADD_NEW_CLIENT } from '../../../lib/gql/mutations/clients'
 
 const ContactUs = () => {
     const [addNewClient] = useMutation(ADD_NEW_CLIENT, {

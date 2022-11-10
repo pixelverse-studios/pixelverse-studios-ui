@@ -1,0 +1,119 @@
+@use 'styles/mixins/breakpoints' as breakpoints;
+@import '/styles/mixins/textHover.scss';
+
+.PricingPageContent {
+    height: 100%;
+    padding-top: 2rem;
+
+    .baseCard {
+        border: 1px solid var(--off-black);
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+
+        .cardContent {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+
+            .priceDisplay {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5rem;
+
+                & > span {
+                    font-size: 1.5rem;
+                    color: var(--off-white);
+                }
+                .prices {
+                    display: flex;
+                    gap: 1rem;
+
+                    span {
+                        font-size: 1.3rem;
+                    }
+
+                    .strikethroughPrice {
+                        text-decoration: line-through;
+                        color: var(--off-white);
+                        opacity: 0.4;
+                    }
+                    .limitedPrice {
+                        color: var(--off-white);
+                    }
+                }
+            }
+
+            .packageItems {
+                display: grid;
+                grid-template-columns: 1fr 5px 1fr;
+                grid-gap: 1rem;
+
+                * {
+                    color: var(--off-white);
+                }
+
+                h4 {
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    margin-bottom: 1rem;
+                }
+
+                .divider {
+                    background-color: var(--off-white);
+                    width: 2px;
+                }
+
+                ul {
+                    list-style: inside;
+
+                    li {
+                        margin: 0.5rem 0;
+                    }
+                }
+
+                @include breakpoints.set-max-width('small') {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .additionalPricingInfo {
+                font-size: 1.2rem;
+                font-style: italic;
+                color: var(--seagreen500);
+            }
+
+            button {
+                width: 20rem;
+                height: 2.5rem;
+                margin: auto;
+                border-radius: 3px;
+                color: var(--off-black);
+                font-weight: 600;
+                font-size: 1rem;
+                background-color: #2b8272;
+                background-image: linear-gradient(
+                    45deg,
+                    #2b8272 0%,
+                    #3fc1aa 50%,
+                    #44cfb5 100%
+                );
+                border: 1px solid var(--off-black);
+                cursor: pointer;
+                transition: 0.4s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    @include breakpoints.set-max-width('small') {
+        height: calc(100vh - 4rem);
+    }
+}

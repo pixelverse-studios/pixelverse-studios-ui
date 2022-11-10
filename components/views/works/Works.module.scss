@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--off-white);
+    min-height: 85vh;
 
     .worksHero {
         display: flex;
@@ -42,7 +43,7 @@
         list-style: none;
 
         li {
-            width: 48vw;
+            width: calc(var(--max-page-width) / 2 - 2rem);
             padding: 0 1.5rem;
         }
 

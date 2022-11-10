@@ -50,24 +50,24 @@ const RouteTransition = ({ children }: { children: any }) => {
         }
     }
 
-    if (breakpoint === MOBILE_BREAKPOINT) {
-        return children
-    }
+    // if (breakpoint === MOBILE_BREAKPOINT) {
+    return <div className="routeChange">{children}</div>
+    // }
 
-    return (
-        <div className="routeChange">
-            <AnimatePresence initial={false} exitBeforeEnter>
-                <motion.div
-                    key={asPath}
-                    variants={variants}
-                    initial="in"
-                    animate={['center', 'scaleUp']}
-                    exit={['scaleDown', 'out']}>
-                    {children}
-                </motion.div>
-            </AnimatePresence>
-        </div>
-    )
+    // return (
+    //     <div className="routeChange">
+    //         <AnimatePresence initial={false} exitBeforeEnter>
+    //             <motion.div
+    //                 key={asPath}
+    //                 variants={variants}
+    //                 initial="in"
+    //                 animate={['center', 'scaleUp']}
+    //                 exit={['scaleDown', 'out']}>
+    //                 {children}
+    //             </motion.div>
+    //         </AnimatePresence>
+    //     </div>
+    // )
 }
 
 export default RouteTransition

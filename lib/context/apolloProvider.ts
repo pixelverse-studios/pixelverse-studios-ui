@@ -3,8 +3,11 @@ import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 
 import { JWT_SECRET } from '../../utilities/constants'
 
-const uri = 'http://localhost:5001'
-const httpLink = new HttpLink({ uri })
+const URI =
+    process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5001/graphql'
+        : 'https://seahorse-app-v88m6.ondigitalocean.app/graphql'
+const httpLink = new HttpLink({ uri: URI })
 const authLink = setContext((_, { headers }) => {
     const token = localStorage.getItem(JWT_SECRET)
 

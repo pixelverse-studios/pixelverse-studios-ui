@@ -39,7 +39,6 @@
             margin-bottom: 0;
             text-align: center;
             z-index: 1;
-            line-height: 24px;
 
             span {
                 font-size: 2.5rem;
@@ -247,6 +246,11 @@
                     height: 16rem;
                     width: 16rem;
                     border-radius: 50%;
+
+                    @media screen and (max-width: 865px) {
+                        width: 14rem;
+                        height: 14rem;
+                    }
                 }
 
                 .kevin {

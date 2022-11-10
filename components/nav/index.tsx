@@ -7,6 +7,7 @@ import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
 import logo from '../../assets/logo.svg'
+import { routes } from './routes'
 import styles from './Nav.module.scss'
 
 const Hamburger = ({ onClick, open }: { open: boolean; onClick: any }) => {
@@ -53,34 +54,19 @@ const MobileNavContent = () => {
                 onClose={() => setOpen(false)}
                 className="mobileNavDrawer"
                 closable={false}>
-                <ul className={`${styles.mobileNav} ${styles.navContent}`}>
-                    <li
-                        className={
-                            router.pathname.includes('services')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/services')}>
-                        <span>Services</span>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('works')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/works')}>
-                        <span>Works</span>
-                    </li>
-                    <li
-                        className={
-                            router.pathname.includes('contact')
-                                ? styles.active
-                                : ''
-                        }
-                        onClick={() => onItemClick('/contact')}>
-                        <span>Contact</span>
-                    </li>
+                <ul className={styles.mobileNavContent}>
+                    {routes.map(({ path, label }) => (
+                        <li
+                            key={path}
+                            className={
+                                router.pathname.includes(path)
+                                    ? styles.active
+                                    : ''
+                            }
+                            onClick={() => onItemClick(`${path}`)}>
+                            {label}
+                        </li>
+                    ))}
                 </ul>
             </Drawer>
         </>
@@ -97,45 +83,38 @@ const Nav = () => {
         setShowMobileNav(breakpoint === MOBILE_BREAKPOINT)
     }, [breakpoint])
 
+    if (showMobileNav) {
+        return (
+            <nav className={styles.MobileNav}>
+                <MobileNavContent />
+            </nav>
+        )
+    }
+
     return (
         <nav className={styles.Nav}>
-            {showMobileNav ? (
-                <MobileNavContent />
-            ) : (
-                <>
-                    <div className={styles.logo}>
-                        <Link href="/">
-                            <img src={logo.src} alt="logo" />
-                        </Link>
-                    </div>
-                    <ul className={styles.navContent}>
+            <div className={styles.navWrapper}>
+                <div className={styles.logo}>
+                    <Link href="/">
+                        <img src={logo.src} alt="logo" />
+                    </Link>
+                </div>
+                <ul className={styles.navContent}>
+                    {routes.map(({ path, label }) => (
                         <li
+                            key={path}
                             className={
-                                router.pathname.includes('services')
+                                router.pathname.includes(path)
                                     ? styles.active
                                     : ''
                             }>
-                            <Link href="/services">Services</Link>
+                            <Link key={label} href={`/${path}`}>
+                                {label}
+                            </Link>
                         </li>
-                        <li
-                            className={
-                                router.pathname.includes('works')
-                                    ? styles.active
-                                    : ''
-                            }>
-                            <Link href="/works">Works</Link>
-                        </li>
-                        <li
-                            className={
-                                router.pathname.includes('contact')
-                                    ? styles.active
-                                    : ''
-                            }>
-                            <Link href="/contact">Contact</Link>
-                        </li>
-                    </ul>
-                </>
-            )}
+                    ))}
+                </ul>
+            </div>
         </nav>
     )
 }
