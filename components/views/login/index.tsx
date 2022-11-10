@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react'
 import styles from './Login.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
+import Link from 'next/link'
 
 const Login = () => {
     const { input, handleChange, handleReset, clearForm } = useForm({
@@ -55,9 +56,13 @@ setError message
                             onChange={handleChange}
                             required
                         />
+
                         <button className={styles.button} type="submit">
                             Submit
                         </button>
+                        <Link href="/forgotpassword">
+                            <a className={styles.forgotPw}>Forgot Password ?</a>
+                        </Link>
                     </fieldset>
                 </form>
             </div>
