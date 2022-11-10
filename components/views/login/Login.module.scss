@@ -1,0 +1,77 @@
+.content {
+    display: grid;
+    place-items: center;
+    height: calc(100vh - var(--nav-height) - var(--footer-height));
+    .formContainer {
+        height: fit-content;
+        width: 20rem;
+        background: rgba(3, 3, 3, 0.2);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        .header {
+            text-align: center;
+            color: var(--off-white);
+            padding-bottom: 1rem;
+        }
+        .errorMessage {
+            color: red;
+        }
+        .formInputs {
+            display: flex;
+            flex-direction: column;
+            label {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.2rem 0rem;
+            }
+            input {
+                position: relative;
+                margin-bottom: 1rem;
+                width: 100%;
+                display: block;
+                font-size: 1rem;
+                color: var(--off-white);
+                padding: 8px;
+                border-radius: 6px;
+                border: none;
+                background: rgba(3, 3, 3, 0.1);
+                -webkit-transition: all 2s ease-in-out;
+                -moz-transition: all 2s ease-in-out;
+                -o-transition: all 2s ease-in-out;
+                transition: all 0.2s ease-in-out;
+                &::placeholder {
+                    color: var(--off-white);
+                }
+                &:focus {
+                    outline: none;
+                    box-shadow: 3px 3px 10px #333;
+                    background: rgba(3, 3, 3, 0.18);
+                }
+            }
+
+            .button {
+                cursor: pointer;
+                text-decoration: none;
+                position: relative;
+                width: 100%;
+                display: block;
+                margin: 9px auto;
+                font-size: 17px;
+                color: var(--off-white);
+                padding: 8px;
+                border-radius: 6px;
+                border: none;
+                background: rgba(3, 3, 3, 0.1);
+                -webkit-transition: all 2s ease-in-out;
+                -moz-transition: all 2s ease-in-out;
+                -o-transition: all 2s ease-in-out;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                    background: rgba(3, 3, 3, 0.648);
+                }
+            }
+        }
+    }
+}
