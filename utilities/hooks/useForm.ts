@@ -1,15 +1,14 @@
 import { useState, ChangeEventHandler } from 'react'
 
-const useForm = (
-    initialState = {
-        email: '',
-        password: ''
-    }
-) => {
+interface InitialStateProps {
+    [key: string]: any
+}
+
+const useForm = (initialState: InitialStateProps = {}) => {
     const [input, setInput] = useState(initialState)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
-        let { value, name, type } = event.target
+        let { value, name } = event.target
 
         setInput({
             ...input,
@@ -17,9 +16,7 @@ const useForm = (
         })
     }
 
-    const handleReset = () => {
-        setInput(initialState)
-    }
+    const handleReset = () => setInput(initialState)
 
     const clearForm = () => {
         const blankForm = Object.fromEntries(

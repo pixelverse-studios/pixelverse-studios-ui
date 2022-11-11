@@ -3,11 +3,19 @@ import styles from './Login.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
 
+interface FormProps {
+    email: string
+    password: string
+}
+
+const INITIAL_STATE = {
+    email: '',
+    password: ''
+}
+
 const Login = () => {
-    const { input, handleChange, handleReset, clearForm } = useForm({
-        email: '',
-        password: ''
-    })
+    const { input, handleChange, handleReset, clearForm } =
+        useForm(INITIAL_STATE)
     const [error, setError] = useState({
         message: 'Enter message',
         hasError: false
@@ -16,21 +24,12 @@ const Login = () => {
     const { email, password } = input
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(input)
-
-        /*
-if(noerror){
-  clear form and route to dash
-} else {
-setError message
-    }
- */
     }
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Login</h1>
-                {error.hasError && (
+                {error?.hasError && (
                     <div className={styles.errorMessage}>{error.message}</div>
                 )}
 
