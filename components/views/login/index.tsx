@@ -16,10 +16,13 @@ const INITIAL_ERROR = {
 } as { message: string; hasError: boolean }
 
 const Login = () => {
-    const { input, handleChange, handleReset } = useForm(INITIAL_STATE)
+    const {
+        form: { email, password },
+        handleChange,
+        handleReset
+    } = useForm(INITIAL_STATE)
     const [error, setError] = useState(INITIAL_ERROR)
 
-    const { email, password } = input
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         handleReset()
