@@ -1,19 +1,38 @@
-import { useState, ChangeEventHandler } from 'react'
+import { ChangeEventHandler, useReducer } from 'react'
 import { FormProps } from '../types/formTypes'
+interface ActionState {
+    type: string
+    payload?: any
+}
+function reducer(state: FormProps, action: ActionState) {
+    switch (action.type) {
+        case 'handle_change': {
+            const { name, value } = action.payload
+            return { ...state, [name]: value }
+        }
+        case 'handle_reset': {
+            return state
+        }
+        default:
+            return state
+    }
+}
 
 const useForm = (initialState: FormProps) => {
-    const [input, setInput] = useState(initialState)
+    const [input, dispatch] = useReducer(reducer, initialState)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
-
-        setInput({
-            ...input,
-            [name]: value
+        dispatch({
+            type: 'handle_change',
+            payload: {
+                name,
+                value
+            }
         })
     }
 
-    const handleReset = () => setInput(initialState)
+    const handleReset = () => dispatch({ type: 'handle_reset' })
 
     return { input, handleChange, handleReset }
 }
