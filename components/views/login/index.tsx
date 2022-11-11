@@ -1,30 +1,29 @@
 import { useState, FormEvent } from 'react'
-import styles from './Login.module.scss'
-import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
 
-interface FormProps {
-    email: string
-    password: string
-}
+import { FormProps } from '../../../utilities/types/formTypes'
+import styles from './Login.module.scss'
+import useForm from '../../../utilities/hooks/useForm'
 
 const INITIAL_STATE = {
     email: '',
     password: ''
-}
+} as FormProps
+
+const INITIAL_ERROR = {
+    message: 'Enter message',
+    hasError: false
+} as { message: string; hasError: boolean }
 
 const Login = () => {
-    const { input, handleChange, handleReset, clearForm } =
-        useForm(INITIAL_STATE)
-    const [error, setError] = useState({
-        message: 'Enter message',
-        hasError: false
-    })
+    const { input, handleChange, handleReset } = useForm(INITIAL_STATE)
+    const [error, setError] = useState(INITIAL_ERROR)
 
     const { email, password } = input
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
+
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
@@ -32,7 +31,6 @@ const Login = () => {
                 {error?.hasError && (
                     <div className={styles.errorMessage}>{error.message}</div>
                 )}
-
                 <form onSubmit={handleSubmit}>
                     <fieldset className={styles.formInputs}>
                         <label htmlFor="email">Email</label>

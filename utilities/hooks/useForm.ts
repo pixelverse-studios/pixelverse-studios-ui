@@ -1,10 +1,7 @@
 import { useState, ChangeEventHandler } from 'react'
+import { FormProps } from '../types/formTypes'
 
-interface InitialStateProps {
-    [key: string]: any
-}
-
-const useForm = (initialState: InitialStateProps = {}) => {
+const useForm = (initialState: FormProps) => {
     const [input, setInput] = useState(initialState)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
@@ -18,14 +15,7 @@ const useForm = (initialState: InitialStateProps = {}) => {
 
     const handleReset = () => setInput(initialState)
 
-    const clearForm = () => {
-        const blankForm = Object.fromEntries(
-            Object.entries(input).map(([key]) => [key, ''])
-        )
-        setInput(blankForm)
-    }
-
-    return { input, handleChange, handleReset, clearForm }
+    return { input, handleChange, handleReset }
 }
 
 export default useForm
