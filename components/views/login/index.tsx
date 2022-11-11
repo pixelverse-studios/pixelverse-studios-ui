@@ -40,7 +40,7 @@ const Login = () => {
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="Email"
+                            placeholder="Enter email"
                             value={email}
                             onChange={handleChange}
                             required
@@ -50,7 +50,7 @@ const Login = () => {
                             type="password"
                             id="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder="Enter password"
                             value={password}
                             onChange={handleChange}
                             required
