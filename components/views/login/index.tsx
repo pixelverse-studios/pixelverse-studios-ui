@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FormProps } from '../../../utilities/types/formTypes'
 import styles from './Login.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
+import { fromPromise } from '@apollo/client'
 
 const INITIAL_STATE = {
     email: '',
@@ -18,14 +19,12 @@ const INITIAL_ERROR = {
 const Login = () => {
     const {
         form: { email, password },
-        handleChange,
-        handleReset
+        handleChange
     } = useForm(INITIAL_STATE)
     const [error, setError] = useState(INITIAL_ERROR)
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        handleReset()
     }
 
     return (
