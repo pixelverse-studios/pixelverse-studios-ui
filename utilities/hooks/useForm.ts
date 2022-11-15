@@ -1,5 +1,5 @@
-import { ChangeEventHandler, useReducer } from 'react'
-import { FormProps } from '../types/formTypes'
+import { ChangeEventHandler, useReducer, useState } from 'react'
+import { ErrorProps, FormProps, RegisterProps } from '../types/formTypes'
 
 const RESET = 'reset'
 const UPDATE = 'update'
@@ -10,35 +10,56 @@ interface ActionState {
 function reducer(state: FormProps, action: ActionState) {
     switch (action.type) {
         case UPDATE: {
-            const { name, value } = action.payload
+            const { name, value, error } = action.payload
+            console.log(error)
             return { ...state, [name]: value }
         }
         case RESET: {
             const { initialState } = action.payload
             return initialState
         }
+
         default:
             return state
     }
 }
 
-const useForm = (initialState: FormProps) => {
+const useForm = (
+    initialState: FormProps,
+    validation,
+    initialError: ErrorProps
+) => {
     const [form, dispatch] = useReducer(reducer, initialState)
+    const [error, setError] = useState(initialError)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
+
+        if (validation[name]) {
+            if (!validation[name](value)) {
+                setError({
+                    hasError: true,
+                    fieldName: name
+                })
+            } else {
+                setError(initialError)
+            }
+        }
         dispatch({
             type: UPDATE,
             payload: {
                 name,
-                value
+                value,
+                error: {
+                    error
+                }
             }
         })
     }
 
     const handleReset = () => dispatch({ type: RESET, payload: initialState })
 
-    return { form, handleChange, handleReset }
+    return { form, error, handleChange, handleReset }
 }
 
 export default useForm

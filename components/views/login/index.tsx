@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { FormProps } from '../../../utilities/types/formTypes'
 import styles from './Login.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
-import { fromPromise } from '@apollo/client'
 
 const INITIAL_STATE = {
     email: '',
