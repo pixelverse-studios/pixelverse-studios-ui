@@ -16,9 +16,14 @@ type RegisterValidationProps = {
 }
 
 type LoginFormProps = {
-    email: string
-    password: string
+    email: inputType
+    password: inputType
 }
 
-export type RegisterProps = RegisterValidationProps
-export type FormProps = RegisterFormProps
+type LoginValidationProps = {
+    [email: string]: validationType
+    password: validationType
+}
+
+export type RegisterProps = RegisterValidationProps | LoginValidationProps
+export type FormProps = RegisterFormProps | LoginFormProps
