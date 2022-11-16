@@ -2,58 +2,59 @@ import { useState, FormEvent, useRef, useEffect } from 'react'
 import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
 import styles from './Register.module.scss'
-import { FormProps, ErrorProps } from '../../../utilities/types/formTypes'
+import { FormProps } from '../../../utilities/types/formTypes'
 import {
-    VALID_FIRST_NAME,
-    VALID_LAST_NAME,
+    VALID_STRING,
     VALID_EMAIL,
     VALID_PASSWORD
 } from '../../../utilities/validations/regexValidators'
-import { errorMessage } from '../../../utilities/errorMessage'
 
 const INITIAL_STATE = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
+    firstName: { value: '', error: '' },
+    lastName: { value: '', error: '' },
+    email: { value: '', error: '' },
+    password: { value: '', error: '' }
 } as FormProps
 
-const INITIAL_ERROR = {
-    hasError: false,
-    fieldName: ''
-} as ErrorProps
-
-const validation = {
-    firstName: (value: string) => {
-        const result = VALID_FIRST_NAME.test(value)
-        return result
+const NAME_ERROR_MESSAGE = 'Field can only contain alphabetic characters'
+const VALIDATIONS = {
+    firstName: {
+        test: (value: string) => VALID_STRING.test(value),
+        message: NAME_ERROR_MESSAGE
     },
-    lastName: (value: string) => {
-        const result = VALID_LAST_NAME.test(value)
-        return result
+    lastName: {
+        test: (value: string) => VALID_STRING.test(value),
+        message: NAME_ERROR_MESSAGE
     },
-    email: (value: string) => {
-        const result = VALID_EMAIL.test(value)
-        return result
+    email: {
+        test: (value: string) => VALID_EMAIL.test(value),
+        message: 'Must containt a valid email address (example@test.com)'
     },
-    password: (value: string) => {
-        const result = VALID_PASSWORD.test(value)
-        return result
+    password: {
+        test: (value: string) => VALID_PASSWORD.test(value),
+        message: 'Password does not meet requirements'
     }
 }
 
 const Register = () => {
-    const { nameError, emailError, passwordError } = errorMessage
-    const {
-        form: { firstName, lastName, email, password },
-        error: { hasError, fieldName },
-        handleChange
-    } = useForm(INITIAL_STATE, validation, INITIAL_ERROR)
-
+    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const { firstName, lastName, email, password } = form
+    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
 
+    useEffect(() => {
+        let isFormValid = true
+        Object.keys(form).forEach(item => {
+            const current = form[item]
+            if ((isFormValid && !current.value) || current.error) {
+                isFormValid = false
+            }
+        })
+
+        setDisableSubmit(!isFormValid)
+    })
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
@@ -68,7 +69,7 @@ const Register = () => {
                                     id="firstName"
                                     name="firstName"
                                     placeholder="First Name"
-                                    value={firstName}
+                                    value={firstName?.value}
                                     onChange={handleChange}
                                     required
                                 />
@@ -77,10 +78,10 @@ const Register = () => {
                                     className={styles.formLabel}>
                                     First Name
                                 </label>
-                                {hasError && fieldName === 'firstName' && (
+                                {firstName?.error && (
                                     <div className={styles.errorPopUp}>
                                         <span className={styles.popUpText}>
-                                            {nameError}
+                                            {firstName.error}
                                         </span>
                                     </div>
                                 )}
@@ -91,7 +92,7 @@ const Register = () => {
                                     id="lastName"
                                     name="lastName"
                                     placeholder="Last Name"
-                                    value={lastName}
+                                    value={lastName?.value}
                                     onChange={handleChange}
                                     required
                                 />
@@ -100,10 +101,10 @@ const Register = () => {
                                     htmlFor="lastName">
                                     Last Name
                                 </label>
-                                {hasError && fieldName === 'lastName' && (
+                                {lastName?.error && (
                                     <div className={styles.errorPopUp}>
                                         <span className={styles.popUpText}>
-                                            {nameError}
+                                            {lastName.error}
                                         </span>
                                     </div>
                                 )}
@@ -115,17 +116,17 @@ const Register = () => {
                                 id="email"
                                 name="email"
                                 placeholder="Email"
-                                value={email}
+                                value={email?.value}
                                 onChange={handleChange}
                                 required
                             />
                             <label htmlFor="email" className={styles.formLabel}>
                                 Email
                             </label>
-                            {hasError && fieldName === 'email' && (
+                            {email?.error && (
                                 <div className={styles.errorPopUp}>
                                     <span className={styles.popUpText}>
-                                        {emailError}
+                                        {email.error}
                                     </span>
                                 </div>
                             )}
@@ -136,10 +137,9 @@ const Register = () => {
                                 id="password"
                                 name="password"
                                 placeholder="Password"
-                                value={password}
+                                value={password?.value}
                                 onChange={handleChange}
                                 minLength={8}
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~'=?\|\]\[\(\)\-<>/]).{8,}"
                                 title="Custom"
                                 required
                             />
@@ -148,10 +148,10 @@ const Register = () => {
                                 className={styles.formLabel}>
                                 Password
                             </label>
-                            {hasError && fieldName === 'password' && (
+                            {password?.error && (
                                 <div className={styles.errorPopUp}>
                                     <span className={styles.popUpText}>
-                                        {passwordError}
+                                        {password.error}
                                     </span>
                                 </div>
                             )}
@@ -161,13 +161,16 @@ const Register = () => {
                             minimum 1 symbol/special character
                         </small>
 
-                        <button className={styles.button} type="submit">
+                        <button
+                            className={styles.button}
+                            type="submit"
+                            disabled={disableSubmit}>
                             Submit
                         </button>
                         <div className={styles.login}>
                             Already a user?
                             <Link href="/login">
-                                <a className={styles.forgotPw}>Sign In</a>
+                                <a className={styles.signIn}> Sign In</a>
                             </Link>
                         </div>
                     </fieldset>

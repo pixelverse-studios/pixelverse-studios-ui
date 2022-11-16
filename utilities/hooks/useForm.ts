@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useReducer, useState } from 'react'
-import { ErrorProps, FormProps, RegisterProps } from '../types/formTypes'
+import { FormProps, RegisterProps } from '../types/formTypes'
 
 const RESET = 'reset'
 const UPDATE = 'update'
@@ -11,8 +11,7 @@ function reducer(state: FormProps, action: ActionState) {
     switch (action.type) {
         case UPDATE: {
             const { name, value, error } = action.payload
-            console.log(error)
-            return { ...state, [name]: value }
+            return { ...state, [name]: { value, error } }
         }
         case RESET: {
             const { initialState } = action.payload
@@ -24,42 +23,36 @@ function reducer(state: FormProps, action: ActionState) {
     }
 }
 
-const useForm = (
-    initialState: FormProps,
-    validation,
-    initialError: ErrorProps
-) => {
+const useForm = (initialState: FormProps, validations: RegisterProps) => {
     const [form, dispatch] = useReducer(reducer, initialState)
-    const [error, setError] = useState(initialError)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
 
-        if (validation[name]) {
-            if (!validation[name](value)) {
-                setError({
-                    hasError: true,
-                    fieldName: name
-                })
-            } else {
-                setError(initialError)
-            }
-        }
+        // if (validations[name]) {
+        //     setError(prev => ({
+        //         ...prev,
+        //         [name]: !validations[name].test(value.trim())
+        //             ? validations[name].message
+        //             : ''
+        //     }))
+        // }
+        const error = !validations[name].test(value.trim())
+            ? validations[name].message
+            : ''
         dispatch({
             type: UPDATE,
             payload: {
                 name,
                 value,
-                error: {
-                    error
-                }
+                error
             }
         })
     }
 
     const handleReset = () => dispatch({ type: RESET, payload: initialState })
 
-    return { form, error, handleChange, handleReset }
+    return { form, handleChange, handleReset }
 }
 
 export default useForm

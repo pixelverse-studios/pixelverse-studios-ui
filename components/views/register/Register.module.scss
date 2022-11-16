@@ -24,14 +24,14 @@
             user-select: none;
             .popUpText {
                 width: 100%;
-                background-color: #555;
-                color: #fff;
-
+                background-color: var(--error-background);
+                color: var(--off-black);
+                padding: 0.8rem;
                 border-radius: 6px;
-                padding: 8px 0;
                 position: absolute;
                 z-index: 1;
-                font-size: 12px;
+                font-size: 14px;
+                line-height: 18px;
 
                 &::after {
                     content: '';
@@ -42,7 +42,8 @@
                     border-width: -10px;
                     border-style: solid;
                     border-width: 6px;
-                    border-color: transparent transparent #555 transparent;
+                    border-color: transparent transparent
+                        var(--error-background) transparent;
                 }
             }
         }
@@ -64,6 +65,7 @@
                     display: block;
                     top: 0;
                     transition: 0.2s ease-in-out;
+                    color: var(--off-white);
                 }
                 input {
                     position: relative;
@@ -105,11 +107,13 @@
                             left: 5px;
                             color: var(--off-white);
                         }
+
                         padding-bottom: 7px;
                     }
                 }
             }
             small {
+                color: var(--off-white);
                 margin-bottom: 1rem;
             }
 
@@ -133,13 +137,22 @@
                 &:hover {
                     background: rgba(3, 3, 3, 0.648);
                 }
+                &:disabled {
+                    background: rgba(3, 3, 3, 0.1);
+                    cursor: not-allowed;
+                }
             }
-            .forgotPw {
-                font-size: 11px;
+            .login {
                 text-align: center;
                 color: var(--off-white);
-                padding-bottom: 0.5rem 0;
-                text-decoration: underline;
+                .signIn {
+                    font-weight: 600;
+                    font-size: 12px;
+                    text-align: center;
+                    color: var(--sienna500);
+                    padding-bottom: 0.5rem 0;
+                    text-decoration: underline;
+                }
             }
         }
     }
