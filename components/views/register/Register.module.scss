@@ -4,7 +4,7 @@
     height: calc(100vh - var(--nav-height) - var(--footer-height));
     .formContainer {
         height: fit-content;
-        width: 25rem;
+        width: 38rem;
         background: rgba(3, 3, 3, 0.2);
         padding: 2rem;
         display: flex;
@@ -53,8 +53,11 @@
             flex-direction: column;
             .nameInputs {
                 display: flex;
-                justify-content: space-between;
-                column-gap: 0.5rem;
+                column-gap: 2rem;
+
+                .inputField {
+                    width: 100%;
+                }
             }
             .inputField {
                 position: relative;
