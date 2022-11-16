@@ -29,14 +29,6 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
 
-        // if (validations[name]) {
-        //     setError(prev => ({
-        //         ...prev,
-        //         [name]: !validations[name].test(value.trim())
-        //             ? validations[name].message
-        //             : ''
-        //     }))
-        // }
         const error = !validations[name].test(value.trim())
             ? validations[name].message
             : ''
