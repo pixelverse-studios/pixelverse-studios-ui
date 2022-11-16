@@ -1,8 +1,18 @@
+type inputType = { value: string; error: string }
+type validationType = { test: (value: string) => boolean; message: string }
+
 type RegisterFormProps = {
-    firstName: string
-    lastName: string
-    email: string
-    password: string
+    firstName: inputType
+    lastName: inputType
+    email: inputType
+    password: inputType
+}
+
+type RegisterValidationProps = {
+    [firstName: string]: validationType
+    lastName: validationType
+    email: validationType
+    password: validationType
 }
 
 type LoginFormProps = {
@@ -10,4 +20,5 @@ type LoginFormProps = {
     password: string
 }
 
-export type FormProps = LoginFormProps | RegisterFormProps
+export type RegisterProps = RegisterValidationProps
+export type FormProps = RegisterFormProps

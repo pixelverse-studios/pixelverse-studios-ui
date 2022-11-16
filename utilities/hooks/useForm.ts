@@ -1,5 +1,5 @@
-import { ChangeEventHandler, useReducer } from 'react'
-import { FormProps } from '../types/formTypes'
+import { ChangeEventHandler, useReducer, useState } from 'react'
+import { FormProps, RegisterProps } from '../types/formTypes'
 
 const RESET = 'reset'
 const UPDATE = 'update'
@@ -10,28 +10,34 @@ interface ActionState {
 function reducer(state: FormProps, action: ActionState) {
     switch (action.type) {
         case UPDATE: {
-            const { name, value } = action.payload
-            return { ...state, [name]: value }
+            const { name, value, error } = action.payload
+            return { ...state, [name]: { value, error } }
         }
         case RESET: {
             const { initialState } = action.payload
             return initialState
         }
+
         default:
             return state
     }
 }
 
-const useForm = (initialState: FormProps) => {
+const useForm = (initialState: FormProps, validations: RegisterProps) => {
     const [form, dispatch] = useReducer(reducer, initialState)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
+
+        const error = !validations[name].test(value.trim())
+            ? validations[name].message
+            : ''
         dispatch({
             type: UPDATE,
             payload: {
                 name,
-                value
+                value,
+                error
             }
         })
     }
