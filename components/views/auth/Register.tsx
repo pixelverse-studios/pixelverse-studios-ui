@@ -1,13 +1,13 @@
 import { useState, FormEvent, useRef, useEffect } from 'react'
 import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
-import styles from './Register.module.scss'
 import { FormProps } from '../../../utilities/types/formTypes'
 import {
     VALID_STRING,
     VALID_EMAIL,
     VALID_PASSWORD
 } from '../../../utilities/validations/regexValidators'
+import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
     firstName: { value: '', error: '' },

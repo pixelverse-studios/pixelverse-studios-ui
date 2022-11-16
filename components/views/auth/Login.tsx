@@ -2,7 +2,7 @@ import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
 
 import { FormProps } from '../../../utilities/types/formTypes'
-import styles from './Login.module.scss'
+import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
 import { VALID_EMAIL, VALID_PASSWORD } from '../../../utilities/regex'
