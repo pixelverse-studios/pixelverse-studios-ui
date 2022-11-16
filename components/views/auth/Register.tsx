@@ -7,6 +7,7 @@ import {
     VALID_EMAIL,
     VALID_PASSWORD
 } from '../../../utilities/validations/regexValidators'
+import { FormField, FormRow } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -61,106 +62,55 @@ const Register = () => {
                 <h1 className={styles.header}>Register</h1>
 
                 <form onSubmit={handleSubmit}>
-                    <fieldset className={styles.formInputs}>
-                        <div className={styles.nameInputs}>
-                            <div className={styles.inputField}>
-                                <input
-                                    type="text"
-                                    id="firstName"
-                                    name="firstName"
-                                    placeholder="First Name"
-                                    value={firstName?.value}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <label
-                                    htmlFor="firstName"
-                                    className={styles.formLabel}>
-                                    First Name
-                                </label>
-                                {firstName?.error && (
-                                    <div className={styles.errorPopUp}>
-                                        <span className={styles.popUpText}>
-                                            {firstName.error}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-                            <div className={styles.inputField}>
-                                <input
-                                    type="text"
-                                    id="lastName"
-                                    name="lastName"
-                                    placeholder="Last Name"
-                                    value={lastName?.value}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <label
-                                    className={styles.formLabel}
-                                    htmlFor="lastName">
-                                    Last Name
-                                </label>
-                                {lastName?.error && (
-                                    <div className={styles.errorPopUp}>
-                                        <span className={styles.popUpText}>
-                                            {lastName.error}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className={styles.inputField}>
-                            <input
+                    <fieldset>
+                        <FormRow>
+                            <FormField
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="First Name"
+                                field={firstName}
+                                onChange={handleChange}
+                                required
+                            />
+                            <FormField
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                placeholder="Last Name"
+                                field={lastName}
+                                onChange={handleChange}
+                                required
+                            />
+                        </FormRow>
+                        <FormRow>
+                            <FormField
+                                field={email}
                                 type="email"
                                 id="email"
                                 name="email"
                                 placeholder="Email"
-                                value={email?.value}
                                 onChange={handleChange}
                                 required
                             />
-                            <label htmlFor="email" className={styles.formLabel}>
-                                Email
-                            </label>
-                            {email?.error && (
-                                <div className={styles.errorPopUp}>
-                                    <span className={styles.popUpText}>
-                                        {email.error}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                        <div className={styles.inputField}>
-                            <input
+                        </FormRow>
+                        <FormRow>
+                            <FormField
                                 type="password"
                                 id="password"
                                 name="password"
                                 placeholder="Password"
-                                value={password?.value}
+                                field={password}
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
                                 required
                             />
-                            <label
-                                htmlFor="password"
-                                className={styles.formLabel}>
-                                Password
-                            </label>
-                            {password?.error && (
-                                <div className={styles.errorPopUp}>
-                                    <span className={styles.popUpText}>
-                                        {password.error}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
+                        </FormRow>
                         <small>
                             *Minimum 8 characters. Must be alphanumeric and
                             minimum 1 symbol/special character
                         </small>
-
                         <button
                             className={styles.button}
                             type="submit"
