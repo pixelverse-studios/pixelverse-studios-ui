@@ -12,6 +12,12 @@ $label-top-focus: -1.3rem;
         left: $label-left;
         transition: 0.2s ease-in-out;
         color: var(--off-white);
+        font-weight: 500;
+        font-size: 1rem;
+
+        &.errorLabel {
+            color: var(--error-font) !important;
+        }
     }
     input {
         position: relative;

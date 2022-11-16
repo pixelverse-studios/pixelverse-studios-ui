@@ -38,7 +38,11 @@ const FormField = ({
                 minLength={minLength}
                 title={title}
             />
-            <label htmlFor={id}>{placeholder}</label>
+            <label
+                className={field?.error ? styles.errorLabel : ''}
+                htmlFor={id}>
+                {placeholder}
+            </label>
             {field?.error ? (
                 <div className={styles.errorPopUp}>
                     <span className={styles.popUpText}>{field.error}</span>
