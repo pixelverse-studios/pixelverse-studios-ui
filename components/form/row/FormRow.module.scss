@@ -1,0 +1,15 @@
+@use 'styles/mixins/breakpoints' as breakpoints;
+
+.FormRow {
+    display: flex;
+    align-items: flex-end;
+    gap: 0 1rem;
+
+    & > * {
+        flex: 1;
+    }
+
+    @include breakpoints.set-max-width('medium') {
+        flex-direction: column;
+    }
+}

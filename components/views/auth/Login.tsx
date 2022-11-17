@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react'
 import Link from 'next/link'
 
 import { FormProps } from '../../../utilities/types/formTypes'
-import styles from './Login.module.scss'
+import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
 const INITIAL_STATE = {
