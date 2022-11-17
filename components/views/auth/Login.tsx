@@ -1,67 +1,91 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
 
 import { FormProps } from '../../../utilities/types/formTypes'
 import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
+import { VALID_EMAIL, VALID_PASSWORD } from '../../../utilities/regex'
+import { FormField, FormRow } from '../../form'
+
 const INITIAL_STATE = {
-    email: '',
-    password: ''
+    email: { value: '', error: '' },
+    password: { value: '', error: '' }
 } as FormProps
 
-const INITIAL_ERROR = {
-    message: 'Enter message',
-    hasError: false
-} as { message: string; hasError: boolean }
+const VALIDATIONS = {
+    email: {
+        test: (value: string) => VALID_EMAIL.test(value),
+        message: 'Must containt a valid email address (example@test.com)'
+    },
+    password: {
+        test: (value: string) => VALID_PASSWORD.test(value),
+        message: 'Password does not meet requirements'
+    }
+}
 
 const Login = () => {
-    const {
-        form: { email, password },
-        handleChange
-    } = useForm(INITIAL_STATE)
-    const [error, setError] = useState(INITIAL_ERROR)
-
+    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const { email, password } = form
+    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
+
+    useEffect(() => {
+        let isFormValid = true
+        Object.keys(form).forEach(item => {
+            const current = form[item]
+            if ((isFormValid && !current.value) || current.error) {
+                isFormValid = false
+            }
+        })
+
+        setDisableSubmit(!isFormValid)
+    })
 
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Login</h1>
-                {error?.hasError && (
-                    <div className={styles.errorMessage}>{error.message}</div>
-                )}
-                <form onSubmit={handleSubmit}>
-                    <fieldset className={styles.formInputs}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={handleChange}
-                            required
-                        />
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={handleChange}
-                            required
-                        />
 
-                        <button className={styles.button} type="submit">
+                <form onSubmit={handleSubmit}>
+                    <fieldset>
+                        <FormRow>
+                            <FormField
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter email"
+                                field={email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </FormRow>
+                        <FormRow>
+                            <FormField
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter password"
+                                field={password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </FormRow>
+                        <button
+                            className={styles.button}
+                            type="submit"
+                            disabled={disableSubmit}>
                             Submit
                         </button>
-                        <Link href="/forgotpassword">
-                            <a className={styles.forgotPw}>Forgot Password ?</a>
-                        </Link>
+                        <div className={styles.option}>
+                            <Link href="/forgotpassword">
+                                <a className={styles.forgotPw}>
+                                    Forgot Password ?
+                                </a>
+                            </Link>
+                        </div>
                     </fieldset>
                 </form>
             </div>
