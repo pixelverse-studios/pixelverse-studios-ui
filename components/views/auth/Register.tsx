@@ -103,7 +103,6 @@ const Register = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                required
                             />
                         </FormRow>
                         <small>

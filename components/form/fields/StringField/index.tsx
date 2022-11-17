@@ -4,7 +4,7 @@ import styles from './FormField.module.scss'
 
 type StringFieldProps = {
     field: inputType
-    type: string
+    type: 'text' | 'email'
     id: string
     name: string
     placeholder: string
@@ -26,7 +26,7 @@ const StringField = ({
     minLength
 }: StringFieldProps) => {
     return (
-        <div className={styles.StringField}>
+        <div className={styles.FormField}>
             <input
                 type={type}
                 id={id}

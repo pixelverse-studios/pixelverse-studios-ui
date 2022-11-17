@@ -9,8 +9,7 @@ type PasswordFieldProps = {
     name: string
     placeholder: string
     onChange: ChangeEventHandler
-    required?: boolean
-    minLength?: number
+    minLength: number
     title?: string
 }
 
@@ -20,7 +19,6 @@ const PasswordField = ({
     name,
     placeholder,
     onChange,
-    required,
     minLength,
     title
 }: PasswordFieldProps) => {
@@ -39,7 +37,7 @@ const PasswordField = ({
                 placeholder={placeholder}
                 value={field?.value}
                 onChange={onChange}
-                required={required}
+                required
                 minLength={minLength}
                 title={title}
             />
