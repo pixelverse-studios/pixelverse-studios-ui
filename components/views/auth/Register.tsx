@@ -117,7 +117,7 @@ const Register = () => {
                             disabled={disableSubmit}>
                             Submit
                         </button>
-                        <div className={styles.login}>
+                        <div className={styles.option}>
                             Already a user?
                             <Link href="/login">
                                 <a className={styles.signIn}> Sign In</a>

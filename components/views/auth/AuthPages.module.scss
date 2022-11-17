@@ -53,9 +53,15 @@
                 }
             }
 
-            .login {
+            .option {
                 text-align: center;
                 color: var(--off-white);
+                .forgotPw {
+                    &:hover {
+                        color: var(--off-white);
+                        text-decoration: underline;
+                    }
+                }
 
                 .signIn {
                     font-weight: 600;

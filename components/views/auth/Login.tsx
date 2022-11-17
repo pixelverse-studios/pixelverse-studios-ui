@@ -79,9 +79,13 @@ const Login = () => {
                             disabled={disableSubmit}>
                             Submit
                         </button>
-                        <Link href="/forgotpassword">
-                            <a className={styles.forgotPw}>Forgot Password ?</a>
-                        </Link>
+                        <div className={styles.option}>
+                            <Link href="/forgotpassword">
+                                <a className={styles.forgotPw}>
+                                    Forgot Password ?
+                                </a>
+                            </Link>
+                        </div>
                     </fieldset>
                 </form>
             </div>
