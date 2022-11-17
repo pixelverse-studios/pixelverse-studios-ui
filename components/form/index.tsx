@@ -1,4 +1,5 @@
-import StringField from './field/StringField'
+import StringField from './fields/StringField'
+import PasswordField from './fields/PasswordField'
 import FormRow from './row'
 
-export { StringField, FormRow }
+export { StringField, FormRow, PasswordField }

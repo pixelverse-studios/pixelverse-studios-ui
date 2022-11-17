@@ -7,7 +7,7 @@ import {
     VALID_EMAIL,
     VALID_PASSWORD
 } from '../../../utilities/validations/regexValidators'
-import { StringField, FormRow } from '../../form'
+import { StringField, FormRow, PasswordField } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -95,8 +95,7 @@ const Register = () => {
                             />
                         </FormRow>
                         <FormRow>
-                            <StringField
-                                type="password"
+                            <PasswordField
                                 id="password"
                                 name="password"
                                 placeholder="Password"
