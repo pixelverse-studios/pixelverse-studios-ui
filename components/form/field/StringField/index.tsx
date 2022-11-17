@@ -1,8 +1,8 @@
 import { ChangeEventHandler } from 'react'
-import { inputType } from '../../../utilities/types/formTypes'
+import { inputType } from '../../../../utilities/types/formTypes'
 import styles from './FormField.module.scss'
 
-type FormFieldProps = {
+type StringFieldProps = {
     field: inputType
     type: string
     id: string
@@ -14,7 +14,7 @@ type FormFieldProps = {
     title?: string
 }
 
-const FormField = ({
+const StringField = ({
     field,
     type,
     id,
@@ -24,9 +24,9 @@ const FormField = ({
     required,
     title,
     minLength
-}: FormFieldProps) => {
+}: StringFieldProps) => {
     return (
-        <div className={styles.FormField}>
+        <div className={styles.StringField}>
             <input
                 type={type}
                 id={id}
@@ -52,4 +52,4 @@ const FormField = ({
     )
 }
 
-export default FormField
+export default StringField

@@ -6,7 +6,7 @@ import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
 import { VALID_EMAIL, VALID_PASSWORD } from '../../../utilities/regex'
-import { FormField, FormRow } from '../../form'
+import { StringField, FormRow } from '../../form'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' },
@@ -52,7 +52,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
-                            <FormField
+                            <StringField
                                 type="email"
                                 id="email"
                                 name="email"
@@ -63,7 +63,7 @@ const Login = () => {
                             />
                         </FormRow>
                         <FormRow>
-                            <FormField
+                            <StringField
                                 type="password"
                                 id="password"
                                 name="password"
