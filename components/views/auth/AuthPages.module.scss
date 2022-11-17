@@ -5,7 +5,8 @@
 
     .formContainer {
         height: fit-content;
-        background: rgba(3, 3, 3, 0.2);
+        background: var(--dark-clear-bg);
+        box-shadow: var(--form-box-shadow);
         padding: 2rem;
         display: grid;
         grid-template-rows: 4rem 1fr;

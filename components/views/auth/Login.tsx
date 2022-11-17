@@ -6,6 +6,7 @@ import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
 import { VALID_EMAIL, VALID_PASSWORD } from '../../../utilities/regex'
+import { FormField, FormRow } from '../../form'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' },
@@ -49,45 +50,29 @@ const Login = () => {
                 <h1 className={styles.header}>Login</h1>
 
                 <form onSubmit={handleSubmit}>
-                    <fieldset className={styles.formInputs}>
-                        <div className={styles.inputField}>
-                            <input
+                    <fieldset>
+                        <FormRow>
+                            <FormField
                                 type="email"
                                 id="email"
                                 name="email"
                                 placeholder="Enter email"
-                                value={email.value}
+                                field={email}
                                 onChange={handleChange}
                                 required
                             />
-                            <label className={styles.formLabel} htmlFor="email">
-                                Email
-                            </label>
-                            {email?.error && (
-                                <div className={styles.errorPopUp}>
-                                    <span className={styles.popUpText}>
-                                        {email.error}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                        <div className={styles.inputField}>
-                            <input
+                        </FormRow>
+                        <FormRow>
+                            <FormField
                                 type="password"
                                 id="password"
                                 name="password"
                                 placeholder="Enter password"
-                                value={password.value}
+                                field={password}
                                 onChange={handleChange}
                                 required
                             />
-                            <label
-                                className={styles.formLabel}
-                                htmlFor="password">
-                                Password
-                            </label>
-                        </div>
-
+                        </FormRow>
                         <button
                             className={styles.button}
                             type="submit"
