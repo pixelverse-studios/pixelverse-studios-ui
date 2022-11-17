@@ -26,7 +26,6 @@ const PasswordField = ({
 }: PasswordFieldProps) => {
     const [type, setType] = useState('password')
     const toggleView = () => {
-        console.log(type)
         if (type === 'password') setType('text')
 
         if (type === 'text') setType('password')
