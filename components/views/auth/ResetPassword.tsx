@@ -3,6 +3,8 @@ import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { VALID_PASSWORD } from '../../../utilities/validations/regexValidators'
 import { FormRow, PasswordField } from '../../form'
+import { BiErrorAlt } from 'react-icons/bi'
+
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -61,6 +63,7 @@ const ResetPassword = () => {
                 <form onSubmit={handleSubmit}>
                     {submitError && (
                         <div className={styles.errorField}>
+                            <BiErrorAlt className={styles.errorIcon} />
                             The passwords do not match
                         </div>
                     )}

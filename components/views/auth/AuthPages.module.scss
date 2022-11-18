@@ -9,7 +9,7 @@
         box-shadow: var(--form-box-shadow);
         padding: 2rem;
         display: grid;
-        grid-template-rows: 2rem 1fr;
+        grid-template-rows: 3rem 1fr;
         grid-gap: 1rem;
 
         .header {
@@ -19,8 +19,14 @@
         .errorField {
             background-color: var(--error-background);
             color: var(--off-black);
-            padding: 1rem;
+            padding: 1rem 0.5rem;
             margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            column-gap: 0.2rem;
+            .errorIcon {
+                font-size: 1.2rem;
+            }
         }
 
         fieldset {
