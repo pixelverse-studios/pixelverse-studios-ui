@@ -9,12 +9,18 @@
         box-shadow: var(--form-box-shadow);
         padding: 2rem;
         display: grid;
-        grid-template-rows: 4rem 1fr;
+        grid-template-rows: 2rem 1fr;
         grid-gap: 1rem;
 
         .header {
             text-align: center;
             color: var(--off-white);
+        }
+        .errorField {
+            background-color: var(--error-background);
+            color: var(--off-black);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         fieldset {

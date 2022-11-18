@@ -1,4 +1,4 @@
-import { useState, FormEvent, useRef, useEffect } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
 import { FormProps } from '../../../utilities/types/formTypes'
