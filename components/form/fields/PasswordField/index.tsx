@@ -2,6 +2,7 @@ import { ChangeEventHandler, useState } from 'react'
 import { inputType } from '../../../../utilities/types/formTypes'
 import styles from './PasswordField.module.scss'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { SassMap } from 'sass'
 
 type PasswordFieldProps = {
     field: inputType
@@ -11,7 +12,8 @@ type PasswordFieldProps = {
     onChange: ChangeEventHandler
     minLength: number
     title?: string
-    message?: boolean
+    showMessage?: boolean
+    message?: string
     confirmationField?: inputType
 }
 
@@ -23,6 +25,7 @@ const PasswordField = ({
     onChange,
     minLength,
     title,
+    showMessage,
     message,
     confirmationField
 }: PasswordFieldProps) => {
@@ -77,12 +80,16 @@ const PasswordField = ({
                 htmlFor={id}>
                 {placeholder}
             </label>
-            {message && (
+            {showMessage && (
                 <div className={styles.small}>
-                    <small>
-                        *Minimum 8 characters. Must be alphanumeric and minimum
-                        1 symbol/special character
-                    </small>
+                    {!message ? (
+                        <small>
+                            *Minimum 8 characters. Must be alphanumeric and
+                            minimum 1 symbol/special character
+                        </small>
+                    ) : (
+                        <small>{message}</small>
+                    )}
                 </div>
             )}
 

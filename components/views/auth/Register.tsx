@@ -102,7 +102,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                message={true}
+                                showMessage={true}
                             />
                         </FormRow>
                         <button

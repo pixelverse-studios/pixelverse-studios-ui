@@ -1,10 +1,9 @@
 import { useState, FormEvent, useEffect } from 'react'
+
 import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { VALID_PASSWORD } from '../../../utilities/validations/regexValidators'
 import { FormRow, PasswordField } from '../../form'
-import { BiErrorAlt } from 'react-icons/bi'
-
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -12,11 +11,11 @@ const INITIAL_STATE = {
     confirmPassword: { value: '', error: '' }
 } as FormProps
 
-const PASSWORD_ERROR_MESSAGE = 'Password does not meet requirements'
 const VALIDATIONS = {
     newPassword: {
         test: (value: string) => VALID_PASSWORD.test(value),
-        message: PASSWORD_ERROR_MESSAGE
+        message:
+            'Password is required, and should include at least 1 lowercase & uppercase letter, 1 special character, 1 number, and be minimum 8 characters long.'
     },
     confirmPassword: {
         test: (value: string) => false,
@@ -32,6 +31,7 @@ const ResetPassword = () => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
+
     useEffect(() => {
         let isFormValid = true
         Object.keys(form).forEach(item => {
@@ -40,7 +40,6 @@ const ResetPassword = () => {
                 isFormValid = false
             }
         })
-
         setDisableSubmit(!isFormValid)
     })
 
@@ -62,7 +61,6 @@ const ResetPassword = () => {
                                 message={false}
                             />
                         </FormRow>
-
                         <FormRow>
                             <PasswordField
                                 id="confirmPassword"
