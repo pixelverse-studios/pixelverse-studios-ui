@@ -60,7 +60,6 @@ const Register = () => {
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Register</h1>
-
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
@@ -103,12 +102,9 @@ const Register = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
+                                message={true}
                             />
                         </FormRow>
-                        <small>
-                            *Minimum 8 characters. Must be alphanumeric and
-                            minimum 1 symbol/special character
-                        </small>
                         <button
                             className={styles.button}
                             type="submit"

@@ -11,6 +11,7 @@ type PasswordFieldProps = {
     onChange: ChangeEventHandler
     minLength: number
     title?: string
+    message?: boolean
 }
 
 const PasswordField = ({
@@ -20,7 +21,8 @@ const PasswordField = ({
     placeholder,
     onChange,
     minLength,
-    title
+    title,
+    message
 }: PasswordFieldProps) => {
     const [type, setType] = useState('password')
     const toggleView = () => {
@@ -46,6 +48,13 @@ const PasswordField = ({
                 htmlFor={id}>
                 {placeholder}
             </label>
+            {message && (
+                <small>
+                    *Minimum 8 characters. Must be alphanumeric and minimum 1
+                    symbol/special character
+                </small>
+            )}
+
             {type === 'password' ? (
                 <FaEye className={styles.icon} onClick={toggleView} />
             ) : (
