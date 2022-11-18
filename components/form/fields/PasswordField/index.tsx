@@ -12,6 +12,7 @@ type PasswordFieldProps = {
     minLength: number
     title?: string
     message?: boolean
+    confirmationField?: inputType
 }
 
 const PasswordField = ({
@@ -22,13 +23,40 @@ const PasswordField = ({
     onChange,
     minLength,
     title,
-    message
+    message,
+    confirmationField
 }: PasswordFieldProps) => {
     const [type, setType] = useState('password')
     const toggleView = () => {
         if (type === 'password') setType('text')
 
         if (type === 'text') setType('password')
+    }
+
+    const renderError = () => {
+        if (name === 'confirmPassword') {
+            const displayError = confirmationField?.value !== field.value
+            return (
+                <>
+                    {displayError && field.value ? (
+                        <div className={styles.errorPopUp}>
+                            <span className={styles.popUpText}>
+                                {field.error}
+                            </span>
+                        </div>
+                    ) : null}
+                </>
+            )
+        }
+        return (
+            <>
+                {field?.error ? (
+                    <div className={styles.errorPopUp}>
+                        <span className={styles.popUpText}>{field.error}</span>
+                    </div>
+                ) : null}
+            </>
+        )
     }
     return (
         <div className={styles.FormField}>
@@ -43,16 +71,19 @@ const PasswordField = ({
                 minLength={minLength}
                 title={title}
             />
+            {renderError()}
             <label
                 className={field?.error ? styles.errorLabel : ''}
                 htmlFor={id}>
                 {placeholder}
             </label>
             {message && (
-                <small>
-                    *Minimum 8 characters. Must be alphanumeric and minimum 1
-                    symbol/special character
-                </small>
+                <div className={styles.small}>
+                    <small>
+                        *Minimum 8 characters. Must be alphanumeric and minimum
+                        1 symbol/special character
+                    </small>
+                </div>
             )}
 
             {type === 'password' ? (
@@ -60,12 +91,6 @@ const PasswordField = ({
             ) : (
                 <FaEyeSlash className={styles.icon} onClick={toggleView} />
             )}
-
-            {field?.error ? (
-                <div className={styles.errorPopUp}>
-                    <span className={styles.popUpText}>{field.error}</span>
-                </div>
-            ) : null}
         </div>
     )
 }

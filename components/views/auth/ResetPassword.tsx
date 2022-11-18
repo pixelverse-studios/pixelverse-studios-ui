@@ -19,31 +19,18 @@ const VALIDATIONS = {
         message: PASSWORD_ERROR_MESSAGE
     },
     confirmPassword: {
-        test: (value: string) => VALID_PASSWORD.test(value),
-        message: PASSWORD_ERROR_MESSAGE
+        test: (value: string) => false,
+        message: 'Passwords do not match'
     }
 }
-
-const INITIAL_ERROR = {
-    message: '',
-    hasError: false
-} as { message: string; hasError: boolean }
 
 const ResetPassword = () => {
     const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
     const { newPassword, confirmPassword } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
-    const [submitError, setSubmitError] = useState<boolean>(false)
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (
-            confirmPassword.value !== '' &&
-            newPassword.value !== confirmPassword.value
-        ) {
-            setSubmitError(true)
-        } else {
-            setSubmitError(false)
-        }
     }
     useEffect(() => {
         let isFormValid = true
@@ -56,18 +43,12 @@ const ResetPassword = () => {
 
         setDisableSubmit(!isFormValid)
     })
+
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Reset Password</h1>
                 <form onSubmit={handleSubmit}>
-                    {submitError && (
-                        <div className={styles.errorField}>
-                            <BiErrorAlt className={styles.errorIcon} />
-                            The passwords do not match
-                        </div>
-                    )}
-
                     <fieldset>
                         <FormRow>
                             <PasswordField
@@ -81,6 +62,7 @@ const ResetPassword = () => {
                                 message={false}
                             />
                         </FormRow>
+
                         <FormRow>
                             <PasswordField
                                 id="confirmPassword"
@@ -91,6 +73,7 @@ const ResetPassword = () => {
                                 minLength={8}
                                 title="Custom"
                                 message={true}
+                                confirmationField={newPassword}
                             />
                         </FormRow>
                         <button
