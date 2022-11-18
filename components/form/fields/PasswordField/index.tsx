@@ -29,7 +29,7 @@ const PasswordField = ({
         if (type === 'text') setType('password')
     }
     return (
-        <div className={styles.PasswordField}>
+        <div className={styles.FormField}>
             <input
                 type={type}
                 id={id}
