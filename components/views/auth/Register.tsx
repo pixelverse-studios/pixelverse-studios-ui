@@ -7,7 +7,7 @@ import {
     VALID_EMAIL,
     VALID_PASSWORD
 } from '../../../utilities/validations/regexValidators'
-import { FormField, FormRow } from '../../form'
+import { StringField, FormRow, PasswordField } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -64,7 +64,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
-                            <FormField
+                            <StringField
                                 type="text"
                                 id="firstName"
                                 name="firstName"
@@ -73,7 +73,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <FormField
+                            <StringField
                                 type="text"
                                 id="lastName"
                                 name="lastName"
@@ -84,7 +84,7 @@ const Register = () => {
                             />
                         </FormRow>
                         <FormRow>
-                            <FormField
+                            <StringField
                                 field={email}
                                 type="email"
                                 id="email"
@@ -95,8 +95,7 @@ const Register = () => {
                             />
                         </FormRow>
                         <FormRow>
-                            <FormField
-                                type="password"
+                            <PasswordField
                                 id="password"
                                 name="password"
                                 placeholder="Password"
@@ -104,7 +103,6 @@ const Register = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                required
                             />
                         </FormRow>
                         <small>

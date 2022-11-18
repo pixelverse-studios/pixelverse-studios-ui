@@ -2,8 +2,8 @@
 
 .FormRow {
     display: flex;
-    align-items: flex-end;
-    gap: 0 1rem;
+
+    gap: 1rem 1rem;
 
     & > * {
         flex: 1;

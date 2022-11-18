@@ -1,32 +1,35 @@
-import { ChangeEventHandler } from 'react'
-import { inputType } from '../../../utilities/types/formTypes'
-import styles from './FormField.module.scss'
+import { ChangeEventHandler, useState } from 'react'
+import { inputType } from '../../../../utilities/types/formTypes'
+import styles from './PasswordField.module.scss'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-type FormFieldProps = {
+type PasswordFieldProps = {
     field: inputType
-    type: string
     id: string
     name: string
     placeholder: string
     onChange: ChangeEventHandler
-    required?: boolean
-    minLength?: number
+    minLength: number
     title?: string
 }
 
-const FormField = ({
+const PasswordField = ({
     field,
-    type,
     id,
     name,
     placeholder,
     onChange,
-    required,
-    title,
-    minLength
-}: FormFieldProps) => {
+    minLength,
+    title
+}: PasswordFieldProps) => {
+    const [type, setType] = useState('password')
+    const toggleView = () => {
+        if (type === 'password') setType('text')
+
+        if (type === 'text') setType('password')
+    }
     return (
-        <div className={styles.FormField}>
+        <div className={styles.PasswordField}>
             <input
                 type={type}
                 id={id}
@@ -34,7 +37,7 @@ const FormField = ({
                 placeholder={placeholder}
                 value={field?.value}
                 onChange={onChange}
-                required={required}
+                required
                 minLength={minLength}
                 title={title}
             />
@@ -43,6 +46,12 @@ const FormField = ({
                 htmlFor={id}>
                 {placeholder}
             </label>
+            {type === 'password' ? (
+                <FaEye className={styles.icon} onClick={toggleView} />
+            ) : (
+                <FaEyeSlash className={styles.icon} onClick={toggleView} />
+            )}
+
             {field?.error ? (
                 <div className={styles.errorPopUp}>
                     <span className={styles.popUpText}>{field.error}</span>
@@ -52,4 +61,4 @@ const FormField = ({
     )
 }
 
-export default FormField
+export default PasswordField
