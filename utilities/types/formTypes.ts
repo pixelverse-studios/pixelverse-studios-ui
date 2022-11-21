@@ -25,5 +25,18 @@ type LoginValidationProps = {
     password: validationType
 }
 
-export type RegisterProps = RegisterValidationProps | LoginValidationProps
-export type FormProps = RegisterFormProps | LoginFormProps
+type ResetPasswordProps = {
+    newPassword: inputType
+    confirmPassword: inputType
+}
+
+type ResetValidationProps = {
+    [newPassword: string]: validationType
+    confirmPassword: validationType
+}
+
+export type RegisterProps =
+    | RegisterValidationProps
+    | LoginValidationProps
+    | ResetValidationProps
+export type FormProps = RegisterFormProps | LoginFormProps | ResetPasswordProps
