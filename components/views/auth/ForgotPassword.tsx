@@ -8,6 +8,9 @@ import styles from './AuthPages.module.scss'
 import { VALID_EMAIL } from '../../../utilities/regex'
 import { StringField, FormRow } from '../../form'
 
+const ERROR = 'error'
+const SUCCESS = 'success'
+
 const INITIAL_STATE = {
     email: { value: '', error: '' }
 } as FormProps
@@ -18,16 +21,29 @@ const VALIDATIONS = {
         message: 'Must containt a valid email address (example@test.com)'
     }
 }
+
 const ForgotPassword = () => {
     const router = useRouter()
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const { form, handleChange, handleReset } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
     const { email } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
-    const [error, setError] = useState<boolean>(true)
+    const [alert, setAlert] = useState<{ type: string; email: string }>({
+        type: '',
+        email: ''
+    })
+    const [showBanner, setShowBanner] = useState<boolean>(false)
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        router.push('/login')
+        setAlert({
+            type: SUCCESS,
+            email: email.value
+        })
+        setShowBanner(true)
+        handleReset()
     }
 
     useEffect(() => {
@@ -41,11 +57,29 @@ const ForgotPassword = () => {
         setDisableSubmit(!isFormValid)
     })
 
+    const BannerDisplay = () => {
+        const { type, email } = alert
+
+        if (type === SUCCESS)
+            return (
+                <div className={styles.success}>
+                    An email has been sent to {email} with a link to reset your
+                    password.
+                </div>
+            )
+        if (type === ERROR)
+            return (
+                <div className={styles.error}> {email} has not been found </div>
+            )
+
+        return <div />
+    }
+
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Forgot Password</h1>
-
+                {showBanner && <BannerDisplay />}
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>

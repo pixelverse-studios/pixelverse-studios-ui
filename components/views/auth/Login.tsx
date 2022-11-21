@@ -48,7 +48,6 @@ const Login = () => {
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Login</h1>
-
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
