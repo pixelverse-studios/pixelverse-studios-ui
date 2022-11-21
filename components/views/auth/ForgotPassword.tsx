@@ -1,6 +1,5 @@
 import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
@@ -23,7 +22,6 @@ const VALIDATIONS = {
 }
 
 const ForgotPassword = () => {
-    const router = useRouter()
     const { form, handleChange, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
