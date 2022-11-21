@@ -58,7 +58,7 @@ const ResetPassword = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                message={false}
+                                showMessage={false}
                             />
                         </FormRow>
                         <FormRow>
@@ -70,7 +70,7 @@ const ResetPassword = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                message={true}
+                                showMessage={true}
                                 confirmationField={newPassword}
                             />
                         </FormRow>

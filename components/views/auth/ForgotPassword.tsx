@@ -23,6 +23,7 @@ const ForgotPassword = () => {
     const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
     const { email } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
+    const [error, setError] = useState<boolean>(true)
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
