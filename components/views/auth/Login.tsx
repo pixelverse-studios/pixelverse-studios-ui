@@ -30,7 +30,6 @@ const Login = () => {
     const router = useRouter()
 
     const user = useSelector((state: any) => state.user)
-    console.log(user)
     const { form, handleChange, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
@@ -41,7 +40,12 @@ const Login = () => {
     const [login] = useMutation(LOGIN, {
         onCompleted({ login: data }) {
             if (data.__typename === 'Errors') {
-                // trigger the error banner
+                dispatch(
+                    showBanner({
+                        message: data.message,
+                        type: data.__typename
+                    })
+                )
             } else {
                 const profile = { ...data }
                 const token = data.token
@@ -64,7 +68,6 @@ const Login = () => {
             // router.push('/dashboard')
         },
         onError(err: any) {
-            // trigger error banner
             dispatch(setLoading(false))
         },
         variables: {
@@ -96,7 +99,7 @@ const Login = () => {
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Login</h1>
                 <form onSubmit={handleSubmit}>
-                    <fieldset disabled={loading}>
+                    <fieldset disabled={user?.loading}>
                         <FormRow>
                             <StringField
                                 type="email"

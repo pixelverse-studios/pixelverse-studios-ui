@@ -20,6 +20,7 @@ const Banner = () => {
 
     // add icons to CSS
     // add some sort of not awful transition IN AND OUT
+    // add an X to close
 
     if (banner.show) {
         return <div className={styles[banner.type]}>{banner.message}</div>
