@@ -1,4 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+interface ProfileProps {
+    _id: string
+    email: string
+    password: string
+    firstName: string | null
+    lastName: string | null
+    token: string | null
+    passwordResetToken: string | null
+}
+
+export const loginUser = createAsyncThunk(
+    'user/login',
+    async (variables: any, thunkAPI) => {
+        const { email, password, login } = variables
+        const { data, loading, error } = await login({
+            variables: { email, password }
+        })
+        const profile = data.login
+
+        return { data: profile, loading, error } as any
+    }
+)
 
 interface initialStateProps {
     profile: {
@@ -11,6 +34,7 @@ interface initialStateProps {
         passwordResetToken: string | null
     }
     loading: boolean
+    error: string | null | undefined
 }
 
 const initialState = {
@@ -22,9 +46,10 @@ const initialState = {
         lastName: null,
         token: null,
         passwordResetToken: null
-    },
-    loading: false
-} as initialStateProps
+    } as ProfileProps,
+    loading: false as boolean,
+    error: null as string | null | undefined
+}
 
 export const userSlice = createSlice({
     name: 'userProfile',
@@ -34,10 +59,11 @@ export const userSlice = createSlice({
             state.loading = false
             state.profile = action.payload
         },
-        startLoading: state => {
-            state.loading = true
+        setLoading: (state, action) => {
+            state.loading = action.payload
         }
     }
 })
 
+export const { setLoading, setProfile } = userSlice.actions
 export default userSlice.reducer

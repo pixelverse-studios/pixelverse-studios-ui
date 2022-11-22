@@ -1,10 +1,16 @@
 import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { useMutation } from '@apollo/client'
 
+import { setLoading, setProfile } from '../../../lib/redux/slices/user'
+import { AppDispatch } from '../../../lib/redux/store'
+import { LOGIN } from '../../../lib/gql/mutations/users'
+import { JWT_SECRET } from '../../../utilities/constants'
 import { FormProps } from '../../../utilities/types/formTypes'
 import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
-
 import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
 
@@ -19,11 +25,51 @@ const VALIDATIONS = {
 }
 
 const Login = () => {
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const dispatch = useDispatch<AppDispatch>()
+    const router = useRouter()
+
+    const { loading }: any = useSelector(state => state)
+
+    const { form, handleChange, handleReset } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
     const { email, password } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
+
+    const [login] = useMutation(LOGIN, {
+        onCompleted({ login: data }) {
+            if (data.__typename === 'Errors') {
+                // trigger the error banner
+            } else {
+                const profile = { ...data }
+                const token = data.token
+                localStorage.setItem(JWT_SECRET, token)
+
+                delete profile.__typename
+                delete profile.successType
+                delete profile.token
+                dispatch(setProfile(profile))
+
+                handleReset()
+            }
+            dispatch(setLoading(false))
+            router.push('/dashboard')
+        },
+        onError(err: any) {
+            // trigger error banner
+            dispatch(setLoading(false))
+        },
+        variables: {
+            email: email.value,
+            password: password.value
+        }
+    })
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        dispatch(setLoading(true))
+        login()
     }
 
     useEffect(() => {
@@ -43,7 +89,7 @@ const Login = () => {
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Login</h1>
                 <form onSubmit={handleSubmit}>
-                    <fieldset>
+                    <fieldset disabled={loading}>
                         <FormRow>
                             <StringField
                                 type="email"
