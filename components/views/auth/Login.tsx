@@ -29,8 +29,8 @@ const Login = () => {
     const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
 
-    const { loading }: any = useSelector(state => state)
-
+    const user = useSelector((state: any) => state.user)
+    console.log(user)
     const { form, handleChange, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
@@ -61,7 +61,7 @@ const Login = () => {
                 handleReset()
             }
             dispatch(setLoading(false))
-            router.push('/dashboard')
+            // router.push('/dashboard')
         },
         onError(err: any) {
             // trigger error banner

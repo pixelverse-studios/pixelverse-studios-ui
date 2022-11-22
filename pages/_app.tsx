@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as ReduxProvider } from 'react-redux'
 
+import Banner from '../components/banner'
 import RouteTransition from '../components/transition'
 import Nav from '../components/nav'
 import Footer from '../components/footer'
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ReduxProvider store={store}>
                 <main>
                     <Nav />
+                    <Banner />
                     <RouteTransition>
                         <Component {...pageProps} />
                     </RouteTransition>

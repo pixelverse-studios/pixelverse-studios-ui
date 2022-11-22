@@ -1,0 +1,7 @@
+.UserSuccess {
+    color: green;
+
+    &:before {
+        content: 'fuck';
+    }
+}
