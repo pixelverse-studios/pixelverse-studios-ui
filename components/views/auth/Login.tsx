@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
 
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
+import { showBanner } from '../../../lib/redux/slices/banner'
 import { AppDispatch } from '../../../lib/redux/store'
 import { LOGIN } from '../../../lib/gql/mutations/users'
 import { JWT_SECRET } from '../../../utilities/constants'
@@ -50,6 +51,12 @@ const Login = () => {
                 delete profile.successType
                 delete profile.token
                 dispatch(setProfile(profile))
+                dispatch(
+                    showBanner({
+                        message: 'User logged in successfully',
+                        type: data.__typename
+                    })
+                )
 
                 handleReset()
             }
