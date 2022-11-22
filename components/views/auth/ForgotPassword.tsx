@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
 import styles from './AuthPages.module.scss'
-import { VALID_EMAIL } from '../../../utilities/regex'
+import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow } from '../../form'
 
 const ERROR = 'error'
@@ -15,10 +15,7 @@ const INITIAL_STATE = {
 } as FormProps
 
 const VALIDATIONS = {
-    email: {
-        test: (value: string) => VALID_EMAIL.test(value),
-        message: 'Must containt a valid email address (example@test.com)'
-    }
+    email: FormValidations.validEmail
 }
 
 const ForgotPassword = () => {

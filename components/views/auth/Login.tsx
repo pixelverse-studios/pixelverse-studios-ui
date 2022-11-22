@@ -5,7 +5,7 @@ import { FormProps } from '../../../utilities/types/formTypes'
 import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 
-import { VALID_EMAIL, VALID_PASSWORD } from '../../../utilities/regex'
+import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
 
 const INITIAL_STATE = {
@@ -14,14 +14,8 @@ const INITIAL_STATE = {
 } as FormProps
 
 const VALIDATIONS = {
-    email: {
-        test: (value: string) => VALID_EMAIL.test(value),
-        message: 'Must containt a valid email address (example@test.com)'
-    },
-    password: {
-        test: (value: string) => VALID_PASSWORD.test(value),
-        message: 'Password does not meet requirements'
-    }
+    email: FormValidations.validEmail,
+    password: FormValidations.validPassword
 }
 
 const Login = () => {
@@ -78,7 +72,7 @@ const Login = () => {
                             Submit
                         </button>
                         <div className={styles.option}>
-                            <Link href="/forgot-password">
+                            <Link href="/password/forgot">
                                 <a className={styles.forgotPw}>
                                     Forgot Password ?
                                 </a>
