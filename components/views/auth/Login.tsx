@@ -143,7 +143,7 @@ const Login = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            <CircleLoader />
+                            {user?.loading ? <CircleLoader /> : 'Submit'}
                         </button>
                         <button onClick={onBanner}>WTF IS THIS BANNER</button>
                         <div className={styles.option}>
