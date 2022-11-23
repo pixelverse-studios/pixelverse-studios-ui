@@ -161,8 +161,7 @@ const Register = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            Submit
-                            {user?.loading && <DotCircleLoader />}
+                            <DotCircleLoader />
                         </button>
                         <div className={styles.option}>
                             Already a user?
