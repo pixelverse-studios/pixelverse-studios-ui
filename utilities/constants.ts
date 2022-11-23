@@ -2,7 +2,7 @@ export const JWT_SECRET = 'ezpz-jwt'
 export const DARK = 'DARK'
 export const LIGHT = 'LIGHT'
 export const STORED_THEME_KEY = 'EZPZ-THEME'
-export const LOGGED_IN_PAGES = ['account', 'dashboard', 'recipes']
+export const LOGGED_IN_PAGES = ['dashboard']
 
 // Reducer constants
 export const UPDATE = 'UPDATE'

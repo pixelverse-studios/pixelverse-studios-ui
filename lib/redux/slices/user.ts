@@ -1,19 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ProfileProps } from '../../../utilities/types/userTypes'
 
-interface initialStateProps {
-    profile: {
-        _id: string
-        email: string
-        password: string
-        firstName: string | null
-        lastName: string | null
-        token: string | null
-        passwordResetToken: string | null
-    }
-    loading: boolean
-}
-
-const initialState = {
+export const initialState = {
     profile: {
         _id: '',
         email: '',
@@ -22,9 +10,9 @@ const initialState = {
         lastName: null,
         token: null,
         passwordResetToken: null
-    },
-    loading: false
-} as initialStateProps
+    } as ProfileProps,
+    loading: false as boolean
+}
 
 export const userSlice = createSlice({
     name: 'userProfile',
@@ -34,10 +22,11 @@ export const userSlice = createSlice({
             state.loading = false
             state.profile = action.payload
         },
-        startLoading: state => {
-            state.loading = true
+        setLoading: (state, action) => {
+            state.loading = action.payload
         }
     }
 })
 
+export const { setLoading, setProfile } = userSlice.actions
 export default userSlice.reducer
