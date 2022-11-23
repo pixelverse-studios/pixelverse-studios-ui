@@ -20,7 +20,7 @@
             display: flex;
             justify-content: space-between;
             margin: 0;
-            width: 40vw;
+            width: 50vw;
 
             li {
                 list-style: none;
@@ -39,8 +39,16 @@
 
                 &.active {
                     font-weight: bold;
-                    // color: var(--seagreen500);
                     @include textHover;
+                }
+
+                svg {
+                    font-size: 1.5rem;
+
+                    &:hover {
+                        @include textHover;
+                        cursor: pointer;
+                    }
                 }
             }
         }
