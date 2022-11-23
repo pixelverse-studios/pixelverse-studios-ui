@@ -3,7 +3,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
-import { showBanner } from '../../../lib/redux/slices/banner'
+import {
+    showTechnicalDifficultiesBanner,
+    showBanner
+} from '../../../lib/redux/slices/banner'
 import useForm from '../../../utilities/hooks/useForm'
 import { StringField, FormRow, PasswordField } from '../../form'
 import { FormProps } from '../../../utilities/types/formTypes'
@@ -74,13 +77,7 @@ const Register = () => {
         },
         onError(err: any) {
             dispatch(setLoading(false))
-            dispatch(
-                showBanner({
-                    type: 'Errors',
-                    message:
-                        'We are experiencing technical difficulties. Please try again, or reach out for assistance at info@ezpzcoding.com'
-                })
-            )
+            dispatch(showTechnicalDifficultiesBanner())
         },
         variables: {
             email: email.value,

@@ -19,9 +19,16 @@ export const bannerSlice = createSlice({
             state.show = false
             state.message = initialState.message
             state.type = initialState.type
+        },
+        showTechnicalDifficultiesBanner: state => {
+            state.show = true
+            state.message =
+                'We are experiencing technical difficulties. Please try again, or reach out for assistance at info@ezpzcoding.com'
+            state.type = 'Errors'
         }
     }
 })
 
-export const { showBanner, hideBanner } = bannerSlice.actions
+export const { showBanner, hideBanner, showTechnicalDifficultiesBanner } =
+    bannerSlice.actions
 export default bannerSlice.reducer
