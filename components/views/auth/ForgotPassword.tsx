@@ -2,28 +2,43 @@ import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
 
 import { FormProps } from '../../../utilities/types/formTypes'
-import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
-
+import styles from './AuthPages.module.scss'
 import FormValidations from '../../../utilities/validations/forms'
-import { StringField, FormRow, PasswordField } from '../../form'
+import { StringField, FormRow } from '../../form'
+
+const ERROR = 'error'
+const SUCCESS = 'success'
 
 const INITIAL_STATE = {
-    email: { value: '', error: '' },
-    password: { value: '', error: '' }
+    email: { value: '', error: '' }
 } as FormProps
 
 const VALIDATIONS = {
-    email: FormValidations.validEmail,
-    password: FormValidations.validPassword
+    email: FormValidations.validEmail
 }
 
-const Login = () => {
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
-    const { email, password } = form
+const ForgotPassword = () => {
+    const { form, handleChange, handleReset } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
+    const { email } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
+    const [alert, setAlert] = useState<{ type: string; email: string }>({
+        type: '',
+        email: ''
+    })
+    const [showBanner, setShowBanner] = useState<boolean>(false)
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setAlert({
+            type: SUCCESS,
+            email: email.value
+        })
+        setShowBanner(true)
+        handleReset()
     }
 
     useEffect(() => {
@@ -34,14 +49,32 @@ const Login = () => {
                 isFormValid = false
             }
         })
-
         setDisableSubmit(!isFormValid)
     })
+
+    const BannerDisplay = () => {
+        const { type, email } = alert
+
+        if (type === SUCCESS)
+            return (
+                <div className={styles.success}>
+                    An email has been sent to {email} with a link to reset your
+                    password.
+                </div>
+            )
+        if (type === ERROR)
+            return (
+                <div className={styles.error}> {email} has not been found </div>
+            )
+
+        return <div />
+    }
 
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
-                <h1 className={styles.header}>Login</h1>
+                <h1 className={styles.header}>Forgot Password</h1>
+                {showBanner && <BannerDisplay />}
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
@@ -55,16 +88,6 @@ const Login = () => {
                                 required
                             />
                         </FormRow>
-                        <FormRow>
-                            <PasswordField
-                                id="password"
-                                name="password"
-                                placeholder="Enter password"
-                                field={password}
-                                onChange={handleChange}
-                                minLength={8}
-                            />
-                        </FormRow>
                         <button
                             className={styles.button}
                             type="submit"
@@ -72,9 +95,9 @@ const Login = () => {
                             Submit
                         </button>
                         <div className={styles.option}>
-                            <Link href="/password/forgot">
+                            <Link href="/login">
                                 <a className={styles.forgotPw}>
-                                    Forgot Password ?
+                                    Remember Password ?
                                 </a>
                             </Link>
                         </div>
@@ -85,4 +108,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default ForgotPassword

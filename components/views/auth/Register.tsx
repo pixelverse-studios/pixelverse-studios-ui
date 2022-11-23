@@ -2,11 +2,7 @@ import { useState, FormEvent, useEffect } from 'react'
 import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
 import { FormProps } from '../../../utilities/types/formTypes'
-import {
-    VALID_STRING,
-    VALID_EMAIL,
-    VALID_PASSWORD
-} from '../../../utilities/validations/regexValidators'
+import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
 import styles from './AuthPages.module.scss'
 
@@ -17,24 +13,11 @@ const INITIAL_STATE = {
     password: { value: '', error: '' }
 } as FormProps
 
-const NAME_ERROR_MESSAGE = 'Field can only contain alphabetic characters'
 const VALIDATIONS = {
-    firstName: {
-        test: (value: string) => VALID_STRING.test(value),
-        message: NAME_ERROR_MESSAGE
-    },
-    lastName: {
-        test: (value: string) => VALID_STRING.test(value),
-        message: NAME_ERROR_MESSAGE
-    },
-    email: {
-        test: (value: string) => VALID_EMAIL.test(value),
-        message: 'Must containt a valid email address (example@test.com)'
-    },
-    password: {
-        test: (value: string) => VALID_PASSWORD.test(value),
-        message: 'Password does not meet requirements'
-    }
+    firstName: FormValidations.validAlphaString,
+    lastName: FormValidations.validAlphaString,
+    email: FormValidations.validEmail,
+    password: FormValidations.validPassword
 }
 
 const Register = () => {

@@ -2,8 +2,9 @@ import { useState, FormEvent, useEffect } from 'react'
 
 import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
-import { VALID_PASSWORD } from '../../../utilities/validations/regexValidators'
+import { VALID_PASSWORD } from '../../../utilities/validations/regex'
 import { FormRow, PasswordField } from '../../form'
+import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -12,15 +13,8 @@ const INITIAL_STATE = {
 } as FormProps
 
 const VALIDATIONS = {
-    newPassword: {
-        test: (value: string) => VALID_PASSWORD.test(value),
-        message:
-            'Password is required, and should include at least 1 lowercase & uppercase letter, 1 special character, 1 number, and be minimum 8 characters long.'
-    },
-    confirmPassword: {
-        test: (value: string) => false,
-        message: 'Passwords do not match'
-    }
+    newPassword: FormValidations.validPassword,
+    confirmPassword: FormValidations.validConfirmedPassword
 }
 
 const ResetPassword = () => {
@@ -58,7 +52,7 @@ const ResetPassword = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                message={false}
+                                showMessage={false}
                             />
                         </FormRow>
                         <FormRow>
@@ -70,7 +64,7 @@ const ResetPassword = () => {
                                 onChange={handleChange}
                                 minLength={8}
                                 title="Custom"
-                                message={true}
+                                showMessage
                                 confirmationField={newPassword}
                             />
                         </FormRow>

@@ -14,8 +14,7 @@ function reducer(state: FormProps, action: ActionState) {
             return { ...state, [name]: { value, error } }
         }
         case RESET: {
-            const { initialState } = action.payload
-            return initialState
+            return action.payload
         }
 
         default:
