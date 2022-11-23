@@ -1,7 +1,7 @@
 import styles from './DotCircle.module.scss'
 
-const DotCircleLoader = () => {
+const CircleLoader = () => {
     return <div className={styles.loader} />
 }
 
-export default DotCircleLoader
+export default CircleLoader

@@ -14,6 +14,7 @@ import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
+import CircleLoader from '../../loader/circle'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' },
@@ -142,9 +143,9 @@ const Login = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            Submit
+                            <CircleLoader />
                         </button>
-                        <button onClick={onBanner}>BANNER</button>
+                        <button onClick={onBanner}>WTF IS THIS BANNER</button>
                         <div className={styles.option}>
                             <Link href="/password/forgot">
                                 <a className={styles.forgotPw}>

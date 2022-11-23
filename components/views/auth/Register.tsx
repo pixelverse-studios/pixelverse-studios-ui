@@ -12,7 +12,7 @@ import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 import { AppDispatch } from '../../../lib/redux/store'
 import { REGISTER } from '../../../lib/gql/mutations/users'
-import DotCircleLoader from '../../loader/circle'
+import CircleLoader from '../../loader/circle'
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
 
 const INITIAL_STATE = {
@@ -161,7 +161,7 @@ const Register = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            <DotCircleLoader />
+                            {user?.loading ? <CircleLoader /> : 'Submit'}
                         </button>
                         <div className={styles.option}>
                             Already a user?
