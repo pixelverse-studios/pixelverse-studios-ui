@@ -94,6 +94,16 @@ const Login = () => {
         setDisableSubmit(!isFormValid)
     })
 
+    const onBanner = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        dispatch(
+            showBanner({
+                message: 'User logged in successfully',
+                type: 'UserSuccess'
+            })
+        )
+    }
+
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
@@ -127,6 +137,7 @@ const Login = () => {
                             disabled={disableSubmit}>
                             Submit
                         </button>
+                        <button onClick={onBanner}>BANNER</button>
                         <div className={styles.option}>
                             <Link href="/password/forgot">
                                 <a className={styles.forgotPw}>
