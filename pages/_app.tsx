@@ -2,11 +2,8 @@ import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as ReduxProvider } from 'react-redux'
 
-import Banner from '../components/banner'
 import RouteTransition from '../components/transition'
-import Nav from '../components/nav'
-import Footer from '../components/footer'
-import ScrollToTop from '../components/scrollToTop'
+import PageWrapper from '../components/views/PageWrapper'
 import { client } from '../lib/context/apolloProvider'
 import 'animate.css'
 import 'antd/dist/antd.css'
@@ -17,15 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
-                <main>
-                    <Nav />
-                    <Banner />
+                <PageWrapper>
                     <RouteTransition>
                         <Component {...pageProps} />
                     </RouteTransition>
-                    <ScrollToTop />
-                    <Footer />
-                </main>
+                </PageWrapper>
             </ReduxProvider>
         </ApolloProvider>
     )

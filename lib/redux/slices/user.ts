@@ -1,16 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ProfileProps } from '../../../utilities/types/userTypes'
 
-interface ProfileProps {
-    _id: string
-    email: string
-    password: string
-    firstName: string | null
-    lastName: string | null
-    token: string | null
-    passwordResetToken: string | null
-}
-
-const initialState = {
+export const initialState = {
     profile: {
         _id: '',
         email: '',

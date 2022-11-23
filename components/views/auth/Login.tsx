@@ -65,10 +65,17 @@ const Login = () => {
                 handleReset()
             }
             dispatch(setLoading(false))
-            // router.push('/dashboard')
+            router.push('/dashboard')
         },
         onError(err: any) {
             dispatch(setLoading(false))
+            dispatch(
+                showBanner({
+                    type: 'Errors',
+                    message:
+                        'We are experiencing technical difficulties. Please try again, or reach out for assistance at info@ezpzcoding.com'
+                })
+            )
         },
         variables: {
             email: email.value,
