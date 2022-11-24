@@ -1,12 +1,21 @@
 import { useState, FormEvent, useEffect } from 'react'
-
+import { useRouter } from 'next/router'
+import { useMutation } from '@apollo/client'
 import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
-import { VALID_PASSWORD } from '../../../utilities/validations/regex'
+import {
+    showTechnicalDifficultiesBanner,
+    showBanner
+} from '../../../lib/redux/slices/banner'
 import { FormRow, PasswordField } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch } from '../../../lib/redux/store'
+import CircleLoader from '../../loader/circle'
+import { setLoading, setProfile } from '../../../lib/redux/slices/user'
+import { JWT_SECRET } from '../../../utilities/constants'
+import { RESET_PASSWORD } from '../../../lib/gql/mutations/users'
 const INITIAL_STATE = {
     newPassword: { value: '', error: '' },
     confirmPassword: { value: '', error: '' }
@@ -18,12 +27,62 @@ const VALIDATIONS = {
 }
 
 const ResetPassword = () => {
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const dispatch = useDispatch<AppDispatch>()
+    const router = useRouter()
+    const user = useSelector((state: any) => state.user)
+    const { form, handleChange, handleReset } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
     const { newPassword, confirmPassword } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
 
+    const [resetPassword] = useMutation(RESET_PASSWORD, {
+        onCompleted({ register: data }) {
+            if (data.__typename === 'Errors') {
+                dispatch(
+                    showBanner({
+                        message: data.message,
+                        type: data.__typename
+                    })
+                )
+            } else {
+                const profile = { ...data }
+                const token = data.token
+                localStorage.setItem(JWT_SECRET, token)
+
+                delete profile.__typename
+                delete profile.successType
+                delete profile.token
+                dispatch(setProfile(profile))
+
+                dispatch(
+                    showBanner({
+                        message: 'Your password has sucessfully been changed.',
+                        type: data.__typename
+                    })
+                )
+                handleReset()
+            }
+            dispatch(setLoading(false))
+            router.push('/dashboard')
+        },
+        onError(err: any) {
+            dispatch(setLoading(false))
+            dispatch(showTechnicalDifficultiesBanner())
+        },
+        variables: {
+            variables: {
+                newPassword: newPassword.value,
+                confirmPassword: confirmPassword.value
+            }
+        }
+    })
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        dispatch(setLoading(true))
+        resetPassword()
     }
 
     useEffect(() => {
@@ -42,7 +101,7 @@ const ResetPassword = () => {
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Reset Password</h1>
                 <form onSubmit={handleSubmit}>
-                    <fieldset>
+                    <fieldset disabled={user?.loading}>
                         <FormRow>
                             <PasswordField
                                 id="newPassword"
@@ -72,7 +131,7 @@ const ResetPassword = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            Submit
+                            {user?.loading ? <CircleLoader /> : 'Submit'}
                         </button>
                     </fieldset>
                 </form>
