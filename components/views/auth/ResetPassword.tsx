@@ -7,7 +7,7 @@ import {
     showTechnicalDifficultiesBanner,
     showBanner
 } from '../../../lib/redux/slices/banner'
-import { FormRow, PasswordField } from '../../form'
+import { FormRow, PasswordField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
@@ -127,12 +127,11 @@ const ResetPassword = () => {
                                 confirmationField={newPassword}
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            {user?.loading ? <CircleLoader /> : 'Submit'}
-                        </button>
+                        <SubmitButton
+                            label="Submit"
+                            disabled={disableSubmit}
+                            loading={false}
+                        />
                     </fieldset>
                 </form>
             </div>
