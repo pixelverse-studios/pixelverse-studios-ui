@@ -15,8 +15,7 @@ import { JWT_SECRET } from '../../../utilities/constants'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
-import { StringField, FormRow, PasswordField } from '../../form'
-import CircleLoader from '../../loader/circle'
+import { StringField, FormRow, PasswordField, SubmitButton } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -126,12 +125,11 @@ const Login = () => {
                                 minLength={8}
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            {user?.loading ? <CircleLoader /> : 'Submit'}
-                        </button>
+                        <SubmitButton
+                            label="Submit"
+                            disabled={disableSubmit}
+                            loading={user.loading}
+                        />
                         <div className={styles.option}>
                             <Link href="/password/forgot">
                                 <a className={styles.forgotPw}>
