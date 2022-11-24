@@ -43,7 +43,9 @@
                 text-decoration: none;
                 position: relative;
                 width: 100%;
-                display: block;
+                height: 2rem;
+                display: flex;
+                justify-content: center;
                 margin: 9px auto;
                 font-size: 17px;
                 color: var(--off-white);

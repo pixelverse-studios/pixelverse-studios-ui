@@ -1,10 +1,22 @@
 import { useState, FormEvent, useEffect } from 'react'
-import useForm from '../../../utilities/hooks/useForm'
 import Link from 'next/link'
-import { FormProps } from '../../../utilities/types/formTypes'
-import FormValidations from '../../../utilities/validations/forms'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { useMutation } from '@apollo/client'
+import {
+    showTechnicalDifficultiesBanner,
+    showBanner
+} from '../../../lib/redux/slices/banner'
+import useForm from '../../../utilities/hooks/useForm'
 import { StringField, FormRow, PasswordField } from '../../form'
+import { FormProps } from '../../../utilities/types/formTypes'
+import { JWT_SECRET } from '../../../utilities/constants'
+import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
+import { AppDispatch } from '../../../lib/redux/store'
+import { REGISTER } from '../../../lib/gql/mutations/users'
+import CircleLoader from '../../loader/circle'
+import { setLoading, setProfile } from '../../../lib/redux/slices/user'
 
 const INITIAL_STATE = {
     firstName: { value: '', error: '' },
@@ -21,11 +33,64 @@ const VALIDATIONS = {
 }
 
 const Register = () => {
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const dispatch = useDispatch<AppDispatch>()
+    const router = useRouter()
+    const user = useSelector((state: any) => state.user)
+    const { form, handleChange, handleReset } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
+
     const { firstName, lastName, email, password } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
+
+    const [register] = useMutation(REGISTER, {
+        onCompleted({ register: data }) {
+            if (data.__typename === 'Errors') {
+                dispatch(
+                    showBanner({
+                        message: data.message,
+                        type: data.__typename
+                    })
+                )
+            } else {
+                const profile = { ...data }
+                const token = data.token
+                localStorage.setItem(JWT_SECRET, token)
+
+                delete profile.__typename
+                delete profile.successType
+                delete profile.token
+
+                dispatch(setProfile(profile))
+                dispatch(
+                    showBanner({
+                        message: 'User created in successfully',
+                        type: data.__typename
+                    })
+                )
+
+                handleReset()
+            }
+            dispatch(setLoading(false))
+            router.push('/dashboard')
+        },
+        onError(err: any) {
+            dispatch(setLoading(false))
+            dispatch(showTechnicalDifficultiesBanner())
+        },
+        variables: {
+            email: email.value,
+            password: password.value,
+            firstName: firstName.value,
+            lastName: lastName.value
+        }
+    })
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        dispatch(setLoading(true))
+        register()
     }
 
     useEffect(() => {
@@ -39,12 +104,13 @@ const Register = () => {
 
         setDisableSubmit(!isFormValid)
     })
+
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Register</h1>
                 <form onSubmit={handleSubmit}>
-                    <fieldset>
+                    <fieldset disabled={user?.loading}>
                         <FormRow>
                             <StringField
                                 type="text"
@@ -92,7 +158,7 @@ const Register = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            Submit
+                            {user?.loading ? <CircleLoader /> : 'Submit'}
                         </button>
                         <div className={styles.option}>
                             Already a user?

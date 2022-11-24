@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
 
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
-import { showBanner } from '../../../lib/redux/slices/banner'
+import {
+    showBanner,
+    showTechnicalDifficultiesBanner
+} from '../../../lib/redux/slices/banner'
 import { AppDispatch } from '../../../lib/redux/store'
 import { LOGIN } from '../../../lib/gql/mutations/users'
 import { JWT_SECRET } from '../../../utilities/constants'
@@ -14,6 +17,7 @@ import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
+import CircleLoader from '../../loader/circle'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' },
@@ -69,13 +73,7 @@ const Login = () => {
         },
         onError(err: any) {
             dispatch(setLoading(false))
-            dispatch(
-                showBanner({
-                    type: 'Errors',
-                    message:
-                        'We are experiencing technical difficulties. Please try again, or reach out for assistance at info@ezpzcoding.com'
-                })
-            )
+            dispatch(showTechnicalDifficultiesBanner())
         },
         variables: {
             email: email.value,
@@ -100,16 +98,6 @@ const Login = () => {
 
         setDisableSubmit(!isFormValid)
     })
-
-    const onBanner = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        dispatch(
-            showBanner({
-                message: 'User logged in successfully',
-                type: 'UserSuccess'
-            })
-        )
-    }
 
     return (
         <div className={styles.content}>
@@ -142,9 +130,8 @@ const Login = () => {
                             className={styles.button}
                             type="submit"
                             disabled={disableSubmit}>
-                            Submit
+                            {user?.loading ? <CircleLoader /> : 'Submit'}
                         </button>
-                        <button onClick={onBanner}>BANNER</button>
                         <div className={styles.option}>
                             <Link href="/password/forgot">
                                 <a className={styles.forgotPw}>
