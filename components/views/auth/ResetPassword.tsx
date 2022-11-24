@@ -2,8 +2,7 @@ import { useState, FormEvent, useEffect } from 'react'
 
 import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
-import { VALID_PASSWORD } from '../../../utilities/validations/regex'
-import { FormRow, PasswordField } from '../../form'
+import { FormRow, PasswordField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 
@@ -68,12 +67,11 @@ const ResetPassword = () => {
                                 confirmationField={newPassword}
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            Submit
-                        </button>
+                        <SubmitButton
+                            label="Submit"
+                            disabled={disableSubmit}
+                            loading={false}
+                        />
                     </fieldset>
                 </form>
             </div>

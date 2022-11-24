@@ -1,0 +1,26 @@
+.Button {
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 9px auto;
+    font-size: 17px;
+    color: var(--off-white);
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(3, 3, 3, 0.1);
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        background: rgba(3, 3, 3, 0.648);
+    }
+    &:disabled {
+        background: rgba(3, 3, 3, 0.1);
+        cursor: not-allowed;
+    }
+}
