@@ -17,24 +17,15 @@ const VALIDATIONS = {
 }
 
 const ResetPassword = () => {
-    const { form, handleChange } = useForm(INITIAL_STATE, VALIDATIONS)
+    const { form, handleChange, isFormValid } = useForm(
+        INITIAL_STATE,
+        VALIDATIONS
+    )
     const { newPassword, confirmPassword } = form
-    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
-
-    useEffect(() => {
-        let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
-        setDisableSubmit(!isFormValid)
-    })
 
     return (
         <div className={styles.content}>
@@ -69,7 +60,7 @@ const ResetPassword = () => {
                         </FormRow>
                         <SubmitButton
                             label="Submit"
-                            disabled={disableSubmit}
+                            disabled={!isFormValid}
                             loading={false}
                         />
                     </fieldset>

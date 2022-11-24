@@ -27,12 +27,11 @@ const VALIDATIONS = {
 const ForgotPassword = () => {
     const dispatch = useDispatch<AppDispatch>()
 
-    const { form, handleChange, handleReset } = useForm(
+    const { form, handleChange, handleReset, isFormValid } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
     const { email } = form
-    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
     const [loading, setLoading] = useState<boolean>(false)
 
     const [sendResetPasswordEmail] = useMutation(SEND_PASSWORD_RESET, {
@@ -68,20 +67,8 @@ const ForgotPassword = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-
         sendResetPasswordEmail()
     }
-
-    useEffect(() => {
-        let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
-        setDisableSubmit(!isFormValid)
-    })
 
     return (
         <div className={styles.content}>
@@ -101,7 +88,7 @@ const ForgotPassword = () => {
                             />
                         </FormRow>
                         <SubmitButton
-                            disabled={disableSubmit}
+                            disabled={!isFormValid}
                             label="Submit"
                             loading={loading}
                         />

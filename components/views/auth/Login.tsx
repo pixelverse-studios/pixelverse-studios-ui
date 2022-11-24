@@ -33,12 +33,11 @@ const Login = () => {
     const router = useRouter()
 
     const user = useSelector((state: any) => state.user)
-    const { form, handleChange, handleReset } = useForm(
+    const { form, handleChange, handleReset, isFormValid } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
     const { email, password } = form
-    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
 
     const [login] = useMutation(LOGIN, {
         onCompleted({ login: data }) {
@@ -86,18 +85,6 @@ const Login = () => {
         login()
     }
 
-    useEffect(() => {
-        let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
-
-        setDisableSubmit(!isFormValid)
-    })
-
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
@@ -127,7 +114,7 @@ const Login = () => {
                         </FormRow>
                         <SubmitButton
                             label="Submit"
-                            disabled={disableSubmit}
+                            disabled={!isFormValid}
                             loading={user.loading}
                         />
                         <div className={styles.option}>
