@@ -50,3 +50,24 @@ export const REGISTER = gql`
         }
     }
 `
+
+export const SEND_PASSWORD_RESET = gql`
+    mutation SendResetPasswordEmail($email: String!) {
+        sendPasswordResetEmail(email: $email) {
+            ... on UserSuccess {
+                _id
+                email
+                password
+                firstName
+                lastName
+                token
+                passwordResetToken
+                successType
+            }
+            ... on Errors {
+                type
+                message
+            }
+        }
+    }
+`

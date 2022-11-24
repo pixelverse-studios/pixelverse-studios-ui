@@ -1,11 +1,16 @@
 import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
 
+import {
+    showBanner,
+    showTechnicalDifficultiesBanner
+} from '../../../lib/redux/slices/banner'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
-import styles from './AuthPages.module.scss'
 import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow } from '../../form'
+import SubmitButton from '../../form/button/SubmitButton'
+import styles from './AuthPages.module.scss'
 
 const ERROR = 'error'
 const SUCCESS = 'success'
@@ -25,6 +30,7 @@ const ForgotPassword = () => {
     )
     const { email } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(false)
     const [alert, setAlert] = useState<{ type: string; email: string }>({
         type: '',
         email: ''
@@ -88,12 +94,11 @@ const ForgotPassword = () => {
                                 required
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            Submit
-                        </button>
+                        <SubmitButton
+                            disabled={disableSubmit}
+                            label="Submit"
+                            loading={loading}
+                        />
                         <div className={styles.option}>
                             <Link href="/login">
                                 <a className={styles.forgotPw}>

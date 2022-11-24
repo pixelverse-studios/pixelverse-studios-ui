@@ -13,11 +13,11 @@ import { AppDispatch } from '../../../lib/redux/store'
 import { LOGIN } from '../../../lib/gql/mutations/users'
 import { JWT_SECRET } from '../../../utilities/constants'
 import { FormProps } from '../../../utilities/types/formTypes'
-import styles from './AuthPages.module.scss'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
 import { StringField, FormRow, PasswordField } from '../../form'
 import CircleLoader from '../../loader/circle'
+import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' },
