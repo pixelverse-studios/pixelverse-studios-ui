@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ProfileProps } from '../../../utilities/types/userTypes'
+import { JWT_SECRET } from '../../../utilities/constants'
+
+export const logout = (dispatch: Function, router: any) => {
+    dispatch(removeProfile())
+    localStorage.removeItem(JWT_SECRET)
+    router.push('/')
+}
 
 export const initialState = {
     profile: {
@@ -24,9 +31,12 @@ export const userSlice = createSlice({
         },
         setLoading: (state, action) => {
             state.loading = action.payload
+        },
+        removeProfile: state => {
+            state.profile = initialState.profile
         }
     }
 })
 
-export const { setLoading, setProfile } = userSlice.actions
+export const { setLoading, setProfile, removeProfile } = userSlice.actions
 export default userSlice.reducer

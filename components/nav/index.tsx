@@ -4,7 +4,9 @@ import { useRouter } from 'next/router'
 import { Drawer } from 'antd'
 import { MdDashboard, MdLogout } from 'react-icons/md'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
+import { logout } from '../../lib/redux/slices/user'
 import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
@@ -111,6 +113,7 @@ const Nav = () => {
     const router = useRouter()
     const breakpoint = useBreakpointSize()
     const profile = useSelector((state: any) => state.user.profile)
+    const dispatch = useDispatch()
 
     const [showMobileNav, setShowMobileNav] = useState(false)
 
@@ -118,7 +121,7 @@ const Nav = () => {
         setShowMobileNav(breakpoint === MOBILE_BREAKPOINT)
     }, [breakpoint])
 
-    const onLogoutClick = () => {}
+    const onLogoutClick = () => logout(dispatch, router)
 
     if (showMobileNav) {
         return (
