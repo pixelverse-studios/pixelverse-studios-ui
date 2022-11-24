@@ -1,9 +1,15 @@
 import { Action, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    show: false as boolean,
-    message: null as string | null,
-    type: null as 'Errors' | 'UserSuccess' | 'ClientSuccess' | null
+    show: false,
+    message: null,
+    type: null,
+    duration: null
+} as {
+    show: boolean
+    message: string | null
+    type: 'Errors' | 'UserSuccess' | 'ClientSuccess' | null
+    duration?: 'permanant' | null
 }
 
 export const bannerSlice = createSlice({
@@ -14,11 +20,15 @@ export const bannerSlice = createSlice({
             state.show = true
             state.message = action.payload.message
             state.type = action.payload.type
+            if (action.payload.duration) {
+                state.duration = action.payload.duration
+            }
         },
         hideBanner: state => {
             state.show = false
             state.message = initialState.message
             state.type = initialState.type
+            state.duration = initialState.duration
         },
         showTechnicalDifficultiesBanner: state => {
             state.show = true

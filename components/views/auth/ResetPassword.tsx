@@ -5,7 +5,8 @@ import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
 import {
     showTechnicalDifficultiesBanner,
-    showBanner
+    showBanner,
+    hideBanner
 } from '../../../lib/redux/slices/banner'
 import { FormRow, PasswordField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
@@ -23,7 +24,7 @@ const INITIAL_STATE = {
 
 const VALIDATIONS = {
     newPassword: FormValidations.validPassword,
-    confirmPassword: FormValidations.validConfirmedPassword
+    confirmPassword: FormValidations.validPassword
 }
 
 const ResetPassword = () => {
@@ -85,14 +86,28 @@ const ResetPassword = () => {
 
     useEffect(() => {
         let isFormValid = true
+
         Object.keys(form).forEach(item => {
             const current = form[item]
-            console.log(current.error)
             if ((isFormValid && !current.value) || current.error) {
                 isFormValid = false
             }
         })
 
+        if (newPassword.value && confirmPassword.value) {
+            const passwordsMatch = newPassword.value === confirmPassword.value
+
+            isFormValid = passwordsMatch
+            dispatch(
+                passwordsMatch
+                    ? hideBanner()
+                    : showBanner({
+                          message: 'Passwords do not match',
+                          type: 'Errors',
+                          duration: 'permanant'
+                      })
+            )
+        }
         setDisableSubmit(!isFormValid)
     })
 

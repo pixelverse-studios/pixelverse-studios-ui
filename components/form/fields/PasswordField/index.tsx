@@ -36,31 +36,6 @@ const PasswordField = ({
         if (type === 'text') setType('password')
     }
 
-    const renderError = () => {
-        if (name === 'confirmPassword') {
-            const displayError = confirmationField?.value !== field.value
-            return (
-                <>
-                    {displayError && field.value ? (
-                        <div className={styles.errorPopUp}>
-                            <span className={styles.popUpText}>
-                                {field.error}
-                            </span>
-                        </div>
-                    ) : null}
-                </>
-            )
-        }
-        return (
-            <>
-                {field?.error ? (
-                    <div className={styles.errorPopUp}>
-                        <span className={styles.popUpText}>{field.error}</span>
-                    </div>
-                ) : null}
-            </>
-        )
-    }
     return (
         <div className={styles.FormField}>
             <input
@@ -74,7 +49,11 @@ const PasswordField = ({
                 minLength={minLength}
                 title={title}
             />
-            {renderError()}
+            {field?.error ? (
+                <div className={styles.errorPopUp}>
+                    <span className={styles.popUpText}>{field.error}</span>
+                </div>
+            ) : null}
             <label
                 className={field?.error ? styles.errorLabel : ''}
                 htmlFor={id}>
