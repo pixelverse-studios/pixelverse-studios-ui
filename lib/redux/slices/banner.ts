@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { Action, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     show: false as boolean,
