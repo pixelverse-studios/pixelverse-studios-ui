@@ -27,10 +27,12 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
-
+        console.log('value', value)
+        console.log('name', name)
         const error = !validations[name].test(value.trim())
             ? validations[name].message
             : ''
+        console.log(error)
         dispatch({
             type: UPDATE,
             payload: {

@@ -11,13 +11,13 @@
     padding: 12px;
     border-radius: 6px;
     border: none;
-    background: rgba(3, 3, 3, 0.1);
+    background: var(--seagreen400);
     -webkit-transition: all 2s ease-in-out;
     -moz-transition: all 2s ease-in-out;
     -o-transition: all 2s ease-in-out;
     transition: all 0.2s ease-in-out;
     &:hover {
-        background: rgba(3, 3, 3, 0.648);
+        background: var(--seagreen500);
     }
     &:disabled {
         background: rgba(3, 3, 3, 0.1);

@@ -65,17 +65,15 @@ const ResetPassword = () => {
                 handleReset()
             }
             dispatch(setLoading(false))
-            router.push('/dashboard')
+            router.push('/')
         },
         onError(err: any) {
             dispatch(setLoading(false))
             dispatch(showTechnicalDifficultiesBanner())
         },
         variables: {
-            variables: {
-                newPassword: newPassword.value,
-                confirmPassword: confirmPassword.value
-            }
+            newPassword: newPassword.value,
+            confirmPassword: confirmPassword.value
         }
     })
 
@@ -89,10 +87,12 @@ const ResetPassword = () => {
         let isFormValid = true
         Object.keys(form).forEach(item => {
             const current = form[item]
+            console.log(current.error)
             if ((isFormValid && !current.value) || current.error) {
                 isFormValid = false
             }
         })
+
         setDisableSubmit(!isFormValid)
     })
 
