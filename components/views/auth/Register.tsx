@@ -3,20 +3,20 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
+
 import {
     showTechnicalDifficultiesBanner,
     showBanner
 } from '../../../lib/redux/slices/banner'
 import useForm from '../../../utilities/hooks/useForm'
-import { StringField, FormRow, PasswordField } from '../../form'
+import { StringField, FormRow, PasswordField, SubmitButton } from '../../form'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { JWT_SECRET } from '../../../utilities/constants'
 import FormValidations from '../../../utilities/validations/forms'
-import styles from './AuthPages.module.scss'
 import { AppDispatch } from '../../../lib/redux/store'
 import { REGISTER } from '../../../lib/gql/mutations/users'
-import CircleLoader from '../../loader/circle'
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
+import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
     firstName: { value: '', error: '' },
@@ -154,12 +154,11 @@ const Register = () => {
                                 showMessage={true}
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            {user?.loading ? <CircleLoader /> : 'Submit'}
-                        </button>
+                        <SubmitButton
+                            label="Submit"
+                            disabled={disableSubmit}
+                            loading={user.loading}
+                        />
                         <div className={styles.option}>
                             Already a user?
                             <Link href="/login">

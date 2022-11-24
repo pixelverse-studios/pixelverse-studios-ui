@@ -1,14 +1,20 @@
 import { useState, FormEvent, useEffect } from 'react'
 import Link from 'next/link'
+import { useMutation } from '@apollo/client'
+import { useDispatch } from 'react-redux'
 
+import {
+    showBanner,
+    showTechnicalDifficultiesBanner
+} from '../../../lib/redux/slices/banner'
+import { AppDispatch } from '../../../lib/redux/store'
+import { SEND_PASSWORD_RESET } from '../../../lib/gql/mutations/users'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
-import styles from './AuthPages.module.scss'
 import FormValidations from '../../../utilities/validations/forms'
-import { StringField, FormRow } from '../../form'
+import { SubmitButton, StringField, FormRow } from '../../form'
 
-const ERROR = 'error'
-const SUCCESS = 'success'
+import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
     email: { value: '', error: '' }
@@ -19,26 +25,51 @@ const VALIDATIONS = {
 }
 
 const ForgotPassword = () => {
+    const dispatch = useDispatch<AppDispatch>()
+
     const { form, handleChange, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
     const { email } = form
     const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
-    const [alert, setAlert] = useState<{ type: string; email: string }>({
-        type: '',
-        email: ''
+    const [loading, setLoading] = useState<boolean>(false)
+
+    const [sendResetPasswordEmail] = useMutation(SEND_PASSWORD_RESET, {
+        onCompleted({ sendPasswordResetEmail: data }) {
+            if (data.__typename === 'Errors') {
+                dispatch(
+                    showBanner({
+                        message: data.message,
+                        type: data.__typename
+                    })
+                )
+            } else {
+                dispatch(
+                    showBanner({
+                        message:
+                            'An email was sent out to you with instructions.',
+                        type: data.__typename
+                    })
+                )
+                handleReset()
+            }
+
+            setLoading(false)
+        },
+        onError(err: any) {
+            setLoading(false)
+            dispatch(showTechnicalDifficultiesBanner())
+        },
+        variables: {
+            email: email.value
+        }
     })
-    const [showBanner, setShowBanner] = useState<boolean>(false)
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        setAlert({
-            type: SUCCESS,
-            email: email.value
-        })
-        setShowBanner(true)
-        handleReset()
+
+        sendResetPasswordEmail()
     }
 
     useEffect(() => {
@@ -52,29 +83,10 @@ const ForgotPassword = () => {
         setDisableSubmit(!isFormValid)
     })
 
-    const BannerDisplay = () => {
-        const { type, email } = alert
-
-        if (type === SUCCESS)
-            return (
-                <div className={styles.success}>
-                    An email has been sent to {email} with a link to reset your
-                    password.
-                </div>
-            )
-        if (type === ERROR)
-            return (
-                <div className={styles.error}> {email} has not been found </div>
-            )
-
-        return <div />
-    }
-
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
                 <h1 className={styles.header}>Forgot Password</h1>
-                {showBanner && <BannerDisplay />}
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
@@ -88,12 +100,11 @@ const ForgotPassword = () => {
                                 required
                             />
                         </FormRow>
-                        <button
-                            className={styles.button}
-                            type="submit"
-                            disabled={disableSubmit}>
-                            Submit
-                        </button>
+                        <SubmitButton
+                            disabled={disableSubmit}
+                            label="Submit"
+                            loading={loading}
+                        />
                         <div className={styles.option}>
                             <Link href="/login">
                                 <a className={styles.forgotPw}>

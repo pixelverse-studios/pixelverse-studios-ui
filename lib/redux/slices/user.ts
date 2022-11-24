@@ -4,8 +4,8 @@ import { JWT_SECRET } from '../../../utilities/constants'
 
 export const logout = (dispatch: Function, router: any) => {
     dispatch(removeProfile())
-    localStorage.removeItem(JWT_SECRET)
     router.push('/')
+    localStorage.removeItem(JWT_SECRET)
 }
 
 export const initialState = {

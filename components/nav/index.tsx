@@ -158,7 +158,7 @@ const Nav = () => {
                     ))}
                     {profile?.email
                         ? protectedRoutes.map(({ path, icon }) => {
-                              if (path === 'login') {
+                              if (path === 'logout') {
                                   return (
                                       <li
                                           className={
