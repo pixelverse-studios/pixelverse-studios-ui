@@ -40,8 +40,9 @@ const PageWrapper = ({ children }: { children: any }) => {
     })
 
     useEffect(() => {
-        if (!user._id) {
+        if (!user.profile._id) {
             const token = decodeCachedToken()
+
             if (token?.email) {
                 getLoggedInUser()
             } else {
