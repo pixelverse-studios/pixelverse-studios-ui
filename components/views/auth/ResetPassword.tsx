@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from 'react'
+import { FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import useForm from '../../../utilities/hooks/useForm'
@@ -30,12 +30,11 @@ const ResetPassword = () => {
     const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
     const user = useSelector((state: any) => state.user)
-    const { form, handleChange, handleReset } = useForm(
+    const { form, handleChange, isFormValid, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
     const { newPassword, confirmPassword } = form
-    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
 
     const [resetPassword] = useMutation(RESET_PASSWORD, {
         onCompleted({ register: data }) {
@@ -83,19 +82,6 @@ const ResetPassword = () => {
         resetPassword()
     }
 
-    useEffect(() => {
-        let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            console.log(current.error)
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
-
-        setDisableSubmit(!isFormValid)
-    })
-
     return (
         <div className={styles.content}>
             <div className={styles.formContainer}>
@@ -129,7 +115,7 @@ const ResetPassword = () => {
                         </FormRow>
                         <SubmitButton
                             label="Submit"
-                            disabled={disableSubmit}
+                            disabled={!isFormValid}
                             loading={false}
                         />
                     </fieldset>
