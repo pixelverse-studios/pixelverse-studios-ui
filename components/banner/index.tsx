@@ -18,7 +18,7 @@ const Banner = () => {
     const [animationClass, setAnimationClass] = useState(ANIMATE_IN_CLASS)
 
     useEffect(() => {
-        if (banner.show) {
+        if (banner.show && banner.duration !== 'permanant') {
             setTimeout(() => {
                 setAnimationClass(ANIMATE_OUT_CLASS)
             }, TIMEOUT - ANIMATE_OUT_TIME)

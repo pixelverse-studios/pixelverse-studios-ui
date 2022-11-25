@@ -1,18 +1,18 @@
-import { useState, FormEvent, useEffect } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import useForm from '../../../utilities/hooks/useForm'
 import { FormProps } from '../../../utilities/types/formTypes'
 import {
     showTechnicalDifficultiesBanner,
-    showBanner
+    showBanner,
+    hideBanner
 } from '../../../lib/redux/slices/banner'
 import { FormRow, PasswordField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch } from '../../../lib/redux/store'
-import CircleLoader from '../../loader/circle'
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
 import { JWT_SECRET } from '../../../utilities/constants'
 import { RESET_PASSWORD } from '../../../lib/gql/mutations/users'
@@ -23,14 +23,14 @@ const INITIAL_STATE = {
 
 const VALIDATIONS = {
     newPassword: FormValidations.validPassword,
-    confirmPassword: FormValidations.validConfirmedPassword
+    confirmPassword: FormValidations.validPassword
 }
 
 const ResetPassword = () => {
     const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
     const user = useSelector((state: any) => state.user)
-
+    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
     const { form, handleChange, isFormValid, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
@@ -85,13 +85,22 @@ const ResetPassword = () => {
 
     useEffect(() => {
         let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            console.log(current.error)
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
+        console.log(newPassword)
+        if (newPassword.value && confirmPassword.value) {
+            const passwordsMatch = newPassword.value === confirmPassword.value
+
+            isFormValid = passwordsMatch
+            dispatch(
+                passwordsMatch
+                    ? hideBanner()
+                    : showBanner({
+                          message: 'Passwords do not match',
+                          type: 'Errors',
+                          duration: 'permanant'
+                      })
+            )
+            setDisableSubmit(!isFormValid)
+        }
     })
 
     return (
@@ -127,7 +136,7 @@ const ResetPassword = () => {
                         </FormRow>
                         <SubmitButton
                             label="Submit"
-                            disabled={!isFormValid}
+                            disabled={disableSubmit}
                             loading={false}
                         />
                     </fieldset>

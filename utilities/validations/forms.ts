@@ -16,14 +16,9 @@ const validPassword = {
         'Password is required, and should include at least 1 lowercase & uppercase letter, 1 special character, 1 number, and be minimum 8 characters long.'
 }
 
-const validConfirmedPassword = {
-    test: (value: string) => false,
-    message: 'Passwords do not match'
-}
 const FormValidations = {
     validEmail,
     validAlphaString,
-    validPassword,
-    validConfirmedPassword
+    validPassword
 }
 export default FormValidations
