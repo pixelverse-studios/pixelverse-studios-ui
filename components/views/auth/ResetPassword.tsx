@@ -85,7 +85,7 @@ const ResetPassword = () => {
 
     useEffect(() => {
         let isFormValid = true
-        console.log(newPassword)
+
         if (newPassword.value && confirmPassword.value) {
             const passwordsMatch = newPassword.value === confirmPassword.value
 
