@@ -68,6 +68,7 @@ export const RESET_PASSWORD = gql`
             }
             ... on Errors {
                 type
+                message
             }
         }
     }

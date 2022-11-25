@@ -84,12 +84,12 @@ const ResetPassword = () => {
     }
 
     useEffect(() => {
-        let isFormValid = true
+        let isValid = true
 
         if (newPassword.value && confirmPassword.value) {
             const passwordsMatch = newPassword.value === confirmPassword.value
 
-            isFormValid = passwordsMatch
+            isValid = passwordsMatch
             dispatch(
                 passwordsMatch
                     ? hideBanner()
@@ -99,7 +99,9 @@ const ResetPassword = () => {
                           duration: 'permanant'
                       })
             )
-            setDisableSubmit(!isFormValid)
+            if (isFormValid) {
+                setDisableSubmit(!isValid)
+            }
         }
     })
 
@@ -137,7 +139,7 @@ const ResetPassword = () => {
                         <SubmitButton
                             label="Submit"
                             disabled={disableSubmit}
-                            loading={false}
+                            loading={user.loading}
                         />
                     </fieldset>
                 </form>
