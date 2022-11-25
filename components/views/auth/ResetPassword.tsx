@@ -1,4 +1,4 @@
-import { FormEvent } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import useForm from '../../../utilities/hooks/useForm'
@@ -30,6 +30,7 @@ const ResetPassword = () => {
     const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
     const user = useSelector((state: any) => state.user)
+
     const { form, handleChange, isFormValid, handleReset } = useForm(
         INITIAL_STATE,
         VALIDATIONS
@@ -81,6 +82,17 @@ const ResetPassword = () => {
         dispatch(setLoading(true))
         resetPassword()
     }
+
+    useEffect(() => {
+        let isFormValid = true
+        Object.keys(form).forEach(item => {
+            const current = form[item]
+            console.log(current.error)
+            if ((isFormValid && !current.value) || current.error) {
+                isFormValid = false
+            }
+        })
+    })
 
     return (
         <div className={styles.content}>
