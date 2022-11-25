@@ -42,8 +42,11 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
     }
 
     const handleReset = () => dispatch({ type: RESET, payload: initialState })
+    const isFormValid = Object.keys(form).every(
+        label => form[label].value && !form[label].error
+    )
 
-    return { form, handleChange, handleReset }
+    return { form, handleChange, handleReset, isFormValid }
 }
 
 export default useForm

@@ -36,13 +36,12 @@ const Register = () => {
     const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
     const user = useSelector((state: any) => state.user)
-    const { form, handleChange, handleReset } = useForm(
+    const { form, handleChange, handleReset, isFormValid } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
 
     const { firstName, lastName, email, password } = form
-    const [disableSubmit, setDisableSubmit] = useState<boolean>(true)
 
     const [register] = useMutation(REGISTER, {
         onCompleted({ register: data }) {
@@ -92,18 +91,6 @@ const Register = () => {
         dispatch(setLoading(true))
         register()
     }
-
-    useEffect(() => {
-        let isFormValid = true
-        Object.keys(form).forEach(item => {
-            const current = form[item]
-            if ((isFormValid && !current.value) || current.error) {
-                isFormValid = false
-            }
-        })
-
-        setDisableSubmit(!isFormValid)
-    })
 
     return (
         <div className={styles.content}>
@@ -156,7 +143,7 @@ const Register = () => {
                         </FormRow>
                         <SubmitButton
                             label="Submit"
-                            disabled={disableSubmit}
+                            disabled={!isFormValid}
                             loading={user.loading}
                         />
                         <div className={styles.option}>
