@@ -84,14 +84,13 @@ const ResetPassword = () => {
     }
 
     useEffect(() => {
-        let isValid = true
-
         if (newPassword.value && confirmPassword.value) {
             const passwordsMatch = newPassword.value === confirmPassword.value
+            console.log(passwordsMatch)
+            const isValid = passwordsMatch && isFormValid
 
-            isValid = passwordsMatch
             dispatch(
-                passwordsMatch
+                isValid
                     ? hideBanner()
                     : showBanner({
                           message: 'Passwords do not match',
@@ -99,9 +98,7 @@ const ResetPassword = () => {
                           duration: 'permanant'
                       })
             )
-            if (isFormValid) {
-                setDisableSubmit(!isValid)
-            }
+            setDisableSubmit(!isValid)
         }
     })
 
