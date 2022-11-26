@@ -50,6 +50,29 @@ export const REGISTER = gql`
         }
     }
 `
+export const RESET_PASSWORD = gql`
+    mutation resetPassword($newPassword: String!, $confirmPassword: String!) {
+        resetPassword(
+            newPassword: $newPassword
+            confirmPassword: $confirmPassword
+        ) {
+            ... on UserSuccess {
+                _id
+                email
+                password
+                firstName
+                lastName
+                token
+                passwordResetToken
+                successType
+            }
+            ... on Errors {
+                type
+                message
+            }
+        }
+    }
+`
 
 export const SEND_PASSWORD_RESET = gql`
     mutation sendResetPasswordEmail($email: String!) {

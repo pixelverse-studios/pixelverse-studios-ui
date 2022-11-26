@@ -1,8 +1,7 @@
-import { useState, FormEvent, useEffect } from 'react'
+import { useState, FormEvent } from 'react'
 import Link from 'next/link'
 import { useMutation } from '@apollo/client'
 import { useDispatch } from 'react-redux'
-
 import {
     showBanner,
     showTechnicalDifficultiesBanner

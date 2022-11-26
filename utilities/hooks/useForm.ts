@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useReducer, useState } from 'react'
+import { ChangeEventHandler, useReducer } from 'react'
 import { FormProps, RegisterProps } from '../types/formTypes'
 
 const RESET = 'reset'
@@ -27,7 +27,6 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
         let { value, name } = event.target
-
         const error = !validations[name].test(value.trim())
             ? validations[name].message
             : ''
@@ -42,6 +41,7 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
     }
 
     const handleReset = () => dispatch({ type: RESET, payload: initialState })
+
     const isFormValid = Object.keys(form).every(
         label => form[label].value && !form[label].error
     )
