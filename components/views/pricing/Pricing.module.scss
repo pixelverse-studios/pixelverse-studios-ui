@@ -6,11 +6,9 @@
     padding-top: 2rem;
 
     .baseCard {
-        border: 1px solid var(--off-black);
-        background: rgba(0, 0, 0, 0.2);
+        background: var(--dark-clear-bg);
         border-radius: 3px;
-        box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
-        border: 1px solid rgba(0, 0, 0, 0.3);
+        box-shadow: var(--form-box-shadow);
         padding: 2rem;
 
         .cardContent {

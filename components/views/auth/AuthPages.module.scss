@@ -1,0 +1,62 @@
+.content {
+    display: grid;
+    place-items: center;
+    height: calc(100vh - var(--nav-height) - var(--footer-height));
+
+    .formContainer {
+        height: fit-content;
+        background: var(--dark-clear-bg);
+        box-shadow: var(--form-box-shadow);
+        padding: 2rem;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-gap: 1.5rem;
+        width: 30rem;
+
+        .header {
+            text-align: center;
+            color: var(--off-white);
+        }
+
+        .success {
+            padding: 1rem;
+            background-color: var(--success-background);
+        }
+
+        .error {
+            padding: 1rem;
+            background-color: var(--error-background);
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            small {
+                color: var(--off-white);
+                margin-bottom: 1rem;
+            }
+
+            .option {
+                text-align: center;
+                color: var(--off-white);
+                .forgotPw {
+                    &:hover {
+                        color: var(--off-white);
+                        text-decoration: underline;
+                    }
+                }
+
+                .signIn {
+                    font-weight: 600;
+                    font-size: 12px;
+                    text-align: center;
+                    color: var(--sienna500);
+                    padding-bottom: 0.5rem 0;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

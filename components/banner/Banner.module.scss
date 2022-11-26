@@ -1,0 +1,46 @@
+.Banner {
+    position: absolute;
+    bottom: calc(var(--nav-height) + 1rem);
+    max-width: 95vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 1.2rem;
+    justify-self: center;
+    border-radius: 3px;
+
+    .bannerContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+
+        svg {
+            font-size: 2rem;
+        }
+
+        .closeIcon {
+            cursor: pointer;
+        }
+    }
+}
+
+.UserSuccess {
+    background-color: var(--success-banner);
+    border: 1px solid var(--success-background);
+
+    .statusIcon {
+        color: var(--success-font);
+    }
+}
+
+.Errors {
+    background-color: var(--error-banner);
+    border: 1px solid var(--error-background);
+
+    .statusIcon {
+        color: var(--error-font);
+    }
+}
