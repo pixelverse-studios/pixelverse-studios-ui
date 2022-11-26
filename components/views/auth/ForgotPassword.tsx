@@ -66,6 +66,7 @@ const ForgotPassword = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setLoading(true)
         sendResetPasswordEmail()
     }
 
