@@ -1,10 +1,7 @@
-const dashboard = () => {
-    return (
-        <div>
-            duh dash
-            <button>bing</button>
-        </div>
-    )
+import Dashboard from '../components/views/dashboard'
+
+const DashboardPage = () => {
+    return <Dashboard />
 }
 
-export default dashboard
+export default DashboardPage
