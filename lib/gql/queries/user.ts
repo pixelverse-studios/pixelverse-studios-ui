@@ -27,12 +27,8 @@ export const GET_ALL_USERS = gql`
             ... on UserSuccess {
                 _id
                 email
-                password
                 firstName
                 lastName
-                token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 message
