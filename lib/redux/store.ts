@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './slices/user'
 import allUsersReducer from './slices/allUsers'
+import allProjectsReducer from './slices/allProjects'
 import bannerReducer from './slices/banner'
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
         allUsers: allUsersReducer,
+        allProjects: allProjectsReducer,
         banner: bannerReducer
     }
 })
