@@ -37,6 +37,7 @@ const Dashboard = () => {
 
     const [getAllUsers] = useLazyQuery(GET_ALL_USERS, {
         onCompleted({ getAllUsers: data }) {
+            console.log('get all users', data)
             if (data.__typename === 'Errors') {
                 dispatch(
                     showBanner({
@@ -58,6 +59,7 @@ const Dashboard = () => {
 
     const [getAllProjects] = useLazyQuery(FETCH_ALL_CLIENTS, {
         onCompleted({ getAllClients: data }) {
+            console.log('get all projects', data)
             if (data.__typename === 'Errors') {
                 dispatch(
                     showBanner({

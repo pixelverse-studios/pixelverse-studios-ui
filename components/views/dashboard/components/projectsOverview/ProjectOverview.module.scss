@@ -1,0 +1,6 @@
+@use 'styles/mixins/card' as Card;
+
+.ProjectOverviewContent {
+    @include Card.baseCard;
+    font-size: 2rem;
+}
