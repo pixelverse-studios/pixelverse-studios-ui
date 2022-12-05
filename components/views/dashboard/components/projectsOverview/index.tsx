@@ -8,13 +8,13 @@ import styles from './ProjectOverview.module.scss'
 const ProjectOverview = () => {
     const router = useRouter()
     const completedProjects = []
-    const { projects } = useSelector((state: any) => state.allProjects)
+    const { clients } = useSelector((state: any) => state.allClients)
 
     return (
         <Card
             className={styles.ProjectOverviewContent}
             onClick={() => router.push('/dashboard/projects/overview')}>
-            Projects: {completedProjects.length} / {projects.length} completed
+            Projects: {completedProjects.length} / {clients.length} completed
         </Card>
     )
 }
