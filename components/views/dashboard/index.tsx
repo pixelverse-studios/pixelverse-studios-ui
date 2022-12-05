@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GET_ALL_USERS } from '../../../lib/gql/queries/user'
 import { FETCH_ALL_CLIENTS } from '../../../lib/gql/queries/clients'
 import {
-    setLoadingAllProjects,
-    setProjects
-} from '../../../lib/redux/slices/allProjects'
+    setLoadingAllClients,
+    setClients
+} from '../../../lib/redux/slices/allClients'
 import {
     setLoadingAllUsers,
     setUsers
@@ -31,13 +31,10 @@ const DashboardWrapper = ({ children }: { children: any }) => (
 const Dashboard = () => {
     const dispatch = useDispatch()
     const { loadingAllUsers } = useSelector((state: any) => state.allUsers)
-    const { loadingAllProjects } = useSelector(
-        (state: any) => state.allProjects
-    )
+    const { loadingAllClients } = useSelector((state: any) => state.allClients)
 
     const [getAllUsers] = useLazyQuery(GET_ALL_USERS, {
         onCompleted({ getAllUsers: data }) {
-            console.log('get all users', data)
             if (data.__typename === 'Errors') {
                 dispatch(
                     showBanner({
@@ -57,9 +54,8 @@ const Dashboard = () => {
         }
     })
 
-    const [getAllProjects] = useLazyQuery(FETCH_ALL_CLIENTS, {
+    const [getAllClients] = useLazyQuery(FETCH_ALL_CLIENTS, {
         onCompleted({ getAllClients: data }) {
-            console.log('get all projects', data)
             if (data.__typename === 'Errors') {
                 dispatch(
                     showBanner({
@@ -68,34 +64,24 @@ const Dashboard = () => {
                     })
                 )
             } else {
-                dispatch(setProjects(data))
+                dispatch(setClients(data))
             }
-            dispatch(setLoadingAllProjects(false))
+            dispatch(setLoadingAllClients(false))
         },
         onError() {
-            dispatch(setLoadingAllProjects(false))
+            dispatch(setLoadingAllClients(false))
             dispatch(showTechnicalDifficultiesBanner())
         }
     })
 
     useEffect(() => {
         dispatch(setLoadingAllUsers(true))
+        dispatch(setLoadingAllClients(true))
         getAllUsers()
+        getAllClients()
     }, [])
 
-    useEffect(() => {
-        dispatch(setLoadingAllProjects(true))
-        getAllProjects()
-    }, [])
-
-    if (loadingAllUsers) {
-        return (
-            <DashboardWrapper>
-                <Loader />
-            </DashboardWrapper>
-        )
-    }
-    if (loadingAllProjects) {
+    if (loadingAllUsers || loadingAllClients) {
         return (
             <DashboardWrapper>
                 <Loader />
