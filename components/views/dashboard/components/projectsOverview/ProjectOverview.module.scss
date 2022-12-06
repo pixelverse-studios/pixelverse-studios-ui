@@ -4,4 +4,8 @@
     @include Card.baseCard;
     font-size: 2rem;
     cursor: pointer;
+
+    span {
+        text-align: left;
+    }
 }

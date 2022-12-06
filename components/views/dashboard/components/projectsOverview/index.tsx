@@ -14,7 +14,10 @@ const ProjectOverview = () => {
         <Card
             className={styles.ProjectOverviewContent}
             onClick={() => router.push('/dashboard/projects/overview')}>
-            Projects: {completedProjects?.length} / {clients?.length} completed
+            <span>
+                Projects: {completedProjects?.length} / {clients?.length}{' '}
+                completed
+            </span>
         </Card>
     )
 }
