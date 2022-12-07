@@ -43,8 +43,10 @@ const LineChart = ({
             }}
             enableSlices={enableSlices}
             yFormat=" >-.2f"
-            axisLeft={axisLeft}
+            axisTop={axisTop}
+            axisRight={axisRight}
             axisBottom={axisBottom}
+            axisLeft={axisLeft}
             pointSize={pointSize}
             pointBorderWidth={0}
             pointLabelYOffset={-12}
