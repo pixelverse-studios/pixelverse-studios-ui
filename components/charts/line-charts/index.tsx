@@ -2,7 +2,15 @@ import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
 type LineChartProps = {
-    data: any
+    dataSource: {
+        id: string
+        color: string
+        data: {
+            x: string
+            y: number
+        }[]
+    }[]
+
     margin?: {
         top?: number
         right?: number
@@ -20,7 +28,7 @@ type LineChartProps = {
 }
 
 const LineChart = ({
-    data,
+    dataSource,
     margin,
     enableSlices,
     axisTop,
@@ -33,7 +41,7 @@ const LineChart = ({
 }: LineChartProps) => {
     return (
         <ResponsiveLine
-            data={data}
+            data={dataSource}
             margin={margin}
             xScale={{ type: 'point' }}
             yScale={{

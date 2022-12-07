@@ -2,7 +2,7 @@ import React from 'react'
 import LineChart from '.'
 import styles from './LineCharts.module.scss'
 
-const data = [
+const dataSource = [
     {
         id: 'Kevin',
         color: '#5cd926',
@@ -132,7 +132,7 @@ const DeveloperHoursLineChart = () => {
     return (
         <div className={styles.DeveloperHoursLineChart}>
             <LineChart
-                data={data}
+                dataSource={dataSource}
                 margin={margin}
                 enableSlices={enableSlices}
                 axisLeft={axisLeft}
