@@ -18,7 +18,7 @@ import {
 } from '../../../lib/redux/slices/banner'
 import UsersOverview from './components/usersOverview'
 import ProjectOverview from './components/projectsOverview'
-import LineChart from '../../charts/lineChart'
+import { DeveloperHoursLineChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
 
@@ -97,7 +97,7 @@ const Dashboard = () => {
                 <UsersOverview />
             </div>
             <div className={styles.productivityCharts}>
-                <LineChart />
+                <DeveloperHoursLineChart />
                 <div>DEVELOPERS TOTAL HOURS PIE CHART</div>
             </div>
             <div className={styles.clientsDisplayGrid}>
