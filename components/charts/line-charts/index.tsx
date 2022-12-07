@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
 type LineChartProps = {
@@ -26,6 +25,10 @@ type LineChartProps = {
     useMesh?: boolean
     legends?: any
 }
+const theme = {
+    fontSize: '20px',
+    textColor: 'red'
+}
 
 const LineChart = ({
     dataSource,
@@ -49,6 +52,8 @@ const LineChart = ({
                 min: 'auto',
                 max: 'auto'
             }}
+            enableGridX={true}
+            enableGridY={true}
             enableSlices={enableSlices}
             yFormat=" >-.2f"
             axisTop={axisTop}
@@ -61,6 +66,10 @@ const LineChart = ({
             useMesh={useMesh}
             colors={data => data.color}
             legends={legends}
+            theme={{
+                fontSize: 15,
+                textColor: 'black'
+            }}
         />
     )
 }

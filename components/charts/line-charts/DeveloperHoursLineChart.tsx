@@ -1,4 +1,3 @@
-import React from 'react'
 import LineChart from '.'
 import styles from './LineCharts.module.scss'
 
@@ -51,7 +50,7 @@ const dataSource = [
             },
             {
                 x: '12/5/22',
-                y: 24
+                y: 12
             }
         ]
     },
