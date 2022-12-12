@@ -15,8 +15,7 @@ export const initialState = {
         password: '',
         firstName: null,
         lastName: null,
-        token: null,
-        passwordResetToken: null
+        token: null
     } as ProfileProps,
     loading: false as boolean
 }

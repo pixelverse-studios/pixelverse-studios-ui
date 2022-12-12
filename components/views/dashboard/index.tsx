@@ -19,6 +19,7 @@ import {
 import UsersOverview from './components/usersOverview'
 import ProjectOverview from './components/projectsOverview'
 import ClientsOverview from './components/clientsOverview'
+import { DeveloperHoursLineChart, DeveloperHoursPieChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
 
@@ -94,8 +95,8 @@ const Dashboard = () => {
                 <UsersOverview />
             </div>
             <div className={styles.productivityCharts}>
-                <div>DEVELOPERS HOURS LINE CHART</div>
-                <div>DEVELOPERS TOTAL HOURS PIE CHART</div>
+                <DeveloperHoursLineChart />
+                {/* <DeveloperHoursPieChart /> */}
             </div>
             <h1>Clients</h1>
             <ClientsOverview />

@@ -40,6 +40,7 @@ const PageWrapper = ({ children }: { children: any }) => {
     })
 
     useEffect(() => {
+        console.log(user)
         if (!user.profile._id) {
             const token = decodeCachedToken()
 
