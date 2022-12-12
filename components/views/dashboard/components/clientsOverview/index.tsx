@@ -35,12 +35,11 @@ const ClientCard = ({
 )
 
 const ClientsOverview = () => {
-    // const { clients } = useSelector((state: any) => state.allClients)
-
+    const { clients } = useSelector((state: any) => state.allClients)
+    console.log('clients: ˝', clients)
     return (
         <div className={styles.ClientsOverviewGrid}>
-            cards go here
-            {/* {clients?.map((client: any, index: number) => {
+            {clients?.map((client: any, index: number) => {
                 // console.log(client)
                 const { phases } = client.project
 
@@ -72,7 +71,7 @@ const ClientsOverview = () => {
                         </span>
                     </ClientCard>
                 )
-            })} */}
+            })}
         </div>
     )
 }
