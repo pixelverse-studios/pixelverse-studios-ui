@@ -27,6 +27,7 @@ export const FETCH_ALL_CLIENTS = gql`
                         hoursLogged {
                             date
                             developer
+                            hours
                         }
                         originalCostEstimate
                         updatedCostEstimate

@@ -1,49 +1,78 @@
 import { useSelector } from 'react-redux'
 import { Card } from 'antd'
-import { BiTargetLock, BiEdit, BiTrash, BiTime } from 'react-icons/bi'
+import {
+    BiTargetLock,
+    BiEdit,
+    BiTrash,
+    BiTime,
+    BiMessageAltAdd
+} from 'react-icons/bi'
 
 import styles from './ClientsOverview.module.scss'
 
+const ClientCard = ({
+    children,
+    launchDate,
+    title
+}: {
+    children: any
+    launchDate: string | null
+    title: string
+}) => (
+    <Card className={styles.clientCard}>
+        <div className={styles.cardHeader}>
+            <h2>{title}</h2>
+            <div>{launchDate}</div>
+        </div>
+        <div className={styles.addPhaseSection}>
+            <BiMessageAltAdd />
+            <span>Add Phase Info</span>
+        </div>
+        <div className={styles.cardFooter}>
+            <BiEdit /> | <BiTrash />
+        </div>
+    </Card>
+)
+
 const ClientsOverview = () => {
-    const { clients } = useSelector((state: any) => state.allClients)
+    // const { clients } = useSelector((state: any) => state.allClients)
 
     return (
         <div className={styles.ClientsOverviewGrid}>
-            {clients?.map((client: any) => {
-                console.log(client)
+            cards go here
+            {/* {clients?.map((client: any, index: number) => {
+                // console.log(client)
                 const { phases } = client.project
 
-                const currentPhaseIndex = 0
-                const currentPhase = phases[currentPhaseIndex]
+                const currentPhase = phases[index]
+                // format date
                 const launchDate = currentPhase?.updatedLaunchDate
                     ? `${(<BiTargetLock />)} ${phases[0]?.updatedLaunchDate}`
                     : null
-                const totalHoursLogged =
-                    currentPhase?.hoursLogged?.length > 0
-                        ? currentPhase.hoursLogged
-                              .map((item: any) => item.hours)
-                              .reduce(
-                                  (accumulator: any, item: any) =>
-                                      accumulator + item
-                              )
-                        : null
 
-                console.log('totalHoursLogged: ', totalHoursLogged)
+                if (!phases) {
+                    return (
+                        <ClientCard
+                            launchDate={launchDate}
+                            title={client.project.title}>
+                            <div className={styles.addPhaseSection}>
+                                <BiMessageAltAdd />
+                                <span>Add Phase Info</span>
+                            </div>
+                        </ClientCard>
+                    )
+                }
+
                 return (
-                    <Card className={styles.clientCard}>
-                        <div className={styles.cardHeader}>
-                            <h2>{client.project.title}</h2>
-                            <div>{launchDate}</div>
-                        </div>
-                        <span>
+                    <ClientCard
+                        launchDate={launchDate}
+                        title={client.project.title}>
+                        <span key={client.firstName}>
                             {client.firstName} {client.lastName}
                         </span>
-                        <div className={styles.cardFooter}>
-                            <BiEdit /> | <BiTrash />
-                        </div>
-                    </Card>
+                    </ClientCard>
                 )
-            })}
+            })} */}
         </div>
     )
 }
