@@ -8,7 +8,7 @@ const UsersOverview = () => {
 
     const popoverContent = (
         <ul>
-            {users.map((user: any, index: number) => (
+            {users?.users?.map((user: any, index: number) => (
                 <li key={index}>
                     {user.firstName} {user.lastName}
                 </li>
@@ -22,7 +22,7 @@ const UsersOverview = () => {
                 className={styles.userPopover}
                 title="Users"
                 content={popoverContent}>
-                Users: {users.length}
+                Users: {users?.users?.length}
             </Popover>
         </Card>
     )

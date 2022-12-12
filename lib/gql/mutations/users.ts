@@ -10,8 +10,6 @@ export const LOGIN = gql`
                 firstName
                 lastName
                 token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 type
@@ -40,8 +38,6 @@ export const REGISTER = gql`
                 firstName
                 lastName
                 token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 type
@@ -63,8 +59,6 @@ export const RESET_PASSWORD = gql`
                 firstName
                 lastName
                 token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 type
@@ -84,8 +78,6 @@ export const SEND_PASSWORD_RESET = gql`
                 firstName
                 lastName
                 token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 type

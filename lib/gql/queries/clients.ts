@@ -3,42 +3,40 @@ import gql from 'graphql-tag'
 export const FETCH_ALL_CLIENTS = gql`
     query getAllClients {
         getAllClients {
-            ... on ClientSuccess {
-                _id
-                email
-                firstName
-                lastName
-                meetings {
+            ... on MultipleClientSuccess {
+                clients {
                     _id
-                    location
-                    url
-                    scheduledFor
-                    prepInfo {
-                        answer
-                        question
-                    }
-                }
-                project {
-                    title
-                    domain
-                    externalDependencies
-                    phases {
+                    email
+                    firstName
+                    lastName
+                    meetings {
                         _id
-                        hoursLogged {
-                            date
-                            developer
+                        location
+                        url
+                        scheduledFor
+                        prepInfo {
+                            answer
+                            question
                         }
-                        originalCostEstimate
-                        updatedCostEstimate
-                        originalLaunchDate
-                        updatedLaunchDate
-                        status
                         notes
-                        amountPaid
                     }
+                    project {
+                        title
+                        domain
+                        externalDependencies
+                        phases {
+                            _id
+                            originalCostEstimate
+                            updatedCostEstimate
+                            originalLaunchDate
+                            updatedLaunchDate
+                            status
+                            notes
+                            amountPaid
+                        }
+                    }
+                    notes
                 }
-                notes
-                successType
             }
             ... on Errors {
                 type

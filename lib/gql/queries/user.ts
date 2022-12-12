@@ -10,8 +10,6 @@ export const GET_LOGGED_IN_USER = gql`
                 firstName
                 lastName
                 token
-                passwordResetToken
-                successType
             }
             ... on Errors {
                 type
@@ -24,15 +22,57 @@ export const GET_LOGGED_IN_USER = gql`
 export const GET_ALL_USERS = gql`
     query Query {
         getAllUsers {
-            ... on UserSuccess {
-                _id
-                email
-                firstName
-                lastName
+            ... on MultipleUsersSuccess {
+                users {
+                    _id
+                    email
+                    password
+                    firstName
+                    lastName
+                    token
+                    devHours {
+                        date
+                        hoursLogged
+                        project
+                        projectPhase
+                    }
+                }
             }
             ... on Errors {
-                message
                 type
+                message
+            }
+        }
+    }
+`
+
+export const GET_ALL_DEV_HOURS = gql`
+    query getDeveloperHours {
+        getDeveloperHours {
+            ... on DeveloperHoursSuccess {
+                developers {
+                    _id
+                    name
+                    totalHours
+                    data {
+                        date
+                        hoursLogged
+                        project
+                        projectPhase
+                    }
+                }
+                projects {
+                    projectPhase
+                    devs {
+                        name
+                        totalHours
+                    }
+                }
+                totalHours
+            }
+            ... on Errors {
+                type
+                message
             }
         }
     }
