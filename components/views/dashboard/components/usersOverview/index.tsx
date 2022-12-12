@@ -22,7 +22,7 @@ const UsersOverview = () => {
                 className={styles.userPopover}
                 title="Users"
                 content={popoverContent}>
-                Users: {users?.users?.length}
+                Users: {users?.length}
             </Popover>
         </Card>
     )

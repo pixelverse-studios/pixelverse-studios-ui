@@ -47,7 +47,6 @@ export const GET_ALL_USERS = gql`
             ... on Errors {
                 type
                 message
-<<<<<<< HEAD
             }
         }
     }
@@ -80,8 +79,6 @@ export const GET_DEV_HOURS = gql`
             ... on Errors {
                 type
                 message
-=======
->>>>>>> UI-1.3.0
             }
         }
     }

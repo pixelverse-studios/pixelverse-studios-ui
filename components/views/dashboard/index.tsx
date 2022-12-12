@@ -38,7 +38,9 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const { loadingAllUsers } = useSelector((state: any) => state.allUsers)
     const { loadingAllClients } = useSelector((state: any) => state.allClients)
-    const { loadingDevHours } = useSelector((state: any) => state.devHours)
+    const { loadingDevHours } = useSelector(
+        (state: any) => state.developerHours
+    )
 
     const [getAllUsers] = useLazyQuery(GET_ALL_USERS, {
         onCompleted({ getAllUsers: data }) {
@@ -80,6 +82,7 @@ const Dashboard = () => {
             dispatch(showTechnicalDifficultiesBanner())
         }
     })
+
     const [getDeveloperHours] = useLazyQuery(GET_DEV_HOURS, {
         onCompleted({ getDeveloperHours: data }) {
             if (data.__typename === 'Errors') {
@@ -109,7 +112,7 @@ const Dashboard = () => {
         getDeveloperHours()
     }, [])
 
-    if (loadingAllUsers || loadingAllClients) {
+    if (loadingAllUsers || loadingAllClients || loadingDevHours) {
         return (
             <DashboardWrapper>
                 <Loader />
