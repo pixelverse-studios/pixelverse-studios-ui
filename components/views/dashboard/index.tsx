@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { GET_ALL_USERS } from '../../../lib/gql/queries/user'
+import { GET_ALL_USERS, GET_DEV_HOURS } from '../../../lib/gql/queries/user'
 import { FETCH_ALL_CLIENTS } from '../../../lib/gql/queries/clients'
 import {
     setLoadingAllClients,
@@ -12,6 +12,11 @@ import {
     setLoadingAllUsers,
     setUsers
 } from '../../../lib/redux/slices/allUsers'
+
+import {
+    setDevelopers,
+    setLoadingDevHours
+} from '../../../lib/redux/slices/developerHours'
 import {
     showBanner,
     showTechnicalDifficultiesBanner
@@ -33,6 +38,7 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const { loadingAllUsers } = useSelector((state: any) => state.allUsers)
     const { loadingAllClients } = useSelector((state: any) => state.allClients)
+    const { loadingDevHours } = useSelector((state: any) => state.devHours)
 
     const [getAllUsers] = useLazyQuery(GET_ALL_USERS, {
         onCompleted({ getAllUsers: data }) {
@@ -74,12 +80,33 @@ const Dashboard = () => {
             dispatch(showTechnicalDifficultiesBanner())
         }
     })
+    const [getDeveloperHours] = useLazyQuery(GET_DEV_HOURS, {
+        onCompleted({ getDeveloperHours: data }) {
+            if (data.__typename === 'Errors') {
+                dispatch(
+                    showBanner({
+                        message: data.message,
+                        type: data.__typename
+                    })
+                )
+            } else {
+                dispatch(setDevelopers(data))
+            }
+            dispatch(setLoadingDevHours(false))
+        },
+        onError() {
+            dispatch(setLoadingDevHours(false))
+            dispatch(showTechnicalDifficultiesBanner())
+        }
+    })
 
     useEffect(() => {
         dispatch(setLoadingAllUsers(true))
         dispatch(setLoadingAllClients(true))
+        dispatch(setLoadingDevHours(true))
         getAllUsers()
         getAllClients()
+        getDeveloperHours()
     }, [])
 
     if (loadingAllUsers || loadingAllClients) {
