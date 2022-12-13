@@ -15,13 +15,15 @@ type PieChartProps = {
     }
     innerRadius: number
     legends?: any
+    colors?: any
 }
 
 const PieChart = ({
     dataSource,
     margin,
     innerRadius,
-    legends
+    legends,
+    colors
 }: PieChartProps) => {
     return (
         <ResponsivePie
@@ -45,7 +47,7 @@ const PieChart = ({
                 from: 'color',
                 modifiers: [['darker', 2]]
             }}
-            colors={{ scheme: 'blues' }}
+            colors={colors}
             legends={legends}
         />
     )

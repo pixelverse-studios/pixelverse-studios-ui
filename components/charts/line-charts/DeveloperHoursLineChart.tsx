@@ -3,7 +3,7 @@ import LineChart from '.'
 import { format, eachDayOfInterval, subDays } from 'date-fns'
 import styles from './LineCharts.module.scss'
 
-const margin = { top: 30, right: 70, bottom: 40, left: 50 }
+const margin = { top: 30, right: 90, bottom: 40, left: 50 }
 
 const enableSlices = 'x'
 const axisLeft = {
@@ -25,7 +25,7 @@ const legends = [
         anchor: 'bottom-right',
         direction: 'column',
         justify: false,
-        translateX: 100,
+        translateX: 85,
         translateY: 0,
         itemsSpacing: 0,
         itemDirection: 'left-to-right',
@@ -53,6 +53,7 @@ const yScale = {
     min: 0,
     max: 8
 }
+const colors = ['#3066be', '#da5b38', '#3fc1aa']
 
 const DeveloperHoursLineChart = () => {
     const { devHours } = useSelector((state: any) => state.developerHours)
@@ -108,6 +109,7 @@ const DeveloperHoursLineChart = () => {
                 pointSize={pointSize}
                 useMesh={useMesh}
                 yScale={yScale}
+                colors={colors}
             />
         </div>
     )

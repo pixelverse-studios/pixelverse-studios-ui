@@ -24,7 +24,8 @@ type LineChartProps = {
     pointSize?: number
     useMesh?: boolean
     legends?: any
-    yScale?: ScaleSpec
+    yScale?: any
+    colors?: any
 }
 const theme = {
     fontSize: '20px',
@@ -42,7 +43,8 @@ const LineChart = ({
     legends,
     pointSize,
     useMesh,
-    yScale
+    yScale,
+    colors
 }: LineChartProps) => {
     return (
         <ResponsiveLine
@@ -62,7 +64,7 @@ const LineChart = ({
             pointBorderWidth={0}
             pointLabelYOffset={-12}
             useMesh={useMesh}
-            colors={{ scheme: 'nivo' }}
+            colors={colors}
             legends={legends}
             theme={{
                 fontSize: 15,
