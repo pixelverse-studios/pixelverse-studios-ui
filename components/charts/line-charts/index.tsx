@@ -64,7 +64,7 @@ const LineChart = ({
             pointBorderWidth={0}
             pointLabelYOffset={-12}
             useMesh={useMesh}
-            colors={data => data.color}
+            colors={{ scheme: 'nivo' }}
             legends={legends}
             theme={{
                 fontSize: 15,

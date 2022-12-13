@@ -1,4 +1,6 @@
+import { useSelector } from 'react-redux'
 import LineChart from '.'
+import { subWeeks, isAfter, format, eachDayOfInterval, subDays } from 'date-fns'
 import styles from './LineCharts.module.scss'
 
 const dataSource = [
@@ -127,11 +129,79 @@ const legends = [
 const pointSize = 6
 const useMesh = true
 
+//check if date is within the last 2 weeks
+const testDate = (dateString: any) => {
+    // const dateString = '30-11-2022'
+    const [d, m, y] = dateString.split('-').map((n: any) => parseInt(n, 10))
+    // months are 0 indexed so you need to subrtract 1.
+    const testDate = new Date(y, m - 1, d)
+
+    const dateIsAfter = isAfter(testDate, subWeeks(new Date(), 2))
+
+    return dateIsAfter
+}
+
 const DeveloperHoursLineChart = () => {
+    const { devHours } = useSelector((state: any) => state.developerHours)
+    const { developers } = devHours
+
+    const newDataSource: any = []
+    const today = new Date()
+    const last2weeks = eachDayOfInterval({
+        start: subDays(today, 13),
+        end: today
+    })
+
+    const formattedWeeks = last2weeks.map((data: any) => {
+        return format(new Date(data), 'MM/dd')
+    })
+
+    //Map over formattedWeeks
+    //Check if the date matches the date in the developers.data
+    //if it matches add hoursLogged
+    //if it doesnt add 0
+
+    const phillyMaps = developers?.map((dev, index) => {
+        const currentDev = []
+        formattedWeeks.forEach(day => {
+            const matchingDays = dev.data.map(item => {
+                const formattedDate = format(new Date(item.date), 'MM/dd')
+                if (formattedDate === day) {
+                    return {
+                        x: day,
+                        y: item.hoursLogged
+                    }
+                } else {
+                    return {
+                        x: day,
+                        y: 0
+                    }
+                }
+            })
+            console.log(matchingDays)
+        })
+    })
+
+    // developers?.forEach((developer: any) => {
+    //     let data = developer.data.map((d: any) => {
+    //         let newDate = format(new Date(d.date), 'MM/dd')
+    //         if (formattedWeeks.includes(newDate)) {
+    //             return { x: newDate, y: d.hoursLogged }
+    //         } else {
+    //             return { x: newDate, y: 0 }
+    //         }
+    //     })
+    //     let devDate = {
+    //         id: developer.name,
+    //         data: data
+    //     }
+    //     return newDataSource.push(devDate)
+    // })
+    // console.log(newDataSource)
     return (
         <div className={styles.DeveloperHoursLineChart}>
             <LineChart
-                dataSource={dataSource}
+                dataSource={newDataSource}
                 margin={margin}
                 enableSlices={enableSlices}
                 axisLeft={axisLeft}
