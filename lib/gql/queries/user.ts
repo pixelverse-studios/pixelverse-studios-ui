@@ -51,3 +51,35 @@ export const GET_ALL_USERS = gql`
         }
     }
 `
+
+export const GET_DEV_HOURS = gql`
+    query getDeveloperHours {
+        getDeveloperHours {
+            ... on DeveloperHoursSuccess {
+                developers {
+                    _id
+                    name
+                    totalHours
+                    data {
+                        date
+                        hoursLogged
+                        project
+                        projectPhase
+                    }
+                }
+                projects {
+                    projectPhase
+                    devs {
+                        name
+                        totalHours
+                    }
+                }
+                totalHours
+            }
+            ... on Errors {
+                type
+                message
+            }
+        }
+    }
+`
