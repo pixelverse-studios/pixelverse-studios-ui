@@ -42,7 +42,7 @@ const Dashboard = () => {
                     })
                 )
             } else {
-                dispatch(setUsers(data))
+                dispatch(setUsers(data.users))
             }
 
             dispatch(setLoadingAllUsers(false))
@@ -63,7 +63,7 @@ const Dashboard = () => {
                     })
                 )
             } else {
-                dispatch(setClients(data))
+                dispatch(setClients(data.clients))
             }
             dispatch(setLoadingAllClients(false))
         },

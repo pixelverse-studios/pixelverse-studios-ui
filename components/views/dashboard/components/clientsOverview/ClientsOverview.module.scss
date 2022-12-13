@@ -2,10 +2,55 @@
 
 .ClientsOverviewGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 1rem;
 
     .clientCard {
         @include Card.baseCard;
+
+        .cardContent {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+
+            & > * {
+                width: inherit;
+            }
+
+            .cardHeader > h2 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                span {
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+
+            .clientName {
+                display: flex;
+                justify-content: flex-start;
+                // margin-bottom: 1rem;
+            }
+            .cardBody {
+            }
+
+            .cardFooter {
+                // border-top: 1px solid var(--slate600);
+                text-align: left;
+
+                svg {
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

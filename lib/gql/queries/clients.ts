@@ -33,6 +33,7 @@ export const FETCH_ALL_CLIENTS = gql`
                             status
                             notes
                             amountPaid
+                            isActive
                         }
                     }
                     notes

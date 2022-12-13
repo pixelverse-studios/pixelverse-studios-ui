@@ -1,58 +1,69 @@
 import { useSelector } from 'react-redux'
-import { Card } from 'antd'
+import { Card, Progress } from 'antd'
 import {
     BiTargetLock,
     BiEdit,
     BiTrash,
-    BiTime,
+    BiRocket,
     BiMessageAltAdd
 } from 'react-icons/bi'
 
+import { PROJECT_PHASES } from '../../../../../utilities/constants'
+import { formatDate } from '../../../../../utilities/formatters'
 import styles from './ClientsOverview.module.scss'
 
 const ClientCard = ({
     children,
     launchDate,
+    name,
     title
 }: {
     children: any
-    launchDate: string | null
+    launchDate: Date | null
+    name: string
     title: string
-}) => (
-    <Card className={styles.clientCard}>
-        <div className={styles.cardHeader}>
-            <h2>{title}</h2>
-            <div>{launchDate}</div>
-        </div>
-        <div className={styles.addPhaseSection}>
-            <BiMessageAltAdd />
-            <span>Add Phase Info</span>
-        </div>
-        <div className={styles.cardFooter}>
-            <BiEdit /> | <BiTrash />
-        </div>
-    </Card>
-)
+}) => {
+    return (
+        <Card className={styles.clientCard}>
+            <div className={styles.cardContent}>
+                <div className={styles.cardHeader}>
+                    <h2>
+                        {title}
+                        <span>
+                            <BiRocket />
+                            {formatDate(launchDate)}
+                        </span>
+                    </h2>
+                </div>
+                <span className={styles.clientName}>{name}</span>
+                {children}
+                <div className={styles.cardFooter}>
+                    <BiEdit />
+                    <BiTrash />
+                </div>
+            </div>
+        </Card>
+    )
+}
 
 const ClientsOverview = () => {
     const { clients } = useSelector((state: any) => state.allClients)
-    console.log('clients: ˝', clients)
+
     return (
         <div className={styles.ClientsOverviewGrid}>
-            {clients?.map((client: any, index: number) => {
-                // console.log(client)
+            {clients?.map((client: any) => {
                 const { phases } = client.project
 
-                const currentPhase = phases[index]
-                // format date
-                const launchDate = currentPhase?.updatedLaunchDate
-                    ? `${(<BiTargetLock />)} ${phases[0]?.updatedLaunchDate}`
-                    : null
+                const currentPhase = phases.filter(
+                    (phase: any) => phase.isActive
+                )[0]
+                const name = `${client.firstName} ${client.lastName}`
 
-                if (!phases) {
+                if (!phases?.length) {
                     return (
                         <ClientCard
-                            launchDate={launchDate}
+                            launchDate={null}
+                            name={name}
                             title={client.project.title}>
                             <div className={styles.addPhaseSection}>
                                 <BiMessageAltAdd />
@@ -62,13 +73,23 @@ const ClientsOverview = () => {
                     )
                 }
 
+                const progressPercent = PROJECT_PHASES[currentPhase?.status]
+
                 return (
                     <ClientCard
-                        launchDate={launchDate}
+                        launchDate={currentPhase?.updatedLaunchDate}
+                        name={name}
                         title={client.project.title}>
-                        <span key={client.firstName}>
-                            {client.firstName} {client.lastName}
-                        </span>
+                        <div className={styles.cardBody}>
+                            <div></div>
+                            <Progress
+                                percent={progressPercent}
+                                strokeColor={{
+                                    '0%': '#3fc1aa',
+                                    '100%': '#3066be'
+                                }}
+                            />
+                        </div>
                     </ClientCard>
                 )
             })}
