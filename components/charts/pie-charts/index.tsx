@@ -45,7 +45,7 @@ const PieChart = ({
                 from: 'color',
                 modifiers: [['darker', 2]]
             }}
-            colors={{ datum: 'data.color' }}
+            colors={{ scheme: 'blues' }}
             legends={legends}
         />
     )

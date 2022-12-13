@@ -32,28 +32,14 @@ const legends = [
 const DeveloperHoursPieChart = () => {
     const { devHours } = useSelector((state: any) => state.developerHours)
 
-    const dataSource = [
-        {
-            id: 'Kevin',
-            label: 'Kevin',
-            value: 14,
-            color: '#5cd926'
-        },
-        {
-            id: 'Phil',
-            label: 'Phil',
-            value: 32,
-            color: '#267ad9'
-        },
-        {
-            id: 'Sami',
-            label: 'Sami',
-            value: 3,
-            color: '#d92626'
+    const dataSource = devHours?.developers?.map((data: any) => {
+        return {
+            id: data.name,
+            label: data.name,
+            value: data.totalHours
         }
-    ]
+    })
 
-    console.log(devHours)
     return (
         <div className={styles.DeveloperHoursPieChart}>
             <PieChart
