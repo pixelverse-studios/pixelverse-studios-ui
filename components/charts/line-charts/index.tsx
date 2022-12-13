@@ -24,6 +24,7 @@ type LineChartProps = {
     pointSize?: number
     useMesh?: boolean
     legends?: any
+    yScale?: ScaleSpec
 }
 const theme = {
     fontSize: '20px',
@@ -40,18 +41,15 @@ const LineChart = ({
     axisBottom,
     legends,
     pointSize,
-    useMesh
+    useMesh,
+    yScale
 }: LineChartProps) => {
     return (
         <ResponsiveLine
             data={dataSource}
             margin={margin}
             xScale={{ type: 'point' }}
-            yScale={{
-                type: 'linear',
-                min: 'auto',
-                max: 'auto'
-            }}
+            yScale={yScale}
             enableGridX={true}
             enableGridY={true}
             enableSlices={enableSlices}
