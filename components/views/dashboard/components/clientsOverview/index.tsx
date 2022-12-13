@@ -47,7 +47,12 @@ const ClientCard = ({
 }
 
 const ClientsOverview = () => {
-    const { clients } = useSelector((state: any) => state.allClients)
+    const {
+        allClients: { clients },
+        developerHours: {
+            devHours: { projects }
+        }
+    } = useSelector((state: any) => state)
 
     return (
         <div className={styles.ClientsOverviewGrid}>
@@ -74,6 +79,12 @@ const ClientsOverview = () => {
                 }
 
                 const progressPercent = PROJECT_PHASES[currentPhase?.status]
+                const totalHours = projects.filter(
+                    (project: any) => project.projectPhase === currentPhase._id
+                )[0]?.totalHours
+
+                console.log('client.project.title: ', client.project.title)
+                console.log('totalHours: ', totalHours)
 
                 return (
                     <ClientCard
@@ -81,7 +92,9 @@ const ClientsOverview = () => {
                         name={name}
                         title={client.project.title}>
                         <div className={styles.cardBody}>
-                            <div></div>
+                            <div className={styles.totalHours}>
+                                Hours Logged: {totalHours}
+                            </div>
                             <Progress
                                 percent={progressPercent}
                                 strokeColor={{

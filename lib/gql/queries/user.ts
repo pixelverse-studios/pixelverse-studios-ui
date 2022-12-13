@@ -52,7 +52,7 @@ export const GET_ALL_USERS = gql`
     }
 `
 
-export const GET_ALL_DEV_HOURS = gql`
+export const GET_DEV_HOURS = gql`
     query getDeveloperHours {
         getDeveloperHours {
             ... on DeveloperHoursSuccess {
@@ -69,6 +69,7 @@ export const GET_ALL_DEV_HOURS = gql`
                 }
                 projects {
                     projectPhase
+                    totalHours
                     devs {
                         name
                         totalHours

@@ -3,13 +3,15 @@ import userReducer from './slices/user'
 import allUsersReducer from './slices/allUsers'
 import allClientsReducer from './slices/allClients'
 import bannerReducer from './slices/banner'
+import developerHoursReducer from './slices/developerHours'
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
         allUsers: allUsersReducer,
         allClients: allClientsReducer,
-        banner: bannerReducer
+        banner: bannerReducer,
+        developerHours: developerHoursReducer
     }
 })
 
