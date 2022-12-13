@@ -161,27 +161,39 @@ const DeveloperHoursLineChart = () => {
     //if it matches add hoursLogged
     //if it doesnt add 0
 
-    const phillyMaps = developers?.map((dev, index) => {
-        const currentDev = []
-        formattedWeeks.forEach(day => {
-            const matchingDays = dev.data.map(item => {
-                const formattedDate = format(new Date(item.date), 'MM/dd')
-                if (formattedDate === day) {
-                    return {
-                        x: day,
-                        y: item.hoursLogged
-                    }
-                } else {
-                    return {
-                        x: day,
-                        y: 0
-                    }
-                }
-            })
-            console.log(matchingDays)
-        })
-    })
+    // const phillyMaps = developers?.map((dev, index) => {
+    //     const currentDev = []
+    //     formattedWeeks.forEach(day => {
+    //         const matchingDays = dev.data.map(item => {
+    //             const formattedDate = format(new Date(item.date), 'MM/dd')
+    //             if (formattedDate === day) {
+    //                 return {
+    //                     x: day,
+    //                     y: item.hoursLogged
+    //                 }
+    //             } else {
+    //                 return {
+    //                     x: day,
+    //                     y: 0
+    //                 }
+    //             }
+    //         })
+    //         console.log(matchingDays)
+    //     })
+    // })
 
+    developers?.forEach((developer: any) => {
+        const matchingDays = []
+        let data = formattedWeeks.map((d: any) => {
+            return { x: d }
+        })
+        let devDate = {
+            id: developer.name,
+            data: data
+        }
+        return newDataSource.push(devDate)
+    })
+    console.log(newDataSource)
     // developers?.forEach((developer: any) => {
     //     let data = developer.data.map((d: any) => {
     //         let newDate = format(new Date(d.date), 'MM/dd')
