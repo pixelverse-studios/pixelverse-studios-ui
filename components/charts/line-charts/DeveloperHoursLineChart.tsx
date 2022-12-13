@@ -183,11 +183,13 @@ const DeveloperHoursLineChart = () => {
     // })
 
     developers?.forEach((developer: any) => {
-        const matchingDays = []
-        let data = formattedWeeks.map((d: any) => {
-            return { x: d }
+        const data = formattedWeeks.map((d: any) => {
+            const hoursToday = developer.data.find((item: any) => {
+                console.log(item)
+            })
+            return { x: d, y: 0 }
         })
-        let devDate = {
+        const devDate = {
             id: developer.name,
             data: data
         }
