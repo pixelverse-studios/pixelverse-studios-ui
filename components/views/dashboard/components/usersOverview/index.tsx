@@ -8,7 +8,7 @@ const UsersOverview = () => {
 
     const popoverContent = (
         <ul>
-            {users?.users?.map((user: any, index: number) => (
+            {users?.map((user: any, index: number) => (
                 <li key={index}>
                     {user.firstName} {user.lastName}
                 </li>
