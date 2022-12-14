@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Card, Progress } from 'antd'
+import { Card, Progress, Button } from 'antd'
 import {
     BiTargetLock,
     BiEdit,
@@ -23,23 +23,32 @@ const ClientCard = ({
     name: string
     title: string
 }) => {
+    const TitleNode = title ?? (
+        <Button className={styles.clientButton} icon={<BiMessageAltAdd />}>
+            Add Title
+        </Button>
+    )
+
     return (
         <Card className={styles.clientCard}>
             <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                     <h2>
-                        {title}
-                        <span>
-                            <BiRocket />
-                            {formatDate(launchDate)}
-                        </span>
+                        {TitleNode}
+                        {launchDate ? (
+                            <span>
+                                <BiRocket />
+                                {formatDate(launchDate)}
+                            </span>
+                        ) : null}
                     </h2>
                 </div>
                 <span className={styles.clientName}>{name}</span>
                 {children}
                 <div className={styles.cardFooter}>
-                    <BiEdit />
-                    <BiTrash />
+                    <Button className={styles.clientButton} icon={<BiEdit />}>
+                        Edit
+                    </Button>
                 </div>
             </div>
         </Card>
@@ -71,8 +80,11 @@ const ClientsOverview = () => {
                             name={name}
                             title={client.project.title}>
                             <div className={styles.addPhaseSection}>
-                                <BiMessageAltAdd />
-                                <span>Add Phase Info</span>
+                                <Button
+                                    className={styles.clientButton}
+                                    icon={<BiMessageAltAdd />}>
+                                    Add Phase Info
+                                </Button>
                             </div>
                         </ClientCard>
                     )
@@ -82,9 +94,6 @@ const ClientsOverview = () => {
                 const totalHours = projects.filter(
                     (project: any) => project.projectPhase === currentPhase._id
                 )[0]?.totalHours
-
-                console.log('client.project.title: ', client.project.title)
-                console.log('totalHours: ', totalHours)
 
                 return (
                     <ClientCard
