@@ -1,10 +1,10 @@
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import LineChart from '.'
 import { format, eachDayOfInterval, subDays } from 'date-fns'
 import styles from './LineCharts.module.scss'
 
 const margin = { top: 30, right: 90, bottom: 40, left: 50 }
-
 const enableSlices = 'x'
 const axisLeft = {
     tickSize: 1,
@@ -56,51 +56,55 @@ const yScale = {
 const colors = ['#3066be', '#da5b38', '#3fc1aa']
 
 const DeveloperHoursLineChart = () => {
-    const { devHours } = useSelector((state: any) => state.developerHours)
-    const { developers } = devHours
+    const {
+        devHours: { developers }
+    } = useSelector((state: any) => state.developerHours)
+    const [dataSource, setDataSource] = useState([]) as any[]
 
-    const newDataSource: any = []
     const today = new Date()
     const chartDateLimit = eachDayOfInterval({
         start: subDays(today, 6),
         end: today
     })
-
     const formattedDates = chartDateLimit.map((data: any) => {
         return format(new Date(data), 'MM/dd')
     })
 
-    developers?.forEach((developer: any) => {
-        const dataSource = [] as any
-        formattedDates.forEach(date => {
-            const hoursToday = developer.data.find((item: any) => {
-                const formatted = format(new Date(item.date), 'MM/dd')
+    useEffect(() => {
+        const dataArray = [] as any
+        developers?.forEach((developer: any) => {
+            const newDataSource = [] as any
+            formattedDates.forEach(date => {
+                const hoursToday = developer.data.find((item: any) => {
+                    const formatted = format(new Date(item.date), 'MM/dd')
 
-                if (formatted === date) {
-                    return true
+                    if (formatted === date) {
+                        return true
+                    }
+
+                    return false
+                })
+
+                if (hoursToday != undefined) {
+                    newDataSource.push({ x: date, y: hoursToday.hoursLogged })
+                } else {
+                    newDataSource.push({ x: date, y: 0 })
                 }
-
-                return false
             })
 
-            if (hoursToday != undefined) {
-                dataSource.push({ x: date, y: hoursToday.hoursLogged })
-            } else {
-                dataSource.push({ x: date, y: 0 })
+            const devDate = {
+                id: developer.name,
+                data: newDataSource
             }
+            return dataArray.push(devDate)
         })
-
-        const devDate = {
-            id: developer.name,
-            data: dataSource
-        }
-        return newDataSource.push(devDate)
-    })
+        setDataSource(dataArray)
+    }, [developers])
 
     return (
         <div className={styles.DeveloperHoursLineChart}>
             <LineChart
-                dataSource={newDataSource}
+                dataSource={dataSource}
                 margin={margin}
                 enableSlices={enableSlices}
                 axisLeft={axisLeft}
