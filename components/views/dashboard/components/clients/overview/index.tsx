@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux'
-import { Card, Progress, Button } from 'antd'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+import { Card, Progress, Button, Drawer } from 'antd'
 import {
     BiTargetLock,
     BiEdit,
@@ -8,26 +10,58 @@ import {
     BiMessageAltAdd
 } from 'react-icons/bi'
 
-import { PROJECT_PHASES } from '../../../../../utilities/constants'
-import { formatDate } from '../../../../../utilities/formatters'
+import { showBanner } from '../../../../../../lib/redux/slices/banner'
+import ProjectTitleForm from './ProjectTitleForm'
+import { PROJECT_PHASES } from '../../../../../../utilities/constants'
+import { formatDate } from '../../../../../../utilities/formatters'
 import styles from './ClientsOverview.module.scss'
+
+type ClientDrawerProps = {
+    showing: boolean
+    clientID: string
+    title: string
+    type: 'title' | 'phase' | ''
+}
+
+const DEFAULT_DRAWER = {
+    showing: false,
+    clientID: '',
+    title: '',
+    type: ''
+} as ClientDrawerProps
 
 const ClientCard = ({
     children,
     launchDate,
     name,
-    title
+    title,
+    onDrawerActivate,
+    clientID
 }: {
     children: any
     launchDate: Date | null
     name: string
     title: string
+    onDrawerActivate: Function
+    clientID: string
 }) => {
-    const TitleNode = title ?? (
-        <Button className={styles.clientButton} icon={<BiMessageAltAdd />}>
+    const router = useRouter()
+
+    const TitleNode = title ? (
+        title
+    ) : (
+        <Button
+            onClick={() =>
+                onDrawerActivate(clientID, 'Set Project Title', 'title')
+            }
+            className={styles.clientButton}
+            icon={<BiMessageAltAdd />}>
             Add Title
         </Button>
     )
+
+    const handleEditClientClick = () =>
+        router.push(`/dashboard/clients/${clientID}`)
 
     return (
         <Card className={styles.clientCard}>
@@ -46,7 +80,10 @@ const ClientCard = ({
                 <span className={styles.clientName}>{name}</span>
                 {children}
                 <div className={styles.cardFooter}>
-                    <Button className={styles.clientButton} icon={<BiEdit />}>
+                    <Button
+                        className={styles.clientButton}
+                        icon={<BiEdit />}
+                        onClick={handleEditClientClick}>
                         Edit
                     </Button>
                 </div>
@@ -56,6 +93,9 @@ const ClientCard = ({
 }
 
 const ClientsOverview = () => {
+    const dispatch = useDispatch()
+    const [drawer, setDrawer] = useState<ClientDrawerProps>(DEFAULT_DRAWER)
+
     const {
         allClients: { clients },
         developerHours: {
@@ -63,8 +103,25 @@ const ClientsOverview = () => {
         }
     } = useSelector((state: any) => state)
 
+    const onDrawerActivate = (
+        clientID: string,
+        title: string,
+        type: 'title' | 'phase'
+    ) => setDrawer({ showing: true, title, clientID, type })
+
+    const onDrawerClose = () => setDrawer(DEFAULT_DRAWER)
+
+    const triggerBanner = () =>
+        dispatch(
+            showBanner({
+                message: 'Client project title updated successfully',
+                type: 'Success'
+            })
+        )
+
     return (
         <div className={styles.ClientsOverviewGrid}>
+            <button onClick={triggerBanner}>BANNER</button>
             {clients?.map((client: any) => {
                 const { phases } = client.project
 
@@ -76,11 +133,20 @@ const ClientsOverview = () => {
                 if (!phases?.length) {
                     return (
                         <ClientCard
+                            clientID={client._id}
+                            onDrawerActivate={onDrawerActivate}
                             launchDate={null}
                             name={name}
                             title={client.project.title}>
                             <div className={styles.addPhaseSection}>
                                 <Button
+                                    onClick={() =>
+                                        onDrawerActivate(
+                                            client._id,
+                                            'Add phase info',
+                                            'phase'
+                                        )
+                                    }
                                     className={styles.clientButton}
                                     icon={<BiMessageAltAdd />}>
                                     Add Phase Info
@@ -97,6 +163,8 @@ const ClientsOverview = () => {
 
                 return (
                     <ClientCard
+                        onDrawerActivate={() => null}
+                        clientID={client._id}
                         launchDate={currentPhase?.updatedLaunchDate}
                         name={name}
                         title={client.project.title}>
@@ -115,6 +183,21 @@ const ClientsOverview = () => {
                     </ClientCard>
                 )
             })}
+            <Drawer
+                title={drawer.title}
+                placement="right"
+                open={drawer.showing}
+                closable={false}
+                onClose={onDrawerClose}>
+                {drawer.type === 'title' ? (
+                    <ProjectTitleForm
+                        clientID={drawer.clientID}
+                        onDrawerClose={onDrawerClose}
+                    />
+                ) : null}
+
+                {drawer.type === 'phase' ? <div>phase drawer</div> : null}
+            </Drawer>
         </div>
     )
 }

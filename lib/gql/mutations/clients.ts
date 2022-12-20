@@ -13,3 +13,54 @@ export const SET_CLIENT_MEETING = gql`
         }
     }
 `
+
+export const EDIT_CLIENT_PROJECT_TITLE = gql`
+    mutation EditClientProjectTitle($clientID: ID!, $title: String) {
+        editClientProject(clientID: $clientID, title: $title) {
+            ... on MultipleClientSuccess {
+                clients {
+                    _id
+                    email
+                    firstName
+                    lastName
+                    meetings {
+                        _id
+                        location
+                        url
+                        scheduledFor
+                        prepInfo {
+                            answer
+                            question
+                        }
+                        notes
+                    }
+                    project {
+                        title
+                        domain
+                        externalDependencies
+                        phases {
+                            _id
+                            originalCostEstimate
+                            updatedCostEstimate
+                            originalLaunchDate
+                            updatedLaunchDate
+                            status
+                            notes
+                            amountPaid
+                            isActive
+                        }
+                    }
+                    notes
+                }
+            }
+            ... on Errors {
+                type
+                message
+                errors {
+                    field
+                    message
+                }
+            }
+        }
+    }
+`

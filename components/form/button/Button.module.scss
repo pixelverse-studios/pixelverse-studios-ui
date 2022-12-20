@@ -1,27 +1,45 @@
-.Button {
+@mixin BaseButton {
     cursor: pointer;
     text-decoration: none;
     position: relative;
     width: 100%;
-    height: 2.5rem;
     display: flex;
     justify-content: center;
     margin: 9px auto;
     font-size: 17px;
-    color: var(--off-white);
     padding: 12px;
     border-radius: 6px;
-    border: none;
-    background: var(--seagreen400);
     -webkit-transition: all 2s ease-in-out;
     -moz-transition: all 2s ease-in-out;
     -o-transition: all 2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    &:hover {
-        background: var(--seagreen500);
-    }
+
     &:disabled {
-        background: rgba(3, 3, 3, 0.1);
+        opacity: 0.25;
         cursor: not-allowed;
+    }
+}
+
+.SuccessButton {
+    @include BaseButton;
+    background: var(--seagreen400);
+    color: var(--off-white);
+    border: 1px solid var(--seagreen400);
+
+    &:hover {
+        color: var(--seagreen400);
+        background: white;
+    }
+}
+
+.CancelButton {
+    @include BaseButton;
+    background: var(--sienna500);
+    color: var(--off-white);
+    border: 1px solid var(--sienna500);
+
+    &:hover {
+        color: var(--sienna500);
+        background: white;
     }
 }

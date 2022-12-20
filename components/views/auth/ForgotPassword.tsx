@@ -78,6 +78,7 @@ const ForgotPassword = () => {
                     <fieldset>
                         <FormRow>
                             <StringField
+                                theme="dark"
                                 type="email"
                                 id="email"
                                 name="email"

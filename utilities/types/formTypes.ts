@@ -30,6 +30,10 @@ type ResetPasswordProps = {
     confirmPassword: inputType
 }
 
+type UpdateProjectTitleProps = {
+    projectTitle: inputType
+}
+
 type ResetValidationProps = {
     [newPassword: string]: validationType
     confirmPassword: validationType
@@ -54,3 +58,4 @@ export type FormProps =
     | LoginFormProps
     | ResetPasswordProps
     | ForgotPasswordProps
+    | UpdateProjectTitleProps

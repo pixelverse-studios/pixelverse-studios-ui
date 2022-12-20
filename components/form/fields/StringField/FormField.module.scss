@@ -11,7 +11,6 @@ $label-top-focus: -1.3rem;
         top: $label-top-focus;
         left: $label-left;
         transition: 0.2s ease-in-out;
-        color: var(--off-white);
         font-weight: 500;
         font-size: 1rem;
 
@@ -22,13 +21,12 @@ $label-top-focus: -1.3rem;
     input {
         position: relative;
         width: 100%;
+        height: 2.5rem;
         display: block;
         font-size: 1rem;
-        color: var(--off-white);
         padding: 8px;
         border-radius: 6px;
         border: none;
-        background: rgba(3, 3, 3, 0.1);
         transition: all 0.2s ease-in-out;
 
         &::placeholder {
@@ -38,13 +36,9 @@ $label-top-focus: -1.3rem;
             cursor: text;
             top: $label-top;
             left: $label-left;
-            color: var(--off-white);
         }
         &:focus {
             outline: none;
-            box-shadow: 3px 3px 10px #333;
-            background: rgba(3, 3, 3, 0.18);
-            color: var(--off-white);
         }
         &:focus {
             ~ label {
@@ -53,7 +47,6 @@ $label-top-focus: -1.3rem;
                 display: block;
                 transition: 0.2s;
                 left: $label-left;
-                color: var(--off-white);
             }
 
             padding-bottom: 7px;
@@ -86,6 +79,56 @@ $label-top-focus: -1.3rem;
                 border-width: 6px;
                 border-color: transparent transparent var(--error-background)
                     transparent;
+            }
+        }
+    }
+
+    &.dark {
+        label {
+            color: var(--off-white);
+        }
+        input {
+            color: var(--off-white);
+            background: rgba(0, 0, 0, 0.1);
+
+            &:placeholder-shown ~ label {
+                color: var(--off-white);
+            }
+
+            &:focus {
+                box-shadow: 3px 3px 10px #333;
+                background: rgba(0, 0, 0, 0.18);
+                color: var(--off-white);
+            }
+            &:focus {
+                ~ label {
+                    color: var(--off-white);
+                }
+            }
+        }
+    }
+    &.light {
+        label {
+            color: var(--off-black);
+        }
+
+        input {
+            color: var(--off-black);
+            background: rgba(3, 3, 3, 0.1);
+
+            &:placeholder-shown ~ label {
+                color: var(--off-black);
+            }
+
+            &:focus {
+                box-shadow: 3px 3px 10px rgb(165, 165, 165);
+                background: rgba(3, 3, 3, 0.18);
+                color: var(--off-black);
+            }
+            &:focus {
+                ~ label {
+                    color: var(--off-black);
+                }
             }
         }
     }

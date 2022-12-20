@@ -12,6 +12,7 @@ type StringFieldProps = {
     required?: boolean
     minLength?: number
     title?: string
+    theme: 'light' | 'dark'
 }
 
 const StringField = ({
@@ -23,10 +24,14 @@ const StringField = ({
     onChange,
     required,
     title,
-    minLength
+    minLength,
+    theme
 }: StringFieldProps) => {
     return (
-        <div className={styles.FormField}>
+        <div
+            className={`${styles.FormField} ${
+                theme === 'dark' ? styles.dark : styles.light
+            }`}>
             <input
                 type={type}
                 id={id}

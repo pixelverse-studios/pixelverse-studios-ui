@@ -21,9 +21,9 @@ import {
     showBanner,
     showTechnicalDifficultiesBanner
 } from '../../../lib/redux/slices/banner'
-import UsersOverview from './components/usersOverview'
-import ProjectOverview from './components/projectsOverview'
-import ClientsOverview from './components/clientsOverview'
+import UsersOverview from './components/users/overview'
+import ProjectOverview from './components/projects/overview'
+import ClientsOverview from './components/clients/overview'
 import { DeveloperHoursLineChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
@@ -124,11 +124,11 @@ const Dashboard = () => {
                 <ProjectOverview />
                 <UsersOverview />
             </div>
+            <h1>Clients</h1>
+            <ClientsOverview />
             <div className={styles.productivityCharts}>
                 <DeveloperHoursLineChart />
             </div>
-            <h1>Clients</h1>
-            <ClientsOverview />
         </DashboardWrapper>
     )
 }
