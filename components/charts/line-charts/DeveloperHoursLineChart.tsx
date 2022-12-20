@@ -59,7 +59,7 @@ const DeveloperHoursLineChart = () => {
     const {
         devHours: { developers }
     } = useSelector((state: any) => state.developerHours)
-    const [dataSource, setDataSource] = useState([]) as any[]
+    const [dataSource, setDataSource] = useState<any>(null)
 
     const today = new Date()
     const chartDateLimit = eachDayOfInterval({
@@ -71,34 +71,39 @@ const DeveloperHoursLineChart = () => {
     })
 
     useEffect(() => {
-        const dataArray = [] as any
-        developers?.forEach((developer: any) => {
-            const newDataSource = [] as any
-            formattedDates.forEach(date => {
-                const hoursToday = developer.data.find((item: any) => {
-                    const formatted = format(new Date(item.date), 'MM/dd')
+        if (dataSource === null) {
+            const dataArray = [] as any
+            developers?.forEach((developer: any) => {
+                const newDataSource = [] as any
+                formattedDates.forEach(date => {
+                    const hoursToday = developer.data.find((item: any) => {
+                        const formatted = format(new Date(item.date), 'MM/dd')
 
-                    if (formatted === date) {
-                        return true
+                        if (formatted === date) {
+                            return true
+                        }
+
+                        return false
+                    })
+
+                    if (hoursToday != undefined) {
+                        newDataSource.push({
+                            x: date,
+                            y: hoursToday.hoursLogged
+                        })
+                    } else {
+                        newDataSource.push({ x: date, y: 0 })
                     }
-
-                    return false
                 })
 
-                if (hoursToday != undefined) {
-                    newDataSource.push({ x: date, y: hoursToday.hoursLogged })
-                } else {
-                    newDataSource.push({ x: date, y: 0 })
+                const devDate = {
+                    id: developer.name,
+                    data: newDataSource
                 }
+                return dataArray.push(devDate)
             })
-
-            const devDate = {
-                id: developer.name,
-                data: newDataSource
-            }
-            return dataArray.push(devDate)
-        })
-        setDataSource(dataArray)
+            setDataSource(dataArray)
+        }
     }, [developers])
 
     return (
