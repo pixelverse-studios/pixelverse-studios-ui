@@ -29,6 +29,7 @@ const legends = [
         ]
     }
 ]
+const colors = ['#3066be', '#da5b38', '#3fc1aa']
 const DeveloperHoursPieChart = () => {
     const { devHours } = useSelector((state: any) => state.developerHours)
 
@@ -47,6 +48,7 @@ const DeveloperHoursPieChart = () => {
                 margin={margin}
                 innerRadius={innerRadius}
                 legends={legends}
+                colors={colors}
             />
         </div>
     )
