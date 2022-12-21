@@ -62,15 +62,15 @@ const DeveloperHoursLineChart = () => {
     const [dataSource, setDataSource] = useState<any>(null)
 
     useEffect(() => {
-        const today = new Date()
-        const chartDateLimit = eachDayOfInterval({
-            start: subDays(today, 6),
-            end: today
-        })
-        const formattedDates = chartDateLimit.map((data: any) => {
-            return format(new Date(data), 'MM/dd')
-        })
         if (dataSource === null) {
+            const today = new Date()
+            const chartDateLimit = eachDayOfInterval({
+                start: subDays(today, 6),
+                end: today
+            })
+            const formattedDates = chartDateLimit.map((data: any) => {
+                return format(new Date(data), 'MM/dd')
+            })
             const dataArray = [] as any
             developers?.forEach((developer: any) => {
                 const newDataSource = [] as any
