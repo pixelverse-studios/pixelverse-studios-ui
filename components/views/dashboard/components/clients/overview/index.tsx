@@ -12,6 +12,7 @@ import {
 
 import { showBanner } from '../../../../../../lib/redux/slices/banner'
 import ProjectTitleForm from './ProjectTitleForm'
+import ProjectPhaseForm from './ProjectPhaseForm'
 import { PROJECT_PHASES } from '../../../../../../utilities/constants'
 import { formatDate } from '../../../../../../utilities/formatters'
 import styles from './ClientsOverview.module.scss'
@@ -111,17 +112,8 @@ const ClientsOverview = () => {
 
     const onDrawerClose = () => setDrawer(DEFAULT_DRAWER)
 
-    const triggerBanner = () =>
-        dispatch(
-            showBanner({
-                message: 'Client project title updated successfully',
-                type: 'Success'
-            })
-        )
-
     return (
         <div className={styles.ClientsOverviewGrid}>
-            <button onClick={triggerBanner}>BANNER</button>
             {clients?.map((client: any) => {
                 const { phases } = client.project
 
@@ -184,6 +176,7 @@ const ClientsOverview = () => {
                 )
             })}
             <Drawer
+                rootClassName={styles.drawer}
                 title={drawer.title}
                 placement="right"
                 open={drawer.showing}
@@ -196,7 +189,7 @@ const ClientsOverview = () => {
                     />
                 ) : null}
 
-                {drawer.type === 'phase' ? <div>phase drawer</div> : null}
+                {drawer.type === 'phase' ? <ProjectPhaseForm /> : null}
             </Drawer>
         </div>
     )

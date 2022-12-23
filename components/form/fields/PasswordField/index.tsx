@@ -1,11 +1,11 @@
 import { ChangeEventHandler, useState } from 'react'
-import { inputType } from '../../../../utilities/types/formTypes'
+import { stringInputType } from '../../../../utilities/types/formTypes'
 import styles from './PasswordField.module.scss'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { SassMap } from 'sass'
 
 type PasswordFieldProps = {
-    field: inputType
+    field: stringInputType
     id: string
     name: string
     placeholder: string
@@ -14,7 +14,7 @@ type PasswordFieldProps = {
     title?: string
     showMessage?: boolean
     message?: string
-    confirmationField?: inputType
+    confirmationField?: stringInputType
 }
 
 const PasswordField = ({

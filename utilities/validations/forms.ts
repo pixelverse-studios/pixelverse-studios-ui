@@ -1,14 +1,22 @@
+import { isAfter } from 'date-fns'
 import {
     VALID_EMAIL,
     VALID_ALPHA_STRING,
     VALID_ALPHA_NUMERIC,
     VALID_PASSWORD,
-    VALID_ALPHA_NUMERIC_WITH_SPACES
+    VALID_ALPHA_NUMERIC_WITH_SPACES,
+    VALID_FLOATS,
+    VALID_DATE_MMDDYYYY
 } from './regex'
 
 const validEmail = {
     test: (value: string) => VALID_EMAIL.test(value),
     message: 'Must containt a valid email address (example@test.com)'
+}
+
+const validFloat = {
+    test: (value: any) => VALID_FLOATS.test(value), // any because type NUMBER kept giving me an error about some BS for type STRING. So will revisit later.
+    message: 'Must only contain numbers and have no more than 2 decimal points'
 }
 
 const validAlphaString = {
@@ -37,6 +45,7 @@ const FormValidations = {
     validAlphaString,
     validAlphaNumeric,
     validAlphaNumericWithSpaces,
-    validPassword
+    validPassword,
+    validFloat
 }
 export default FormValidations

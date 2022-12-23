@@ -25,8 +25,7 @@ function reducer(state: FormProps, action: ActionState) {
 const useForm = (initialState: FormProps, validations: RegisterProps) => {
     const [form, dispatch] = useReducer(reducer, initialState)
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
-        let { value, name } = event.target
+    const handleChange = ({ name, value }: { name: string; value: any }) => {
         const error = !validations[name].test(value.trim())
             ? validations[name].message
             : ''

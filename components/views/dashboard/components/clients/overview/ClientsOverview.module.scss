@@ -1,5 +1,11 @@
 @use 'styles/mixins/card' as Card;
 
+.drawer {
+    :global(.ant-drawer-content-wrapper) {
+        width: 75% !important;
+    }
+}
+
 .ClientsOverviewGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -96,5 +102,13 @@
                 }
             }
         }
+    }
+}
+
+.phaseForm {
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }

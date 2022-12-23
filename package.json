@@ -21,6 +21,7 @@
         "next": "12.2.0",
         "react": "18.2.0",
         "react-calendly": "^4.0.1",
+        "react-datepicker": "^4.8.0",
         "react-dom": "18.2.0",
         "react-icons": "^4.4.0",
         "react-redux": "^8.0.5",
@@ -29,6 +30,7 @@
     "devDependencies": {
         "@types/node": "18.0.0",
         "@types/react": "18.0.14",
+        "@types/react-datepicker": "^4.8.0",
         "@types/react-dom": "18.0.5",
         "eslint": "8.18.0",
         "eslint-config-next": "12.2.0",
