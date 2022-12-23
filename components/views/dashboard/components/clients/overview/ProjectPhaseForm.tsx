@@ -5,32 +5,55 @@ import {
     NumberField,
     DateField,
     FormRow,
+    TextareaField,
     SubmitButton,
-    CancelButton
+    CancelButton,
+    StringField
 } from '../../../../../form'
 import FormValidations from '../../../../../../utilities/validations/forms'
 import { FormProps } from '../../../../../../utilities/types/formTypes'
 import styles from './ClientsOverview.module.scss'
+import { useEffect } from 'react'
 
 const INITIAL_STATE = {
     originalCostEstimate: { value: null, error: '' },
     updatedCostEstimate: { value: null, error: '' },
     originalLaunchDate: { value: null, error: '' },
-    updatedLaunchDate: { value: null, error: '' }
+    updatedLaunchDate: { value: null, error: '' },
+    status: { value: null, error: '' },
+    notes: { value: null, error: '' },
+    amountPaid: { value: null, errors: '' }
 } as FormProps
 
 const VALIDATIONS = {
     updatedCostEstimate: FormValidations.validFloat,
     originalCost: FormValidations.validFloat,
     originalLaunchDate: { test: () => true, message: '' },
-    updatedLaunchDate: { test: () => true, message: '' }
+    updatedLaunchDate: { test: () => true, message: '' },
+    status: FormValidations.validAlphaNumeric,
+    notes: FormValidations.validAlphaNumericWithSpaces,
+    amountPaid: FormValidations.validFloat
 }
 
-const ProjectPhaseForm = () => {
+const ProjectPhaseForm = ({
+    onDrawerClose,
+    clientID
+}: {
+    onDrawerClose: Function
+    clientID: string
+}) => {
     const { form, handleChange, handleReset, isFormValid } = useForm(
         INITIAL_STATE,
         VALIDATIONS
     )
+
+    const loading = false
+
+    const onCancelClick = (event: any) => {
+        event.preventDefault()
+        handleReset()
+        onDrawerClose()
+    }
 
     return (
         <form className={styles.phaseForm}>
@@ -43,18 +66,7 @@ const ProjectPhaseForm = () => {
                         placeholder="Original Cost Estimate"
                         field={form.originalCostEstimate}
                         onChange={handleChange}
-                        disabled
                     />
-                    <NumberField
-                        theme="light"
-                        id="updatedCostEstimate"
-                        name="updatedCostEstimate"
-                        placeholder="New Cost Estimate"
-                        field={form.updatedCostEstimate}
-                        onChange={handleChange}
-                    />
-                </FormRow>
-                <FormRow>
                     <DateField
                         theme="light"
                         id="originalLaunchDate"
@@ -62,19 +74,47 @@ const ProjectPhaseForm = () => {
                         placeholder="Original Launch Date"
                         field={form.originalLaunchDate}
                         onChange={handleChange}
-                        disabled
-                        displayFormat="MM/dd/yyyy"
-                    />
-                    <DateField
-                        theme="light"
-                        id="updatedLaunchDate"
-                        name="updatedLaunchDate"
-                        placeholder="New Launch Date"
-                        field={form.updatedLaunchDate}
-                        onChange={handleChange}
                         displayFormat="MM/dd/yyyy"
                         minimumDate={new Date()}
                     />
+                </FormRow>
+                <FormRow>
+                    <StringField
+                        theme="light"
+                        id="status"
+                        name="status"
+                        placeholder="Phase Status"
+                        field={form.status}
+                        onChange={handleChange}
+                        type="text"
+                    />
+                    <TextareaField
+                        theme="light"
+                        id="notes"
+                        name="notes"
+                        placeholder="Phase Notes"
+                        field={form.notes}
+                        onChange={handleChange}
+                    />
+                </FormRow>
+                <FormRow>
+                    <NumberField
+                        theme="light"
+                        id="amountPaid"
+                        name="amountPaid"
+                        placeholder="Amount Paid"
+                        field={form.amountPaid}
+                        onChange={handleChange}
+                    />
+                    {/* isActive field will be a switch */}
+                </FormRow>
+                <FormRow>
+                    <SubmitButton
+                        disabled={!isFormValid || loading}
+                        label="Update"
+                        loading={loading}
+                    />
+                    <CancelButton label="Cancel" onCancel={onCancelClick} />
                 </FormRow>
             </fieldset>
         </form>

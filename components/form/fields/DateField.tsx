@@ -32,7 +32,6 @@ const DateField = ({
     const onDateChange = (date: Date) =>
         onChange({ value: format(date, displayFormat), name })
 
-    console.log('field.value: ', field.value)
     return (
         <div
             className={`${styles.FormField} ${

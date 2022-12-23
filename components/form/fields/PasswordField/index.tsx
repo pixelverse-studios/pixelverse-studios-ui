@@ -1,15 +1,14 @@
-import { ChangeEventHandler, useState } from 'react'
+import { useState } from 'react'
 import { stringInputType } from '../../../../utilities/types/formTypes'
 import styles from './PasswordField.module.scss'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { SassMap } from 'sass'
 
 type PasswordFieldProps = {
     field: stringInputType
     id: string
     name: string
     placeholder: string
-    onChange: ChangeEventHandler
+    onChange: any
     minLength: number
     title?: string
     showMessage?: boolean

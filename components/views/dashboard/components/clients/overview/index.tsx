@@ -135,7 +135,7 @@ const ClientsOverview = () => {
                                     onClick={() =>
                                         onDrawerActivate(
                                             client._id,
-                                            'Add phase info',
+                                            'Project Phase Info',
                                             'phase'
                                         )
                                     }
@@ -189,7 +189,12 @@ const ClientsOverview = () => {
                     />
                 ) : null}
 
-                {drawer.type === 'phase' ? <ProjectPhaseForm /> : null}
+                {drawer.type === 'phase' ? (
+                    <ProjectPhaseForm
+                        clientID={drawer.clientID}
+                        onDrawerClose={onDrawerClose}
+                    />
+                ) : null}
             </Drawer>
         </div>
     )
