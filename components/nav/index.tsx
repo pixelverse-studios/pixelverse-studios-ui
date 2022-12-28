@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
 import { Drawer } from 'antd'
 import { MdDashboard, MdLogout } from 'react-icons/md'
 import { useSelector } from 'react-redux'
@@ -63,6 +64,9 @@ const MobileNavContent = ({
                 />
             </div>
             <Hamburger onClick={setOpen} open={open} />
+            {/* <Sidebar visible={open} onHide={() => setOpen(false)}>
+
+            </Sidebar> */}
             <Drawer
                 maskClosable={false}
                 placement="bottom"

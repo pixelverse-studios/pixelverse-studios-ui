@@ -9,6 +9,10 @@ import { client } from '../lib/context/apolloProvider'
 import 'animate.css'
 // import 'antd/dist/antd.css'
 import 'antd/dist/reset.css'
+import 'primereact/resources/themes/lara-light-indigo/theme.css' //theme
+import 'primereact/resources/primereact.min.css' //core css
+import 'primeicons/primeicons.css'
+
 import '../styles/globals.scss'
 import { store } from '../lib/redux/store'
 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { Card, Progress, Button, Drawer } from 'antd'
+import { Sidebar } from 'primereact/sidebar'
 import {
     BiTargetLock,
     BiEdit,
@@ -175,7 +176,22 @@ const ClientsOverview = () => {
                     </ClientCard>
                 )
             })}
-            <Drawer
+            <Sidebar visible={drawer.showing} onHide={onDrawerClose}>
+                {drawer.type === 'title' ? (
+                    <ProjectTitleForm
+                        clientID={drawer.clientID}
+                        onDrawerClose={onDrawerClose}
+                    />
+                ) : null}
+
+                {drawer.type === 'phase' ? (
+                    <ProjectPhaseForm
+                        clientID={drawer.clientID}
+                        onDrawerClose={onDrawerClose}
+                    />
+                ) : null}
+            </Sidebar>
+            {/* <Drawer
                 rootClassName={styles.drawer}
                 title={drawer.title}
                 placement="right"
@@ -195,7 +211,7 @@ const ClientsOverview = () => {
                         onDrawerClose={onDrawerClose}
                     />
                 ) : null}
-            </Drawer>
+            </Drawer> */}
         </div>
     )
 }

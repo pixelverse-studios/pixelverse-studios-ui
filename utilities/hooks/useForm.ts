@@ -33,7 +33,7 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
 
     const handleChange = ({ name, value }: { name: string; value: any }) => {
         const error = !validations[name].test(value.trim())
-            ? validations[name].message
+            ? validations[name]?.message
             : ''
         dispatch({
             type: UPDATE,
