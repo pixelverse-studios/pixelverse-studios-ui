@@ -2,7 +2,6 @@ import { format } from 'date-fns'
 
 import useForm from '../../../../../../utilities/hooks/useForm'
 import {
-    NumberField,
     DateField,
     FormRow,
     TextareaField,
@@ -59,11 +58,11 @@ const ProjectPhaseForm = ({
         <form className={styles.phaseForm}>
             <fieldset>
                 <FormRow>
-                    <NumberField
-                        theme="light"
+                    <TextField
                         id="originalCostEstimate"
                         name="originalCostEstimate"
-                        placeholder="Original Cost Estimate"
+                        label="Original Cost Estimate"
+                        type="number"
                         field={form.originalCostEstimate}
                         onChange={handleChange}
                     />
@@ -97,11 +96,11 @@ const ProjectPhaseForm = ({
                     />
                 </FormRow>
                 <FormRow>
-                    <NumberField
-                        theme="light"
+                    <TextField
                         id="amountPaid"
                         name="amountPaid"
-                        placeholder="Amount Paid"
+                        label="Amount Paid"
+                        type="number"
                         field={form.amountPaid}
                         onChange={handleChange}
                     />

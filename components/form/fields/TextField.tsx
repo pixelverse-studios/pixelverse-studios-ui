@@ -12,7 +12,7 @@ import { stringInputType } from '../../../utilities/types/formTypes'
 
 type StringFieldProps = {
     field: stringInputType
-    type: 'text' | 'email' | 'password'
+    type: 'text' | 'email' | 'password' | 'number'
     id: string
     name: string
     label: string
