@@ -1,4 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch } from '../../../lib/redux/store'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import useForm from '../../../utilities/hooks/useForm'
@@ -10,12 +12,11 @@ import {
 } from '../../../lib/redux/slices/banner'
 import { FormRow, TextField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
-import styles from './AuthPages.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch } from '../../../lib/redux/store'
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
 import { JWT_SECRET } from '../../../utilities/constants'
 import { RESET_PASSWORD } from '../../../lib/gql/mutations/users'
+import styles from './AuthPages.module.scss'
+
 const INITIAL_STATE = {
     newPassword: { value: '', error: '' },
     confirmPassword: { value: '', error: '' }

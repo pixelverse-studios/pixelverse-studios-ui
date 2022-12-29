@@ -8,36 +8,18 @@ import {
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 
+import { setColor } from './utilities'
 import { stringInputType } from '../../../utilities/types/formTypes'
 
 type StringFieldProps = {
     field: stringInputType
-    type: 'text' | 'email' | 'password' | 'number'
+    type: 'text' | 'email' | 'password' | 'number' | 'textarea'
     id: string
     name: string
     label: string
     onChange: any
     // required?: boolean
     disabled?: boolean
-}
-
-const setColor = (field: {
-    value: string
-    error: string
-}): 'primary' | 'error' | 'success' => {
-    if (field.value === '' && field.error === '') {
-        return 'primary'
-    }
-
-    if (field.error) {
-        return 'error'
-    }
-
-    if (field.value && !field.error) {
-        return 'success'
-    }
-
-    return 'primary'
 }
 
 const TextField = ({
@@ -102,10 +84,11 @@ const TextField = ({
     return (
         <FormControl color={setColor(field)} error={field.error ? true : false}>
             <MuiTextField
+                multiline={type === 'textarea'}
                 color={setColor(field)}
                 error={field.error ? true : false}
                 variant="outlined"
-                type={type}
+                type={type === 'textarea' ? 'text' : type}
                 id={id}
                 name={name}
                 onChange={onChange}

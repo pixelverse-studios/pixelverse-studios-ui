@@ -10,10 +10,12 @@
     },
     "dependencies": {
         "@apollo/client": "^3.6.9",
+        "@date-io/date-fns": "^2.16.0",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@mui/icons-material": "^5.11.0",
         "@mui/material": "^5.11.2",
+        "@mui/x-date-pickers": "^5.0.12",
         "@nivo/line": "^0.80.0",
         "@nivo/pie": "^0.80.0",
         "@reduxjs/toolkit": "^1.9.0",

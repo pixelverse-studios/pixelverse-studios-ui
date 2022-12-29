@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as ReduxProvider } from 'react-redux'
 import { useRouter } from 'next/router'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import RouteTransition from '../components/transition'
 import PageWrapper from '../components/views/PageWrapper'
@@ -24,17 +26,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
-                <PageWrapper>
-                    {isOnDashboard ? (
-                        <div>
-                            <Component {...pageProps} />
-                        </div>
-                    ) : (
-                        <RouteTransition>
-                            <Component {...pageProps} />
-                        </RouteTransition>
-                    )}
-                </PageWrapper>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <PageWrapper>
+                        {isOnDashboard ? (
+                            <div>
+                                <Component {...pageProps} />
+                            </div>
+                        ) : (
+                            <RouteTransition>
+                                <Component {...pageProps} />
+                            </RouteTransition>
+                        )}
+                    </PageWrapper>
+                </LocalizationProvider>
             </ReduxProvider>
         </ApolloProvider>
     )

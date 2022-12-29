@@ -67,14 +67,12 @@ const ProjectPhaseForm = ({
                         onChange={handleChange}
                     />
                     <DateField
-                        theme="light"
                         id="originalLaunchDate"
                         name="originalLaunchDate"
-                        placeholder="Original Launch Date"
+                        label="Original Launch Date"
                         field={form.originalLaunchDate}
                         onChange={handleChange}
-                        displayFormat="MM/dd/yyyy"
-                        minimumDate={new Date()}
+                        minDate={new Date()}
                     />
                 </FormRow>
                 <FormRow>
@@ -86,11 +84,11 @@ const ProjectPhaseForm = ({
                         onChange={handleChange}
                         type="text"
                     />
-                    <TextareaField
-                        theme="light"
+                    <TextField
                         id="notes"
                         name="notes"
-                        placeholder="Phase Notes"
+                        label="Phase Notes"
+                        type="textarea"
                         field={form.notes}
                         onChange={handleChange}
                     />
