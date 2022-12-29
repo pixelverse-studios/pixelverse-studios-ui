@@ -31,8 +31,9 @@ const useForm = (initialState: FormProps, validations: RegisterProps) => {
 
     const handleImport = (payload: any) => dispatch({ type: IMPORT, payload })
 
-    const handleChange = ({ name, value }: { name: string; value: any }) => {
-        const error = !validations[name].test(value.trim())
+    const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
+        let { value, name } = event.target
+        const error = !validations[name]?.test(value.trim())
             ? validations[name]?.message
             : ''
         dispatch({

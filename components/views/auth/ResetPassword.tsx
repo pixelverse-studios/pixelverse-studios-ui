@@ -8,7 +8,7 @@ import {
     showBanner,
     hideBanner
 } from '../../../lib/redux/slices/banner'
-import { FormRow, PasswordField, SubmitButton } from '../../form'
+import { FormRow, TextField, SubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import styles from './AuthPages.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
@@ -108,28 +108,23 @@ const ResetPassword = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset disabled={user?.loading}>
                         <FormRow>
-                            <PasswordField
+                            <TextField
                                 id="newPassword"
                                 name="newPassword"
-                                placeholder="New Password"
+                                label="New Password"
                                 field={newPassword}
                                 onChange={handleChange}
-                                minLength={8}
-                                title="Custom"
-                                showMessage={false}
+                                type="password"
                             />
                         </FormRow>
                         <FormRow>
-                            <PasswordField
+                            <TextField
                                 id="confirmPassword"
                                 name="confirmPassword"
-                                placeholder="Confirm Password"
+                                label="Confirm Password"
                                 field={confirmPassword}
                                 onChange={handleChange}
-                                minLength={8}
-                                title="Custom"
-                                showMessage
-                                confirmationField={newPassword}
+                                type="password"
                             />
                         </FormRow>
                         <SubmitButton

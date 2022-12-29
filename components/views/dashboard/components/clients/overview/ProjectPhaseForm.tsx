@@ -8,7 +8,7 @@ import {
     TextareaField,
     SubmitButton,
     CancelButton,
-    StringField
+    TextField
 } from '../../../../../form'
 import FormValidations from '../../../../../../utilities/validations/forms'
 import { FormProps } from '../../../../../../utilities/types/formTypes'
@@ -79,11 +79,10 @@ const ProjectPhaseForm = ({
                     />
                 </FormRow>
                 <FormRow>
-                    <StringField
-                        theme="light"
+                    <TextField
                         id="status"
                         name="status"
-                        placeholder="Phase Status"
+                        label="Phase Status"
                         field={form.status}
                         onChange={handleChange}
                         type="text"
