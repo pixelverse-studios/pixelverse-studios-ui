@@ -4,3 +4,12 @@
     @include Card.baseCard;
     font-size: 2rem;
 }
+
+.usersList {
+    font-size: 1.2rem;
+    padding: 1rem;
+
+    li {
+        margin: 0.5rem 0;
+    }
+}

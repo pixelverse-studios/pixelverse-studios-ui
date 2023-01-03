@@ -9,7 +9,7 @@ import {
     showBanner
 } from '../../../lib/redux/slices/banner'
 import useForm from '../../../utilities/hooks/useForm'
-import { TextField, FormRow, PasswordField, SubmitButton } from '../../form'
+import { TextField, FormRow, SubmitButton } from '../../form'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { JWT_SECRET } from '../../../utilities/constants'
 import FormValidations from '../../../utilities/validations/forms'
@@ -133,8 +133,7 @@ const Register = () => {
                                 label="Password"
                                 field={password}
                                 onChange={handleChange}
-                                title="Custom"
-                                showMessage={true}
+                                type="password"
                             />
                         </FormRow>
                         <SubmitButton

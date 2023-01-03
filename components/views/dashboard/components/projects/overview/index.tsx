@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux'
-import { Card } from 'antd'
-
 import { useRouter } from 'next/router'
+import { Visibility } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 
+import { Card } from '../../../../../elements'
 import styles from './ProjectOverview.module.scss'
 
 const ProjectOverview = () => {
@@ -12,8 +13,13 @@ const ProjectOverview = () => {
 
     return (
         <Card
-            className={styles.ProjectOverviewContent}
-            onClick={() => router.push('/dashboard/projects/overview')}>
+            customStyling
+            actions={
+                <IconButton
+                    onClick={() => router.push('/dashboard/projects/overview')}>
+                    <Visibility />
+                </IconButton>
+            }>
             Projects: {completedProjects?.length} / {clients.length} completed
         </Card>
     )
