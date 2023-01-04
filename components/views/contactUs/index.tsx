@@ -1,10 +1,10 @@
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly'
 import { useMutation } from '@apollo/client'
 
-import { ADD_NEW_CLIENT } from '../../../lib/gql/mutations/clients'
+import { SET_CLIENT_MEETING } from '../../../lib/gql/mutations/clients'
 
 const ContactUs = () => {
-    const [addNewClient] = useMutation(ADD_NEW_CLIENT, {
+    const [setClientMeetings] = useMutation(SET_CLIENT_MEETING, {
         onCompleted(data) {
             console.log(data)
             // handle success
@@ -16,7 +16,7 @@ const ContactUs = () => {
     })
 
     const onEventScheduled = (e: any) => {
-        addNewClient({
+        setClientMeetings({
             variables: {
                 eventUri: e.data.payload.event.uri,
                 inviteeUri: e.data.payload.invitee.uri

@@ -1,46 +1,67 @@
-export type inputType = { value: string; error: string }
-type validationType = { test: (value: string) => boolean; message: string }
-
-type RegisterFormProps = {
-    firstName: inputType
-    lastName: inputType
-    email: inputType
-    password: inputType
+interface baseInputType {
+    error: string
 }
 
-type RegisterValidationProps = {
+export interface stringInputType extends baseInputType {
+    value: string
+}
+
+export interface numberInputType extends baseInputType {
+    value: number | null
+}
+interface validationType {
+    test: (value: string) => boolean
+    message: string
+}
+
+interface RegisterFormProps {
+    firstName: stringInputType
+    lastName: stringInputType
+    email: stringInputType
+    password: stringInputType
+}
+
+interface RegisterValidationProps {
     [firstName: string]: validationType
     lastName: validationType
     email: validationType
     password: validationType
 }
 
-type LoginFormProps = {
-    email: inputType
-    password: inputType
+interface LoginFormProps {
+    email: stringInputType
+    password: stringInputType
 }
 
-type LoginValidationProps = {
+interface LoginValidationProps {
     [email: string]: validationType
     password: validationType
 }
 
-type ResetPasswordProps = {
-    newPassword: inputType
-    confirmPassword: inputType
+interface ResetPasswordProps {
+    newPassword: stringInputType
+    confirmPassword: stringInputType
 }
 
-type ResetValidationProps = {
+interface UpdateProjectTitleProps {
+    projectTitle: stringInputType
+}
+
+interface ResetValidationProps {
     [newPassword: string]: validationType
     confirmPassword: validationType
 }
 
-type ForgotPasswordProps = {
-    email: inputType
+interface ForgotPasswordProps {
+    email: stringInputType
 }
 
-type ForgotValidationProps = {
+interface ForgotValidationProps {
     [email: string]: validationType
+}
+
+interface ProjectPhaseProps {
+    updatedCostEstimate: numberInputType
 }
 
 export type RegisterProps =
@@ -54,3 +75,5 @@ export type FormProps =
     | LoginFormProps
     | ResetPasswordProps
     | ForgotPasswordProps
+    | UpdateProjectTitleProps
+    | ProjectPhaseProps

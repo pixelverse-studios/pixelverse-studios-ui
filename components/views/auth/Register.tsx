@@ -9,7 +9,7 @@ import {
     showBanner
 } from '../../../lib/redux/slices/banner'
 import useForm from '../../../utilities/hooks/useForm'
-import { StringField, FormRow, PasswordField, SubmitButton } from '../../form'
+import { TextField, FormRow, SubmitButton } from '../../form'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { JWT_SECRET } from '../../../utilities/constants'
 import FormValidations from '../../../utilities/validations/forms'
@@ -99,46 +99,41 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset disabled={user?.loading}>
                         <FormRow>
-                            <StringField
+                            <TextField
                                 type="text"
                                 id="firstName"
                                 name="firstName"
-                                placeholder="First Name"
+                                label="First Name"
                                 field={firstName}
                                 onChange={handleChange}
-                                required
                             />
-                            <StringField
+                            <TextField
                                 type="text"
                                 id="lastName"
                                 name="lastName"
-                                placeholder="Last Name"
+                                label="Last Name"
                                 field={lastName}
                                 onChange={handleChange}
-                                required
                             />
                         </FormRow>
                         <FormRow>
-                            <StringField
+                            <TextField
                                 field={email}
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Email"
+                                label="Email"
                                 onChange={handleChange}
-                                required
                             />
                         </FormRow>
                         <FormRow>
-                            <PasswordField
+                            <TextField
                                 id="password"
                                 name="password"
-                                placeholder="Password"
+                                label="Password"
                                 field={password}
                                 onChange={handleChange}
-                                minLength={8}
-                                title="Custom"
-                                showMessage={true}
+                                type="password"
                             />
                         </FormRow>
                         <SubmitButton

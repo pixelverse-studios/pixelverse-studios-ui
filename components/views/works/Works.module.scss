@@ -42,44 +42,36 @@
         padding: 0;
         list-style: none;
 
-        li {
+        & > div {
             width: calc(var(--max-page-width) / 2 - 2rem);
-            padding: 0 1.5rem;
-        }
 
-        li:nth-of-type(odd) {
-            float: left;
-            padding-right: 0.25rem;
-        }
-        li:nth-of-type(even) {
-            float: right;
-            margin-top: 4rem;
-            padding-left: 0.25rem;
-        }
+            &:nth-of-type(odd) {
+                float: left;
+            }
 
-        .imgDisplay {
-            padding-top: 55%;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 50% 50%;
-            position: relative;
+            &:nth-of-type(even) {
+                float: right;
+                margin-top: 4rem;
+            }
+
+            img {
+                object-fit: cover;
+                max-height: 250px !important;
+            }
         }
 
         @include breakpoints.set-max-width('small') {
-            li:nth-of-type(odd) {
-                float: unset;
-                padding-right: 1rem;
-            }
-            li:nth-of-type(even) {
-                float: unset;
-                padding-left: 1rem;
-                margin-top: unset;
-            }
-
-            li {
+            & > div {
                 width: calc(100vw - 2rem);
-                padding: 1rem;
-                margin: auto;
+                margin: 1rem auto;
+
+                &:nth-of-type(odd) {
+                    float: unset;
+                }
+                &:nth-of-type(even) {
+                    float: unset;
+                    margin-top: unset;
+                }
             }
         }
     }

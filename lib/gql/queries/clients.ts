@@ -1,10 +1,48 @@
 import gql from 'graphql-tag'
 
 export const FETCH_ALL_CLIENTS = gql`
-    query GetAllClients {
+    query getAllClients {
         getAllClients {
-            id
-            email
+            ... on MultipleClientSuccess {
+                clients {
+                    _id
+                    email
+                    firstName
+                    lastName
+                    meetings {
+                        _id
+                        location
+                        url
+                        scheduledFor
+                        prepInfo {
+                            answer
+                            question
+                        }
+                        notes
+                    }
+                    project {
+                        title
+                        domain
+                        externalDependencies
+                        phases {
+                            _id
+                            originalCostEstimate
+                            updatedCostEstimate
+                            originalLaunchDate
+                            updatedLaunchDate
+                            status
+                            notes
+                            amountPaid
+                            isActive
+                        }
+                    }
+                    notes
+                }
+            }
+            ... on Errors {
+                type
+                message
+            }
         }
     }
 `

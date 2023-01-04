@@ -11,7 +11,10 @@ const SubmitButton = ({
     label: string
 }) => {
     return (
-        <button className={styles.Button} type="submit" disabled={disabled}>
+        <button
+            className={styles.SuccessButton}
+            type="submit"
+            disabled={disabled}>
             {loading ? <CircleLoader /> : label}
         </button>
     )

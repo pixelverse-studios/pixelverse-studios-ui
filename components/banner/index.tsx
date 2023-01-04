@@ -35,10 +35,8 @@ const Banner = () => {
         switch (banner.type) {
             case 'Errors':
                 return <MdErrorOutline className={styles.statusIcon} />
-            case 'UserSuccess':
-                return <BiBadgeCheck className={styles.statusIcon} />
             default:
-                return null
+                return <BiBadgeCheck className={styles.statusIcon} />
         }
     }
 
@@ -46,7 +44,7 @@ const Banner = () => {
         return (
             <div
                 className={`${styles.Banner} ${
-                    styles[banner.type]
+                    banner.type === 'Errors' ? styles.Errors : styles.Success
                 } animate__animated ${animationClass}`}>
                 <div className={styles.bannerContent}>
                     {renderIcon()}

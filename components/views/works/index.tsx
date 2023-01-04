@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Card } from 'antd'
+import { Launch } from '@mui/icons-material'
 
-const { Meta } = Card
-
+import { Card } from '../../elements'
 import ModelInsightsImg from '../../../assets/works/model-insights.png'
 import UnderConstructionImg from '../../../assets/works/under-construction.jpg'
 import styles from './Works.module.scss'
@@ -27,44 +26,31 @@ const WorksPage = () => {
                     </p>
                 </div>
                 <ul className={styles.projectsDisplay}>
-                    <li>
-                        <a
-                            href="https://model-insights.netlify.app/"
-                            target="_blank">
-                            <Card
-                                hoverable
-                                cover={
-                                    <div
-                                        className={styles.imgDisplay}
-                                        style={{
-                                            backgroundImage: `url(${ModelInsightsImg.src})`
-                                        }}
-                                    />
-                                }>
-                                <Meta
-                                    title="Model Insights"
-                                    description="A portal for a successful model to show her works, and let aspiring models book coaching sessions."
-                                />
-                            </Card>
-                        </a>
-                    </li>
-                    <li>
-                        <Card
-                            hoverable
-                            cover={
-                                <div
-                                    className={styles.imgDisplay}
-                                    style={{
-                                        backgroundImage: `url(${UnderConstructionImg.src})`
-                                    }}
-                                />
-                            }>
-                            <Meta
-                                title="More on the way"
-                                description="We are always ready to take on new projects, working diligently to make your ideas a reality."
-                            />
-                        </Card>
-                    </li>
+                    <Card
+                        customStyling={false}
+                        media={ModelInsightsImg.src}
+                        title="Model Insights"
+                        actions={
+                            <a
+                                href="https://model-insights.netlify.app/"
+                                target="_blank">
+                                <Launch /> Visit
+                            </a>
+                        }>
+                        <span>
+                            A portal for a successful model to show her works,
+                            and let aspiring models book coaching sessions.
+                        </span>
+                    </Card>
+                    <Card
+                        customStyling={false}
+                        media={UnderConstructionImg.src}
+                        title="More on the way">
+                        <span>
+                            We are always ready to take on new projects, working
+                            diligently to make your ideas a reality.
+                        </span>
+                    </Card>
                 </ul>
             </div>
         </section>

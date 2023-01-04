@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { useLazyQuery } from '@apollo/client'
@@ -17,7 +17,15 @@ import ScrollToTop from '../scrollToTop'
 const PageWrapper = ({ children }: { children: any }) => {
     const router = useRouter()
     const dispatch = useDispatch()
-    const user = useSelector((state: any) => state.user)
+    const { profile } = useSelector((state: any) => state.user)
+
+    const rerouteInvalidUser = () => {
+        const basePathname = router.pathname.split('/')[1]
+        const redirectToHome = LOGGED_IN_PAGES.includes(basePathname)
+        if (redirectToHome) {
+            router.push('/')
+        }
+    }
 
     const [getLoggedInUser] = useLazyQuery(GET_LOGGED_IN_USER, {
         onCompleted({ getLoggedInUser: data }) {
@@ -36,21 +44,18 @@ const PageWrapper = ({ children }: { children: any }) => {
                     message: 'Invalid token. Please log in again.'
                 })
             )
+            rerouteInvalidUser()
         }
     })
 
     useEffect(() => {
-        if (!user.profile._id) {
+        if (!profile._id) {
             const token = decodeCachedToken()
 
             if (token?.email) {
                 getLoggedInUser()
             } else {
-                const basePathname = router.pathname.split('/')[1]
-                const redirectToHome = LOGGED_IN_PAGES.includes(basePathname)
-                if (redirectToHome) {
-                    router.push('/')
-                }
+                rerouteInvalidUser()
             }
         }
     }, [router])

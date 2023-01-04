@@ -1,20 +1,17 @@
 @mixin baseCard {
-    border: 1px solid var(--off-black);
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--off-black) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 3px !important;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
 
-    :global(.ant-card-body) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+    :global(.MuiCardContent-root) {
         text-align: center;
-        padding: 0;
         word-break: break-word;
         line-height: 2rem;
         letter-spacing: 1px;
+        padding: 1.5rem;
+        height: 100%;
     }
 
     @content;
