@@ -1,0 +1,5 @@
+@use 'styles/mixins/card' as Card;
+
+.Card {
+    @include Card.baseCard;
+}

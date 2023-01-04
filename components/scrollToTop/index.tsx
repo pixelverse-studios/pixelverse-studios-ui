@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaArrowAltCircleUp } from 'react-icons/fa'
-import { Tooltip } from 'antd'
+import { Tooltip } from '@mui/material'
 
 import styles from './ScrollToTop.module.scss'
 
@@ -29,11 +29,11 @@ const ScrollToTop = () => {
     }
 
     return (
-        <div className={styles.ScrollToTop}>
-            <Tooltip placement="left" title="Take me up!">
+        <Tooltip arrow placement="left" title="Take me up!">
+            <div className={styles.ScrollToTop}>
                 <FaArrowAltCircleUp onClick={goToTop} />
-            </Tooltip>
-        </div>
+            </div>
+        </Tooltip>
     )
 }
 

@@ -1,4 +1,5 @@
 import { FaHandsHelping, FaBullseye, FaClock } from 'react-icons/fa'
+import { Tooltip } from '@mui/material'
 
 import styles from './Landing.module.scss'
 

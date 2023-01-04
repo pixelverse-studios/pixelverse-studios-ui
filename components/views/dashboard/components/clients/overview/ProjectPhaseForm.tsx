@@ -1,19 +1,14 @@
-import { format } from 'date-fns'
-
 import useForm from '../../../../../../utilities/hooks/useForm'
 import {
-    NumberField,
     DateField,
     FormRow,
-    TextareaField,
     SubmitButton,
     CancelButton,
-    StringField
+    TextField
 } from '../../../../../form'
 import FormValidations from '../../../../../../utilities/validations/forms'
 import { FormProps } from '../../../../../../utilities/types/formTypes'
 import styles from './ClientsOverview.module.scss'
-import { useEffect } from 'react'
 
 const INITIAL_STATE = {
     originalCostEstimate: { value: null, error: '' },
@@ -59,50 +54,47 @@ const ProjectPhaseForm = ({
         <form className={styles.phaseForm}>
             <fieldset>
                 <FormRow>
-                    <NumberField
-                        theme="light"
+                    <TextField
                         id="originalCostEstimate"
                         name="originalCostEstimate"
-                        placeholder="Original Cost Estimate"
+                        label="Original Cost Estimate"
+                        type="number"
                         field={form.originalCostEstimate}
                         onChange={handleChange}
                     />
                     <DateField
-                        theme="light"
                         id="originalLaunchDate"
                         name="originalLaunchDate"
-                        placeholder="Original Launch Date"
+                        label="Original Launch Date"
                         field={form.originalLaunchDate}
                         onChange={handleChange}
-                        displayFormat="MM/dd/yyyy"
-                        minimumDate={new Date()}
+                        minDate={new Date()}
                     />
                 </FormRow>
                 <FormRow>
-                    <StringField
-                        theme="light"
+                    <TextField
                         id="status"
                         name="status"
-                        placeholder="Phase Status"
+                        label="Phase Status"
                         field={form.status}
                         onChange={handleChange}
                         type="text"
                     />
-                    <TextareaField
-                        theme="light"
+                    <TextField
                         id="notes"
                         name="notes"
-                        placeholder="Phase Notes"
+                        label="Phase Notes"
+                        type="textarea"
                         field={form.notes}
                         onChange={handleChange}
                     />
                 </FormRow>
                 <FormRow>
-                    <NumberField
-                        theme="light"
+                    <TextField
                         id="amountPaid"
                         name="amountPaid"
-                        placeholder="Amount Paid"
+                        label="Amount Paid"
+                        type="number"
                         field={form.amountPaid}
                         onChange={handleChange}
                     />

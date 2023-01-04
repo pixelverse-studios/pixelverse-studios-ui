@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Drawer } from 'antd'
+
 import { MdDashboard, MdLogout } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
+import { Drawer } from '../../components/elements'
 import { logout } from '../../lib/redux/slices/user'
 import useBreakpointSize, {
     MOBILE_BREAKPOINT
@@ -64,12 +65,10 @@ const MobileNavContent = ({
             </div>
             <Hamburger onClick={setOpen} open={open} />
             <Drawer
-                maskClosable={false}
-                placement="bottom"
-                visible={open}
-                onClose={() => setOpen(false)}
-                className="mobileNavDrawer"
-                closable={false}>
+                anchor="bottom"
+                className={styles.MobileNavDrawer}
+                open={open}
+                onClose={() => setOpen(false)}>
                 <ul className={styles.mobileNavContent}>
                     {routes.map(({ path, label }) => (
                         <li

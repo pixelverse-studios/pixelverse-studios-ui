@@ -78,10 +78,10 @@
 }
 .mobileNavContent {
     li {
-        width: 50%;
+        width: 30%;
         text-align: center;
         border-top: 2px solid var(--off-white);
-        height: 100%;
+        height: 6rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -98,6 +98,18 @@
         &:hover {
             @include textHover;
         }
+    }
+}
+
+.MobileNavDrawer {
+    :global(.MuiModal-backdrop) {
+        opacity: 0 !important;
+    }
+
+    :global(.MuiPaper-root) {
+        height: calc(100% - 4rem) !important;
+        background-color: var(--slate500);
+        border-top: 2px solid var(--off-white);
     }
 }
 

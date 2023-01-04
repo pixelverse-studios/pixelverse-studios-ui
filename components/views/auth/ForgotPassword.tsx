@@ -11,7 +11,7 @@ import { SEND_PASSWORD_RESET } from '../../../lib/gql/mutations/users'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
-import { SubmitButton, StringField, FormRow } from '../../form'
+import { SubmitButton, TextField, FormRow } from '../../form'
 
 import styles from './AuthPages.module.scss'
 
@@ -77,15 +77,13 @@ const ForgotPassword = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <FormRow>
-                            <StringField
-                                theme="dark"
+                            <TextField
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Enter email"
+                                label="Enter email"
                                 field={email}
                                 onChange={handleChange}
-                                required
                             />
                         </FormRow>
                         <SubmitButton

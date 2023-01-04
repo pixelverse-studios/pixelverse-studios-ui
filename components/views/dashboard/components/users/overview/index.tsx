@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux'
-import { Card, Popover } from 'antd'
+import { Tooltip } from '@mui/material'
 
+import { Card } from '../../../../../elements'
 import styles from './UsersOverview.module.scss'
 
 const UsersOverview = () => {
     const { users } = useSelector((state: any) => state.allUsers)
 
     const popoverContent = (
-        <ul>
+        <ul className={styles.usersList}>
             {users?.map((user: any, index: number) => (
                 <li key={index}>
                     {user.firstName} {user.lastName}
@@ -17,13 +18,10 @@ const UsersOverview = () => {
     )
 
     return (
-        <Card className={styles.UsersOverview}>
-            <Popover
-                className={styles.userPopover}
-                title="Users"
-                content={popoverContent}>
-                Users: {users?.length}
-            </Popover>
+        <Card customStyling>
+            <Tooltip arrow placement="bottom" title={popoverContent}>
+                <span id="usersElement">Users: {users?.length}</span>
+            </Tooltip>
         </Card>
     )
 }

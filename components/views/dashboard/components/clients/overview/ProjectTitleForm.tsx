@@ -12,7 +12,7 @@ import { FormProps } from '../../../../../../utilities/types/formTypes'
 import FormValidations from '../../../../../../utilities/validations/forms'
 import {
     FormRow,
-    StringField,
+    TextField,
     SubmitButton,
     CancelButton
 } from '../../../../../form'
@@ -95,15 +95,13 @@ const ProjectTitleForm = ({
         <form onSubmit={onFormSubmit}>
             <fieldset>
                 <FormRow>
-                    <StringField
-                        theme="light"
+                    <TextField
                         field={form.projectTitle}
                         type="text"
                         name="projectTitle"
                         id="projectTitle"
-                        placeholder="Project Title"
+                        label="Project Title"
                         onChange={handleChange}
-                        required
                     />
                 </FormRow>
             </fieldset>

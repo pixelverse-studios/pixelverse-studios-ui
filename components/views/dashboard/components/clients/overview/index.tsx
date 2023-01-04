@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { Card, Progress, Button, Drawer } from 'antd'
+import { Button, LinearProgress } from '@mui/material'
 import {
     BiTargetLock,
     BiEdit,
@@ -10,6 +10,8 @@ import {
     BiMessageAltAdd
 } from 'react-icons/bi'
 
+import { Card, Drawer } from '../../../../../elements'
+import { DateField } from '../../../../../form'
 import { showBanner } from '../../../../../../lib/redux/slices/banner'
 import ProjectTitleForm from './ProjectTitleForm'
 import ProjectPhaseForm from './ProjectPhaseForm'
@@ -43,7 +45,7 @@ const ClientCard = ({
     launchDate: Date | null
     name: string
     title: string
-    onDrawerActivate: Function
+    onDrawerActivate?: Function
     clientID: string
 }) => {
     const router = useRouter()
@@ -53,10 +55,12 @@ const ClientCard = ({
     ) : (
         <Button
             onClick={() =>
-                onDrawerActivate(clientID, 'Set Project Title', 'title')
+                onDrawerActivate
+                    ? onDrawerActivate(clientID, 'Set Project Title', 'title')
+                    : null
             }
             className={styles.clientButton}
-            icon={<BiMessageAltAdd />}>
+            startIcon={<BiMessageAltAdd />}>
             Add Title
         </Button>
     )
@@ -65,7 +69,7 @@ const ClientCard = ({
         router.push(`/dashboard/clients/${clientID}`)
 
     return (
-        <Card className={styles.clientCard}>
+        <Card customStyling>
             <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                     <h2>
@@ -83,7 +87,7 @@ const ClientCard = ({
                 <div className={styles.cardFooter}>
                     <Button
                         className={styles.clientButton}
-                        icon={<BiEdit />}
+                        startIcon={<BiEdit />}
                         onClick={handleEditClientClick}>
                         Edit
                     </Button>
@@ -140,7 +144,7 @@ const ClientsOverview = () => {
                                         )
                                     }
                                     className={styles.clientButton}
-                                    icon={<BiMessageAltAdd />}>
+                                    startIcon={<BiMessageAltAdd />}>
                                     Add Phase Info
                                 </Button>
                             </div>
@@ -155,7 +159,6 @@ const ClientsOverview = () => {
 
                 return (
                     <ClientCard
-                        onDrawerActivate={() => null}
                         clientID={client._id}
                         launchDate={currentPhase?.updatedLaunchDate}
                         name={name}
@@ -164,37 +167,35 @@ const ClientsOverview = () => {
                             <div className={styles.totalHours}>
                                 Hours Logged: {totalHours}
                             </div>
-                            <Progress
-                                percent={progressPercent}
-                                strokeColor={{
-                                    '0%': '#3fc1aa',
-                                    '100%': '#3066be'
-                                }}
+                            <LinearProgress
+                                variant="buffer"
+                                value={progressPercent}
+                                valueBuffer={progressPercent + 10}
                             />
                         </div>
                     </ClientCard>
                 )
             })}
             <Drawer
-                rootClassName={styles.drawer}
-                title={drawer.title}
-                placement="right"
+                className={styles.clientsDashDrawer}
                 open={drawer.showing}
-                closable={false}
-                onClose={onDrawerClose}>
-                {drawer.type === 'title' ? (
-                    <ProjectTitleForm
-                        clientID={drawer.clientID}
-                        onDrawerClose={onDrawerClose}
-                    />
-                ) : null}
+                onClose={onDrawerClose}
+                anchor="right">
+                <>
+                    {drawer.type === 'title' ? (
+                        <ProjectTitleForm
+                            clientID={drawer.clientID}
+                            onDrawerClose={onDrawerClose}
+                        />
+                    ) : null}
 
-                {drawer.type === 'phase' ? (
-                    <ProjectPhaseForm
-                        clientID={drawer.clientID}
-                        onDrawerClose={onDrawerClose}
-                    />
-                ) : null}
+                    {drawer.type === 'phase' ? (
+                        <ProjectPhaseForm
+                            clientID={drawer.clientID}
+                            onDrawerClose={onDrawerClose}
+                        />
+                    ) : null}
+                </>
             </Drawer>
         </div>
     )

@@ -76,11 +76,8 @@
                 gap: 1rem;
 
                 .mainServiceCard {
-                    :global(.ant-card-body) {
-                        font-size: 1.5rem;
-                        font-weight: 700;
-                        padding: 4rem 1rem;
-                    }
+                    font-size: 1.5rem;
+                    font-weight: 700;
                 }
 
                 .subServices {
@@ -96,7 +93,11 @@
                         .subServiceCard {
                             font-size: 1.2rem;
                             font-weight: 500;
-                            padding: 2rem 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100%;
+                            flex: 1;
                         }
                     }
                 }
@@ -129,7 +130,11 @@
                 .journeyCard {
                     font-size: 1.2rem;
                     font-weight: 500;
-                    padding: 2rem 1rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    flex: 1;
                 }
             }
         }

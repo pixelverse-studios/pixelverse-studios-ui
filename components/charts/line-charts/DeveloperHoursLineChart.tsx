@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import LineChart from '.'
 import { format, eachDayOfInterval, subDays } from 'date-fns'
+
+import { Card } from '../../elements'
 import styles from './LineCharts.module.scss'
 
 const margin = { top: 30, right: 90, bottom: 40, left: 50 }
@@ -106,20 +108,22 @@ const DeveloperHoursLineChart = () => {
     }, [developers])
 
     return (
-        <div className={styles.DeveloperHoursLineChart}>
-            <LineChart
-                dataSource={dataSource}
-                margin={margin}
-                enableSlices={enableSlices}
-                axisLeft={axisLeft}
-                axisBottom={axisBottom}
-                legends={legends}
-                pointSize={pointSize}
-                useMesh={useMesh}
-                yScale={yScale}
-                colors={colors}
-            />
-        </div>
+        <Card customStyling>
+            <div className={styles.DeveloperHoursLineChart}>
+                <LineChart
+                    dataSource={dataSource}
+                    margin={margin}
+                    enableSlices={enableSlices}
+                    axisLeft={axisLeft}
+                    axisBottom={axisBottom}
+                    legends={legends}
+                    pointSize={pointSize}
+                    useMesh={useMesh}
+                    yScale={yScale}
+                    colors={colors}
+                />
+            </div>
+        </Card>
     )
 }
 

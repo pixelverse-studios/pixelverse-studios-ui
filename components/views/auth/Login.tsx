@@ -15,7 +15,7 @@ import { JWT_SECRET } from '../../../utilities/constants'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
-import { StringField, FormRow, PasswordField, SubmitButton } from '../../form'
+import { FormRow, SubmitButton, TextField } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -92,25 +92,23 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <fieldset disabled={user?.loading}>
                         <FormRow>
-                            <StringField
-                                theme="dark"
+                            <TextField
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Enter email"
+                                label="Enter email"
                                 field={email}
                                 onChange={handleChange}
-                                required
                             />
                         </FormRow>
                         <FormRow>
-                            <PasswordField
+                            <TextField
+                                type="password"
                                 id="password"
                                 name="password"
-                                placeholder="Enter password"
+                                label="Enter password"
                                 field={password}
                                 onChange={handleChange}
-                                minLength={8}
                             />
                         </FormRow>
                         <SubmitButton

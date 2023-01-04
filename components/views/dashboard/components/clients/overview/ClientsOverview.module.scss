@@ -1,4 +1,5 @@
 @use 'styles/mixins/card' as Card;
+@use 'styles/mixins/breakpoints' as breakpoints;
 
 .drawer {
     :global(.ant-drawer-content-wrapper) {
@@ -11,94 +12,90 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 1rem;
 
-    .clientCard {
-        @include Card.baseCard;
+    .cardContent {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.5rem;
 
-        .cardContent {
-            width: 100%;
+        & > * {
+            width: inherit;
+            text-align: left;
+        }
+
+        .clientButton {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 2.5rem;
+            font-size: 1.2rem;
+            color: white;
+            border-radius: 5px;
 
-            & > * {
-                width: inherit;
-                text-align: left;
+            &:hover {
+                transition: 0.5s;
             }
 
-            .clientButton {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 2.5rem;
-                font-size: 1.2rem;
-                color: white;
-                border-radius: 5px;
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .addPhaseSection {
+            button {
+                background-color: var(--seagreen500);
 
                 &:hover {
-                    transition: 0.5s;
-                }
-
-                svg {
-                    margin-right: 0.5rem;
+                    border: 1px solid var(--seagreen500);
+                    background-color: white;
+                    color: var(--seagreen500);
                 }
             }
+        }
 
-            .addPhaseSection {
+        .cardHeader {
+            h2 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
                 button {
-                    background-color: var(--seagreen500);
+                    background-color: var(--seagreen400);
 
                     &:hover {
-                        border: 1px solid var(--seagreen500);
+                        border: 1px solid var(--seagreen400);
                         background-color: white;
-                        color: var(--seagreen500);
+                        color: var(--seagreen400);
                     }
                 }
-            }
 
-            .cardHeader {
-                h2 {
+                span {
                     display: flex;
-                    justify-content: space-between;
                     align-items: center;
 
-                    button {
-                        background-color: var(--seagreen400);
-
-                        &:hover {
-                            border: 1px solid var(--seagreen400);
-                            background-color: white;
-                            color: var(--seagreen400);
-                        }
-                    }
-
-                    span {
-                        display: flex;
-                        align-items: center;
-
-                        svg {
-                            margin-right: 0.5rem;
-                        }
+                    svg {
+                        margin-right: 0.5rem;
                     }
                 }
             }
+        }
 
-            .clientName {
-                display: flex;
-                justify-content: flex-start;
-            }
+        .clientName {
+            display: flex;
+            justify-content: flex-start;
+        }
 
-            .cardFooter {
-                button {
-                    background-color: var(--slate600);
+        .cardFooter {
+            button {
+                background-color: var(--slate600);
 
-                    &:hover {
-                        border: 1px solid var(--slate600);
-                        background-color: white;
-                        color: var(--slate600);
-                    }
+                &:hover {
+                    border: 1px solid var(--slate600);
+                    background-color: white;
+                    color: var(--slate600);
                 }
             }
         }
@@ -110,5 +107,16 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+}
+
+.clientsDashDrawer {
+    :global(.MuiPaper-root) {
+        @include breakpoints.set-max-width('small') {
+            width: 100%;
+        }
+        @include breakpoints.set-max-width('medium') {
+            width: 50%;
+        }
     }
 }
