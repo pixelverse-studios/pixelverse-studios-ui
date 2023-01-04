@@ -8,7 +8,7 @@ const Landing = () => {
         <section className={styles.LandingPageContent}>
             <MissionStatement />
             <WhyUs />
-            <MeetTheTeam />
+            {/* <MeetTheTeam /> */}
         </section>
     )
 }

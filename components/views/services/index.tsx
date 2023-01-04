@@ -38,33 +38,33 @@ const Services = () => {
                         </p>
                         <div className={styles.serviceDiagram}>
                             <Card customStyling>
-                                <span className={styles.mainServiceCard}>
+                                <div className={styles.mainServiceCard}>
                                     Custom Web Development
-                                </span>
+                                </div>
                             </Card>
                             <div className={styles.subServices}>
                                 <div className={styles.subServiceGroup}>
                                     <Card customStyling>
-                                        <span className={styles.subServiceCard}>
+                                        <div className={styles.subServiceCard}>
                                             Clean, modern UI
-                                        </span>
+                                        </div>
                                     </Card>
                                     <Card customStyling>
-                                        <span className={styles.subServiceCard}>
+                                        <div className={styles.subServiceCard}>
                                             Simple, streamlined UX
-                                        </span>
+                                        </div>
                                     </Card>
                                 </div>
                                 <div className={styles.subServiceGroup}>
                                     <Card customStyling>
-                                        <span className={styles.subServiceCard}>
+                                        <div className={styles.subServiceCard}>
                                             Mobile responsive pages
-                                        </span>
+                                        </div>
                                     </Card>
                                     <Card customStyling>
-                                        <span className={styles.subServiceCard}>
+                                        <div className={styles.subServiceCard}>
                                             Content management system
-                                        </span>
+                                        </div>
                                     </Card>
                                 </div>
                             </div>
@@ -79,23 +79,23 @@ const Services = () => {
                     <div className={styles.jourenyBlock}>
                         <div className={styles.journeyCards}>
                             <Card customStyling>
-                                <span className={styles.journeyCard}>
+                                <div className={styles.journeyCard}>
                                     What are you looking to accomplish with the
                                     site?
-                                </span>
+                                </div>
                             </Card>
                             <Card customStyling>
-                                <span className={styles.journeyCard}>
+                                <div className={styles.journeyCard}>
                                     What actions are your users intended to
                                     complete? (fill out a form, email for quote,
                                     etc).
-                                </span>
+                                </div>
                             </Card>
                             <Card customStyling>
-                                <span className={styles.journeyCard}>
+                                <div className={styles.journeyCard}>
                                     What is your projected timeframe in regards
                                     to launching your website?
-                                </span>
+                                </div>
                             </Card>
                         </div>
                         <p>
@@ -124,7 +124,7 @@ const Services = () => {
                             onResizeCapture={undefined}>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>
@@ -138,7 +138,7 @@ const Services = () => {
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>
@@ -150,7 +150,7 @@ const Services = () => {
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>
@@ -163,7 +163,7 @@ const Services = () => {
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>
@@ -175,7 +175,7 @@ const Services = () => {
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>
@@ -184,7 +184,7 @@ const Services = () => {
                             </TimelineItem>
                             <TimelineItem>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" />
+                                    <TimelineDot color="info" />
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 <TimelineContent>

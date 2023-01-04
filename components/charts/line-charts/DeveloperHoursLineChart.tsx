@@ -1,88 +1,12 @@
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import LineChart from '.'
+import { format, eachDayOfInterval, subDays } from 'date-fns'
+
+import { Card } from '../../elements'
 import styles from './LineCharts.module.scss'
 
-const dataSource = [
-    {
-        id: 'Kevin',
-        color: '#5cd926',
-        data: [
-            {
-                x: '12/1/22',
-                y: 3
-            },
-            {
-                x: '12/2/22',
-                y: 1
-            },
-            {
-                x: '12/3/22',
-                y: 0
-            },
-            {
-                x: '12/4/22',
-                y: 6
-            },
-            {
-                x: '12/5/22',
-                y: 8
-            }
-        ]
-    },
-    {
-        id: 'Phil',
-        color: '#267ad9',
-        data: [
-            {
-                x: '12/1/22',
-                y: 12
-            },
-            {
-                x: '12/2/22',
-                y: 10
-            },
-            {
-                x: '12/3/22',
-                y: 10
-            },
-            {
-                x: '12/4/22',
-                y: 15
-            },
-            {
-                x: '12/5/22',
-                y: 12
-            }
-        ]
-    },
-    {
-        id: 'Sami',
-        color: '#d92626',
-        data: [
-            {
-                x: '12/1/22',
-                y: 1
-            },
-            {
-                x: '12/2/22',
-                y: 2
-            },
-            {
-                x: '12/3/22',
-                y: 3
-            },
-            {
-                x: '12/4/22',
-                y: 4
-            },
-            {
-                x: '12/5/22',
-                y: 5
-            }
-        ]
-    }
-]
-const margin = { top: 30, right: 70, bottom: 40, left: 50 }
-
+const margin = { top: 30, right: 90, bottom: 40, left: 50 }
 const enableSlices = 'x'
 const axisLeft = {
     tickSize: 1,
@@ -103,7 +27,7 @@ const legends = [
         anchor: 'bottom-right',
         direction: 'column',
         justify: false,
-        translateX: 100,
+        translateX: 85,
         translateY: 0,
         itemsSpacing: 0,
         itemDirection: 'left-to-right',
@@ -126,21 +50,80 @@ const legends = [
 ]
 const pointSize = 6
 const useMesh = true
+const yScale = {
+    type: 'linear',
+    min: 0,
+    max: 8
+}
+const colors = ['#3066be', '#da5b38', '#3fc1aa']
 
 const DeveloperHoursLineChart = () => {
+    const {
+        devHours: { developers }
+    } = useSelector((state: any) => state.developerHours)
+    const [dataSource, setDataSource] = useState<any>(null)
+
+    useEffect(() => {
+        if (dataSource === null) {
+            const today = new Date()
+            const chartDateLimit = eachDayOfInterval({
+                start: subDays(today, 6),
+                end: today
+            })
+            const formattedDates = chartDateLimit.map((data: any) => {
+                return format(new Date(data), 'MM/dd')
+            })
+            const dataArray = [] as any
+            developers?.forEach((developer: any) => {
+                const newDataSource = [] as any
+                formattedDates.forEach(date => {
+                    const hoursToday = developer.data.find((item: any) => {
+                        const formatted = format(new Date(item.date), 'MM/dd')
+
+                        if (formatted === date) {
+                            return true
+                        }
+
+                        return false
+                    })
+
+                    if (hoursToday != undefined) {
+                        newDataSource.push({
+                            x: date,
+                            y: hoursToday.hoursLogged
+                        })
+                    } else {
+                        newDataSource.push({ x: date, y: 0 })
+                    }
+                })
+
+                const devDate = {
+                    id: developer.name,
+                    data: newDataSource
+                }
+                return dataArray.push(devDate)
+            })
+            setDataSource(dataArray)
+        }
+    }, [developers])
+
     return (
-        <div className={styles.DeveloperHoursLineChart}>
-            <LineChart
-                dataSource={dataSource}
-                margin={margin}
-                enableSlices={enableSlices}
-                axisLeft={axisLeft}
-                axisBottom={axisBottom}
-                legends={legends}
-                pointSize={pointSize}
-                useMesh={useMesh}
-            />
-        </div>
+        <Card customStyling>
+            <div className={styles.DeveloperHoursLineChart}>
+                <LineChart
+                    dataSource={dataSource}
+                    margin={margin}
+                    enableSlices={enableSlices}
+                    axisLeft={axisLeft}
+                    axisBottom={axisBottom}
+                    legends={legends}
+                    pointSize={pointSize}
+                    useMesh={useMesh}
+                    yScale={yScale}
+                    colors={colors}
+                />
+            </div>
+        </Card>
     )
 }
 

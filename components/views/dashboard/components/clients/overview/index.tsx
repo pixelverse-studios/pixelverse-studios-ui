@@ -177,6 +177,7 @@ const ClientsOverview = () => {
                 )
             })}
             <Drawer
+                className={styles.clientsDashDrawer}
                 open={drawer.showing}
                 onClose={onDrawerClose}
                 anchor="right">

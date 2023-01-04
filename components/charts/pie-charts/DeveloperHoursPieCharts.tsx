@@ -1,5 +1,7 @@
 import PieChart from '.'
 import { useSelector } from 'react-redux'
+
+import { Card } from '../../elements'
 import styles from './PieCharts.module.scss'
 
 const innerRadius = 0.5
@@ -29,6 +31,7 @@ const legends = [
         ]
     }
 ]
+const colors = ['#3066be', '#da5b38', '#3fc1aa']
 const DeveloperHoursPieChart = () => {
     const { devHours } = useSelector((state: any) => state.developerHours)
 
@@ -41,14 +44,17 @@ const DeveloperHoursPieChart = () => {
     })
 
     return (
-        <div className={styles.DeveloperHoursPieChart}>
-            <PieChart
-                dataSource={dataSource}
-                margin={margin}
-                innerRadius={innerRadius}
-                legends={legends}
-            />
-        </div>
+        <Card customStyling>
+            <div className={styles.DeveloperHoursPieChart}>
+                <PieChart
+                    dataSource={dataSource}
+                    margin={margin}
+                    innerRadius={innerRadius}
+                    legends={legends}
+                    colors={colors}
+                />
+            </div>
+        </Card>
     )
 }
 export default DeveloperHoursPieChart
