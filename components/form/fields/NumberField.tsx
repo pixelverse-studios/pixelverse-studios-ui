@@ -1,34 +1,37 @@
-import { ChangeEventHandler } from 'react'
-import { inputType } from '../../../../utilities/types/formTypes'
+import { stringInputType } from '../../../utilities/types/formTypes'
 import styles from './FormField.module.scss'
 
 type StringFieldProps = {
-    field: inputType
-    type: 'text' | 'email'
+    field: stringInputType
     id: string
     name: string
     placeholder: string
-    onChange: ChangeEventHandler
+    onChange: any
     required?: boolean
     minLength?: number
     title?: string
+    theme: 'light' | 'dark'
+    disabled?: boolean
 }
 
 const StringField = ({
     field,
-    type,
     id,
     name,
     placeholder,
     onChange,
     required,
     title,
-    minLength
+    minLength,
+    theme
 }: StringFieldProps) => {
     return (
-        <div className={styles.FormField}>
+        <div
+            className={`${styles.FormField} ${
+                theme === 'dark' ? styles.dark : styles.light
+            }`}>
             <input
-                type={type}
+                type="number"
                 id={id}
                 name={name}
                 placeholder={placeholder}

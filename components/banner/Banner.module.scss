@@ -9,6 +9,7 @@
     font-size: 1.2rem;
     justify-self: center;
     border-radius: 3px;
+    z-index: 20;
 
     .bannerContent {
         display: flex;
@@ -27,7 +28,7 @@
     }
 }
 
-.UserSuccess {
+.Success {
     background-color: var(--success-banner);
     border: 1px solid var(--success-background);
 

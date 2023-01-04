@@ -69,6 +69,7 @@ export const GET_DEV_HOURS = gql`
                 }
                 projects {
                     projectPhase
+                    totalHours
                     devs {
                         name
                         totalHours

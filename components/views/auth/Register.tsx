@@ -100,6 +100,7 @@ const Register = () => {
                     <fieldset disabled={user?.loading}>
                         <FormRow>
                             <StringField
+                                theme="dark"
                                 type="text"
                                 id="firstName"
                                 name="firstName"
@@ -109,6 +110,7 @@ const Register = () => {
                                 required
                             />
                             <StringField
+                                theme="dark"
                                 type="text"
                                 id="lastName"
                                 name="lastName"
@@ -120,6 +122,7 @@ const Register = () => {
                         </FormRow>
                         <FormRow>
                             <StringField
+                                theme="dark"
                                 field={email}
                                 type="email"
                                 id="email"

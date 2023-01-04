@@ -21,17 +21,15 @@ import {
     showBanner,
     showTechnicalDifficultiesBanner
 } from '../../../lib/redux/slices/banner'
-import UsersOverview from './components/usersOverview'
-import ProjectOverview from './components/projectsOverview'
-import { DeveloperHoursLineChart, DeveloperHoursPieChart } from '../../charts'
+import UsersOverview from './components/users/overview'
+import ProjectOverview from './components/projects/overview'
+import ClientsOverview from './components/clients/overview'
+import { DeveloperHoursLineChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
 
 const DashboardWrapper = ({ children }: { children: any }) => (
-    <section className={styles.Dashboard}>
-        <h1>Clients</h1>
-        {children}
-    </section>
+    <section className={styles.Dashboard}>{children}</section>
 )
 
 const Dashboard = () => {
@@ -126,15 +124,10 @@ const Dashboard = () => {
                 <ProjectOverview />
                 <UsersOverview />
             </div>
+            <h1>Clients</h1>
+            <ClientsOverview />
             <div className={styles.productivityCharts}>
                 <DeveloperHoursLineChart />
-                <DeveloperHoursPieChart />
-            </div>
-            <div className={styles.clientsDisplayGrid}>
-                <div>CLIENT 1</div>
-                <div>CLIENT 2</div>
-                <div>CLIENT 3</div>
-                <div>CLIENT 4</div>
             </div>
         </DashboardWrapper>
     )
