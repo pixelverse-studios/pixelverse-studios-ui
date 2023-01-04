@@ -5,8 +5,7 @@ import {
     VALID_ALPHA_NUMERIC,
     VALID_PASSWORD,
     VALID_ALPHA_NUMERIC_WITH_SPACES,
-    VALID_FLOATS,
-    VALID_DATE_MMDDYYYY
+    VALID_FLOATS
 } from './regex'
 
 const validEmail = {
