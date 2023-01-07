@@ -27,6 +27,7 @@ import ClientsOverview from './components/clients/overview'
 import { DeveloperHoursLineChart, DeveloperHoursPieChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
+import { Card } from '../../elements'
 
 const DashboardWrapper = ({ children }: { children: any }) => (
     <section className={styles.Dashboard}>{children}</section>
@@ -120,15 +121,25 @@ const Dashboard = () => {
 
     return (
         <DashboardWrapper>
-            <div className={styles.personnelOverview}>
-                <ProjectOverview />
-                <UsersOverview />
+            <div className={styles.dashboardMain}>
+                <div className={styles.top}>
+                    <div className={styles.personnelOverview}>
+                        <ProjectOverview />
+                        <UsersOverview />
+                    </div>
+                    <Card style="dark">
+                        <DeveloperHoursPieChart />
+                    </Card>
+                </div>
+                {/* <div className={styles.productivityCharts}> */}
+                <Card style="dark">
+                    <DeveloperHoursLineChart />
+                </Card>
+                {/* </div> */}
             </div>
-            <h1>Clients</h1>
-            <ClientsOverview />
-            <div className={styles.productivityCharts}>
-                <DeveloperHoursLineChart />
-                <DeveloperHoursPieChart />
+            <div className={styles.clientsOverview}>
+                <h1>Clients</h1>
+                <ClientsOverview />
             </div>
         </DashboardWrapper>
     )

@@ -166,3 +166,19 @@
         }
     }
 }
+
+.DashboardNav {
+    // border-bottom: 1px solid var(--off-white);
+    background-color: var(--off-black);
+    display: flex;
+    padding: 0.5rem 1rem;
+
+    .dashboardMenuIcon {
+        color: var(--off-white);
+        transition: 0.4s;
+
+        &:hover {
+            color: var(--skyblue500);
+        }
+    }
+}

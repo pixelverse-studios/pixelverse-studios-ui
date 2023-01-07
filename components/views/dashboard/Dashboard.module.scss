@@ -1,21 +1,52 @@
-.Dashboard {
-    max-width: var(--max-page-width);
-    margin: auto;
-    padding: 1rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+$gap: 2rem;
 
-    .personnelOverview {
+.Dashboard {
+    display: grid;
+    grid-template-areas: 'dashboardMain dashboardAside';
+    grid-template-columns: calc(66% - 1rem) calc(33% - 1rem);
+    grid-gap: $gap;
+
+    .dashboardMain {
+        // display: flex;
+        // flex-direction: column;
+        // gap: $gap;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        grid-gap: 1rem;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: $gap;
+
+        .top {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+
+            & > :global(.MuiPaper-root) {
+                width: 100%;
+                flex: 1.5;
+            }
+
+            .personnelOverview {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: $gap;
+
+                & > * {
+                    flex: 1;
+                }
+            }
+        }
     }
 
-    .productivityCharts {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+    .clientsOverview {
+        border: 2px solid var(--less-black);
+        background-color: var(--off-black);
+        border-radius: 9px;
+        padding: 1rem;
+        overflow: auto;
+
+        h1 {
+            color: var(--off-white);
+            margin-bottom: 1rem;
+        }
     }
 }

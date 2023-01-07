@@ -18,7 +18,7 @@ const UsersOverview = () => {
     )
 
     return (
-        <Card customStyling>
+        <Card style="dark">
             <Tooltip arrow placement="bottom" title={popoverContent}>
                 <span id="usersElement">Users: {users?.length}</span>
             </Tooltip>

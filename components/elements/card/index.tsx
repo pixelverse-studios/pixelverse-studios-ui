@@ -13,21 +13,27 @@ interface CardProps {
     title?: string
     url?: string
     actions?: any
-    customStyling: boolean
+    style?: 'dark' | 'default'
 }
 
-const Card = ({
-    children,
-    media,
-    title,
-    actions,
-    customStyling
-}: CardProps) => (
-    <MuiCard className={customStyling ? styles.Card : ''} variant="outlined">
-        <CardMedia component="img" image={media} title={title} />
-        <CardContent>{children}</CardContent>
-        {actions != undefined ? <CardActions>{actions}</CardActions> : null}
-    </MuiCard>
-)
+const Card = ({ children, media, title, actions, style }: CardProps) => {
+    const cardClass = () => {
+        switch (style) {
+            case 'dark':
+                return styles.DarkCard
+            case 'default':
+                return styles.Card
+            default:
+                return ''
+        }
+    }
+    return (
+        <MuiCard className={cardClass()} variant="outlined">
+            <CardMedia component="img" image={media} title={title} />
+            <CardContent>{children}</CardContent>
+            {actions != undefined ? <CardActions>{actions}</CardActions> : null}
+        </MuiCard>
+    )
+}
 
 export default Card

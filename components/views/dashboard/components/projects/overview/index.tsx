@@ -13,14 +13,17 @@ const ProjectOverview = () => {
 
     return (
         <Card
-            customStyling
+            style="dark"
             actions={
                 <IconButton
                     onClick={() => router.push('/dashboard/projects/overview')}>
                     <Visibility />
                 </IconButton>
             }>
-            Projects: {completedProjects?.length} / {clients.length} completed
+            <>
+                Projects: {completedProjects?.length} / {clients.length}{' '}
+                completed
+            </>
         </Card>
     )
 }

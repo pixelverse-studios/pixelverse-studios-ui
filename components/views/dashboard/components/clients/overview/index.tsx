@@ -69,19 +69,15 @@ const ClientCard = ({
         router.push(`/dashboard/clients/${clientID}`)
 
     return (
-        <Card customStyling>
+        <Card style="dark">
             <div className={styles.cardContent}>
-                <div className={styles.cardHeader}>
-                    <h2>
-                        {TitleNode}
-                        {launchDate ? (
-                            <span>
-                                <BiRocket />
-                                {formatDate(launchDate)}
-                            </span>
-                        ) : null}
-                    </h2>
-                </div>
+                <h2>{TitleNode}</h2>
+                {launchDate ? (
+                    <span className={styles.goLiveDate}>
+                        <BiRocket />
+                        {formatDate(launchDate)}
+                    </span>
+                ) : null}
                 <span className={styles.clientName}>{name}</span>
                 {children}
                 <div className={styles.cardFooter}>

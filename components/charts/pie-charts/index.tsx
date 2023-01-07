@@ -1,4 +1,4 @@
-import { ResponsivePie } from '@nivo/pie'
+import { ResponsivePie, Pie } from '@nivo/pie'
 
 type PieChartProps = {
     dataSource: {

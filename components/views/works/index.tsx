@@ -27,7 +27,7 @@ const WorksPage = () => {
                 </div>
                 <ul className={styles.projectsDisplay}>
                     <Card
-                        customStyling={false}
+                        style="default"={false}
                         media={ModelInsightsImg.src}
                         title="Model Insights"
                         actions={
@@ -43,7 +43,7 @@ const WorksPage = () => {
                         </span>
                     </Card>
                     <Card
-                        customStyling={false}
+                        style="default"={false}
                         media={UnderConstructionImg.src}
                         title="More on the way">
                         <span>
