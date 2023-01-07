@@ -131,11 +131,9 @@ const Dashboard = () => {
                         <DeveloperHoursPieChart />
                     </Card>
                 </div>
-                {/* <div className={styles.productivityCharts}> */}
                 <Card style="dark">
                     <DeveloperHoursLineChart />
                 </Card>
-                {/* </div> */}
             </div>
             <div className={styles.clientsOverview}>
                 <h1>Clients</h1>

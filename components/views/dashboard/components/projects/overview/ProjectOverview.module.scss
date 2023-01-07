@@ -1,11 +1,20 @@
 @use 'styles/mixins/card' as Card;
 
 .ProjectOverviewContent {
-    @include Card.baseCard;
-    font-size: 2rem;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: left;
 
-    span {
-        text-align: left;
+    div {
+        margin-top: 1rem;
+        span {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+
+            &:nth-of-type(2) {
+                color: var(--seagreen400);
+            }
+        }
     }
 }

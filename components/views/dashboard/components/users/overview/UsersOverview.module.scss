@@ -1,15 +1,14 @@
 @use 'styles/mixins/card' as Card;
 
 .UsersOverview {
-    @include Card.baseCard;
-    font-size: 2rem;
-}
+    // font-size: 2rem;
+    text-align: left;
 
-.usersList {
-    font-size: 1.2rem;
-    padding: 1rem;
+    ul {
+        font-size: 1.2rem;
 
-    li {
-        margin: 0.5rem 0;
+        li {
+            margin: 0.5rem 0;
+        }
     }
 }
