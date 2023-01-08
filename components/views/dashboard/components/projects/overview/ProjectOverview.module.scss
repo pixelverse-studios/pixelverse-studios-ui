@@ -8,9 +8,11 @@
 
     div {
         margin-top: 1rem;
+
         span {
             margin-right: 0.5rem;
             font-size: 1.5rem;
+            display: flex;
 
             &:nth-of-type(2) {
                 color: var(--seagreen400);

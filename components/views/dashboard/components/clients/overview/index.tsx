@@ -159,7 +159,7 @@ const ClientsOverview = () => {
                         launchDate={currentPhase?.updatedLaunchDate}
                         name={name}
                         title={client.project.title}>
-                        <div className={styles.cardBody}>
+                        <div className={styles.hoursLogged}>
                             <div className={styles.totalHours}>
                                 Hours Logged: {totalHours}
                             </div>

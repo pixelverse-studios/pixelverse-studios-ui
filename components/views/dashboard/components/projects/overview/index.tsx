@@ -14,12 +14,13 @@ const ProjectOverview = () => {
     return (
         <Card
             style="dark"
-            actions={
-                <IconButton
-                    onClick={() => router.push('/dashboard/projects/overview')}>
-                    <Visibility />
-                </IconButton>
-            }>
+            // actions={
+            //     <IconButton
+            //         onClick={() => router.push('/dashboard/projects/overview')}>
+            //         <Visibility />
+            //     </IconButton>
+            // }
+        >
             <div className={styles.ProjectOverviewContent}>
                 <h1>Projects</h1>
                 <div>

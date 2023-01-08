@@ -1,4 +1,5 @@
 $gap: 2rem;
+$clients-width: 22rem;
 
 .Dashboard {
     display: grid;
@@ -7,12 +8,10 @@ $gap: 2rem;
     grid-gap: $gap;
 
     .dashboardMain {
-        // display: flex;
-        // flex-direction: column;
-        // gap: $gap;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-gap: $gap;
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+        width: calc(100vw - $clients-width - 4rem);
 
         .top {
             display: flex;
@@ -43,6 +42,11 @@ $gap: 2rem;
         border-radius: 9px;
         padding: 1rem;
         overflow: auto;
+        position: fixed;
+        top: calc(var(--nav-height) + 0.7rem + 1px);
+        right: 1.5rem;
+        width: $clients-width;
+        height: calc(100vh - var(--nav-height) - 5.5rem - 4px);
 
         h1 {
             color: var(--off-white);
