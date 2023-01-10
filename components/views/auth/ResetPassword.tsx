@@ -10,7 +10,7 @@ import {
     showBanner,
     hideBanner
 } from '../../../lib/redux/slices/banner'
-import { FormRow, TextField, SubmitButton } from '../../form'
+import { FormRow, TextField, FormSubmitButton } from '../../form'
 import FormValidations from '../../../utilities/validations/forms'
 import { setLoading, setProfile } from '../../../lib/redux/slices/user'
 import { JWT_SECRET } from '../../../utilities/constants'
@@ -128,7 +128,7 @@ const ResetPassword = () => {
                                 type="password"
                             />
                         </FormRow>
-                        <SubmitButton
+                        <FormSubmitButton
                             label="Submit"
                             disabled={disableSubmit}
                             loading={user.loading}

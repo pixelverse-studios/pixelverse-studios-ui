@@ -40,7 +40,6 @@ const protectedRoutes = [
 
 export const DashboardNav = () => {
     const router = useRouter()
-    // const [open, setOpen] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
 

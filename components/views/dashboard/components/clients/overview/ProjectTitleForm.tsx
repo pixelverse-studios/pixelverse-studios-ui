@@ -13,7 +13,7 @@ import FormValidations from '../../../../../../utilities/validations/forms'
 import {
     FormRow,
     TextField,
-    SubmitButton,
+    FormSubmitButton,
     CancelButton
 } from '../../../../../form'
 import { setClients } from '../../../../../../lib/redux/slices/allClients'
@@ -106,7 +106,7 @@ const ProjectTitleForm = ({
                 </FormRow>
             </fieldset>
             <FormRow>
-                <SubmitButton
+                <FormSubmitButton
                     disabled={!isFormValid || loading}
                     label="Update"
                     loading={loading}

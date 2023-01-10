@@ -21,5 +21,6 @@ export const routes = [
 
 export const dashboardRoutes = [
     { path: '/dashboard/users', label: 'Users' },
-    { path: '/dashboard/projects', label: 'Projects' }
+    { path: '/dashboard/projects', label: 'Projects' },
+    { path: '/dashboard/clients', label: 'Clients' }
 ]
