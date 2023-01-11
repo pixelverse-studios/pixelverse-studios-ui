@@ -2,13 +2,6 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { IconButton } from '@mui/material'
-import {
-    BiTargetLock,
-    BiEdit,
-    BiTrash,
-    BiRocket,
-    BiMessageAltAdd
-} from 'react-icons/bi'
 import { Info, Close } from '@mui/icons-material'
 
 import { Card, Drawer } from '../../../../../elements'

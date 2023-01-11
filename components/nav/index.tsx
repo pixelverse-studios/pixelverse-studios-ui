@@ -3,9 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { MdDashboard, MdLogout } from 'react-icons/md'
 import { IconButton, Menu, MenuItem } from '@mui/material'
-import { MoreVert } from '@mui/icons-material'
+import { Dashboard, Logout, MoreVert } from '@mui/icons-material'
 
 import { Drawer } from '../../components/elements'
 import { logout } from '../../lib/redux/slices/user'
@@ -34,8 +33,8 @@ const Hamburger = ({ onClick, open }: { open: boolean; onClick: any }) => {
 }
 
 const protectedRoutes = [
-    { path: 'dashboard', icon: <MdDashboard /> },
-    { path: 'logout', icon: <MdLogout /> }
+    { path: 'dashboard', icon: <Dashboard /> },
+    { path: 'logout', icon: <Logout /> }
 ]
 
 export const DashboardNav = () => {
