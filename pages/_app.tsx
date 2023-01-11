@@ -18,6 +18,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     const darkTheme = createTheme({
         palette: {
             mode: 'dark'
+            // primary: {
+            //     main: '#3f51b5'
+            // },
+            // secondary: {
+            //     main: '#f50057'
+            // },
+            // text: {
+            //     primary: '#e8e8e8'
+            // },
+            // background: {
+            //     default: '#000000',
+            //     paper: '#292727'
+            // }
         }
     })
     const isOnDashboard = router.asPath.includes('/dashboard')
