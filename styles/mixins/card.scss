@@ -14,11 +14,11 @@
 }
 
 @mixin darkCard {
-    border: 1px solid var(--off-white) !important;
-    background: var(--less-black);
+    // border: 1px solid var(--off-white) !important;
+    // background: var(--less-black);
     border-radius: 9px !important;
     border: none !important;
-    color: var(--off-white);
+    // color: var(--off-white);
 
     :global(.MuiCardContent-root) {
         letter-spacing: 1px;

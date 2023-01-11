@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link'
 
 import { GET_ALL_USERS, GET_DEV_HOURS } from '../../../lib/gql/queries/user'
 import { FETCH_ALL_CLIENTS } from '../../../lib/gql/queries/clients'
@@ -12,6 +13,7 @@ import {
     setLoadingAllUsers,
     setUsers
 } from '../../../lib/redux/slices/allUsers'
+import { ReadMore } from '@mui/icons-material'
 
 import {
     setDevelopers,
@@ -136,7 +138,12 @@ const Dashboard = () => {
                 </Card>
             </div>
             <div className={styles.clientsOverview}>
-                <h1>Clients</h1>
+                <div>
+                    <h1>Clients</h1>
+                    <Link href="/dashboard/clients">
+                        <ReadMore />
+                    </Link>
+                </div>
                 <ClientsOverview />
             </div>
         </DashboardWrapper>

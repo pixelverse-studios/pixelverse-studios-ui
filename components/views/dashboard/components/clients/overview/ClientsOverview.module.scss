@@ -1,12 +1,6 @@
 @use 'styles/mixins/card' as Card;
 @use 'styles/mixins/breakpoints' as breakpoints;
 
-.drawer {
-    :global(.ant-drawer-content-wrapper) {
-        width: 75% !important;
-    }
-}
-
 .ClientsOverviewGrid {
     display: flex;
     flex-direction: column;
@@ -67,11 +61,31 @@
 
 .clientsDashDrawer {
     :global(.MuiPaper-root) {
-        @include breakpoints.set-max-width('small') {
-            width: 100%;
+        padding: 1rem;
+
+        & > * {
+            color: var(--off-white);
         }
-        @include breakpoints.set-max-width('medium') {
-            width: 50%;
+
+        @include breakpoints.set-max-width('small') {
+            width: 100% !important;
+        }
+        @include breakpoints.set-min-width('medium') {
+            width: 50% !important;
+        }
+    }
+
+    .drawerHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 2rem;
+        color: var(--off-black);
+        margin-bottom: 2rem;
+
+        button > svg {
+            color: var(--off-black);
         }
     }
 }

@@ -28,7 +28,7 @@ const Card = ({ children, media, title, actions, style }: CardProps) => {
         }
     }
     return (
-        <MuiCard className={cardClass()} variant="outlined">
+        <MuiCard variant="outlined">
             <CardMedia component="img" image={media} title={title} />
             <CardContent>{children}</CardContent>
             {actions != undefined ? <CardActions>{actions}</CardActions> : null}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { LinearProgress } from '@mui/material'
+import { IconButton } from '@mui/material'
 import {
     BiTargetLock,
     BiEdit,
@@ -9,7 +9,7 @@ import {
     BiRocket,
     BiMessageAltAdd
 } from 'react-icons/bi'
-import { Info } from '@mui/icons-material'
+import { Info, Close } from '@mui/icons-material'
 
 import { Card, Drawer } from '../../../../../elements'
 import { DateField, Button } from '../../../../../form'
@@ -115,6 +115,12 @@ const ClientsOverview = () => {
                 open={drawer.showing}
                 onClose={onDrawerClose}
                 anchor="right">
+                <div className={styles.drawerHeader}>
+                    {drawer.title}
+                    <IconButton>
+                        <Close />
+                    </IconButton>
+                </div>
                 <ProjectTitleForm
                     clientID={drawer.clientID}
                     onDrawerClose={onDrawerClose}
