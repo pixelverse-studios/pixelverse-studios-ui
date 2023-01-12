@@ -9,12 +9,18 @@ import { GET_LOGGED_IN_USER } from '../../lib/gql/queries/user'
 import { decodeCachedToken } from '../../utilities/token'
 import { setProfile } from '../../lib/redux/slices/user'
 import { showBanner } from '../../lib/redux/slices/banner'
-import Nav from '../nav'
+import Nav, { DashboardNav } from '../nav'
 import Banner from '../banner'
 import Footer from '../footer'
 import ScrollToTop from '../scrollToTop'
 
-const PageWrapper = ({ children }: { children: any }) => {
+const PageWrapper = ({
+    children,
+    isOnDashboard
+}: {
+    children: any
+    isOnDashboard: boolean
+}) => {
     const router = useRouter()
     const dispatch = useDispatch()
     const { profile } = useSelector((state: any) => state.user)
@@ -62,7 +68,7 @@ const PageWrapper = ({ children }: { children: any }) => {
 
     return (
         <main>
-            <Nav />
+            {isOnDashboard ? <DashboardNav /> : <Nav />}
             <Banner />
             {children}
             <ScrollToTop />

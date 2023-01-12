@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as ReduxProvider } from 'react-redux'
 import { useRouter } from 'next/router'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 
 import RouteTransition from '../components/transition'
 import PageWrapper from '../components/views/PageWrapper'
@@ -14,21 +15,28 @@ import { store } from '../lib/redux/store'
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter()
 
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark'
+        }
+    })
     const isOnDashboard = router.asPath.includes('/dashboard')
     return (
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
-                <PageWrapper>
-                    {isOnDashboard ? (
-                        <div>
-                            <Component {...pageProps} />
-                        </div>
-                    ) : (
-                        <RouteTransition>
-                            <Component {...pageProps} />
-                        </RouteTransition>
-                    )}
-                </PageWrapper>
+                <ThemeProvider theme={darkTheme}>
+                    <PageWrapper isOnDashboard={isOnDashboard}>
+                        {isOnDashboard ? (
+                            <div className="dashboard">
+                                <Component {...pageProps} />
+                            </div>
+                        ) : (
+                            <RouteTransition>
+                                <Component {...pageProps} />
+                            </RouteTransition>
+                        )}
+                    </PageWrapper>
+                </ThemeProvider>
             </ReduxProvider>
         </ApolloProvider>
     )

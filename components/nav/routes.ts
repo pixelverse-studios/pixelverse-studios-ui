@@ -18,3 +18,9 @@ export const routes = [
         label: 'Contact'
     }
 ]
+
+export const dashboardRoutes = [
+    { path: '/dashboard/users', label: 'Users' },
+    { path: '/dashboard/projects', label: 'Projects' },
+    { path: '/dashboard/clients', label: 'Clients' }
+]

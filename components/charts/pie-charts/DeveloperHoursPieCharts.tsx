@@ -44,17 +44,15 @@ const DeveloperHoursPieChart = () => {
     })
 
     return (
-        <Card customStyling>
-            <div className={styles.DeveloperHoursPieChart}>
-                <PieChart
-                    dataSource={dataSource}
-                    margin={margin}
-                    innerRadius={innerRadius}
-                    legends={legends}
-                    colors={colors}
-                />
-            </div>
-        </Card>
+        <div className={styles.DeveloperHoursPieChart}>
+            <PieChart
+                dataSource={dataSource}
+                margin={margin}
+                innerRadius={innerRadius}
+                legends={legends}
+                colors={colors}
+            />
+        </div>
     )
 }
 export default DeveloperHoursPieChart

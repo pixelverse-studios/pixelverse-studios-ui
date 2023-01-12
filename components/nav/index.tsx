@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
-import { MdDashboard, MdLogout } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { MdDashboard, MdLogout } from 'react-icons/md'
+import { IconButton, Menu, MenuItem } from '@mui/material'
+import { MoreVert } from '@mui/icons-material'
 
 import { Drawer } from '../../components/elements'
 import { logout } from '../../lib/redux/slices/user'
@@ -12,7 +13,7 @@ import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
 import logo from '../../assets/logo.svg'
-import { routes } from './routes'
+import { routes, dashboardRoutes } from './routes'
 import styles from './Nav.module.scss'
 import { ProfileProps } from '../../utilities/types/userTypes'
 
@@ -36,6 +37,63 @@ const protectedRoutes = [
     { path: 'dashboard', icon: <MdDashboard /> },
     { path: 'logout', icon: <MdLogout /> }
 ]
+
+export const DashboardNav = () => {
+    const router = useRouter()
+    const [anchorEl, setAnchorEl] = useState(null)
+    const open = Boolean(anchorEl)
+
+    const handleButtonClick = (event: any) => {
+        if (open) {
+            return setAnchorEl(null)
+        }
+
+        return setAnchorEl(event.currentTarget)
+    }
+
+    const handleMenuClose = () => setAnchorEl(null)
+    const onRouteClick = (path: string) => {
+        setAnchorEl(null)
+        return router.push(path)
+    }
+
+    return (
+        <nav className={styles.DashboardNav}>
+            <div className={styles.logo}>
+                <Link href="/">
+                    <img src={logo.src} alt="logo" />
+                </Link>
+            </div>
+            <IconButton
+                className={styles.dashboardMenuIcon}
+                id="dashboard-menu"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleButtonClick}>
+                <MoreVert />
+            </IconButton>
+            <Menu
+                id="dashboard-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleMenuClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button'
+                }}>
+                {dashboardRoutes.map(
+                    ({ path, label }: { path: string; label: string }) => (
+                        <MenuItem
+                            key={label}
+                            onClick={() => onRouteClick(path)}>
+                            {label}
+                        </MenuItem>
+                    )
+                )}
+            </Menu>
+        </nav>
+    )
+}
 
 const MobileNavContent = ({
     onLogoutClick,
@@ -129,6 +187,37 @@ const Nav = () => {
                     profile={profile}
                     onLogoutClick={onLogoutClick}
                 />
+                <ul>
+                    {protectedRoutes.map(({ path, icon }) => {
+                        if (path === 'logout') {
+                            return (
+                                <li
+                                    className={
+                                        router.pathname.includes(path)
+                                            ? styles.active
+                                            : ''
+                                    }
+                                    key={path}
+                                    onClick={onLogoutClick}>
+                                    {icon}
+                                </li>
+                            )
+                        }
+                        return (
+                            <li
+                                key={path}
+                                className={
+                                    router.pathname.includes(path)
+                                        ? styles.active
+                                        : ''
+                                }>
+                                <Link key={path} href={`/${path}`}>
+                                    {icon}
+                                </Link>
+                            </li>
+                        )
+                    })}
+                </ul>
             </nav>
         )
     }

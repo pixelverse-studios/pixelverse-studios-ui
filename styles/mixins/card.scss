@@ -6,12 +6,23 @@
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
 
     :global(.MuiCardContent-root) {
-        text-align: center;
-        word-break: break-word;
-        line-height: 2rem;
         letter-spacing: 1px;
-        padding: 1.5rem;
-        height: 100%;
+        padding: 1rem;
+    }
+
+    @content;
+}
+
+@mixin darkCard {
+    // border: 1px solid var(--off-white) !important;
+    // background: var(--less-black);
+    border-radius: 9px !important;
+    border: none !important;
+    // color: var(--off-white);
+
+    :global(.MuiCardContent-root) {
+        letter-spacing: 1px;
+        padding: 1rem;
     }
 
     @content;

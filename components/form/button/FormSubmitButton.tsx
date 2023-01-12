@@ -1,7 +1,9 @@
+import { Button } from '@mui/material'
+
 import CircleLoader from '../../loader/circle'
 import styles from './Button.module.scss'
 
-const SubmitButton = ({
+const FormSubmitButton = ({
     loading,
     disabled,
     label
@@ -11,13 +13,14 @@ const SubmitButton = ({
     label: string
 }) => {
     return (
-        <button
-            className={styles.SuccessButton}
+        <Button
+            className={styles.FormSubmitButton}
             type="submit"
+            variant="contained"
             disabled={disabled}>
             {loading ? <CircleLoader /> : label}
-        </button>
+        </Button>
     )
 }
 
-export default SubmitButton
+export default FormSubmitButton

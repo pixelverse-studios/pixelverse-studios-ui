@@ -4,7 +4,7 @@
 // browser breakpoints
 $mobile-max-width: 750px;
 $desktop-min-width: 1000px;
-
+// @use 'styles/mixins/breakpoints' as breakpoints;
 html,
 body {
     padding: 0;
@@ -43,9 +43,6 @@ p {
         #5d737e 100%
     );
 }
-.ant-drawer-mask {
-    opacity: 0 !important;
-}
 
 .calendly-inline-widget {
     height: 100% !important;
@@ -54,5 +51,10 @@ p {
 .contentSize {
     max-width: var(--max-page-width);
     margin: auto;
+    padding: 1rem;
+}
+
+.dashboard {
+    background-color: var(--off-black);
     padding: 1rem;
 }

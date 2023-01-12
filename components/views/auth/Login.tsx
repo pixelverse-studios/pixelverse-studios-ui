@@ -15,7 +15,7 @@ import { JWT_SECRET } from '../../../utilities/constants'
 import { FormProps } from '../../../utilities/types/formTypes'
 import useForm from '../../../utilities/hooks/useForm'
 import FormValidations from '../../../utilities/validations/forms'
-import { FormRow, SubmitButton, TextField } from '../../form'
+import { FormRow, FormSubmitButton, TextField } from '../../form'
 import styles from './AuthPages.module.scss'
 
 const INITIAL_STATE = {
@@ -111,7 +111,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </FormRow>
-                        <SubmitButton
+                        <FormSubmitButton
                             label="Submit"
                             disabled={!isFormValid}
                             loading={user.loading}

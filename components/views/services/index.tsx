@@ -37,31 +37,31 @@ const Services = () => {
                             website that you can be proud of.
                         </p>
                         <div className={styles.serviceDiagram}>
-                            <Card customStyling>
+                            <Card style="default">
                                 <div className={styles.mainServiceCard}>
                                     Custom Web Development
                                 </div>
                             </Card>
                             <div className={styles.subServices}>
                                 <div className={styles.subServiceGroup}>
-                                    <Card customStyling>
+                                    <Card style="default">
                                         <div className={styles.subServiceCard}>
                                             Clean, modern UI
                                         </div>
                                     </Card>
-                                    <Card customStyling>
+                                    <Card style="default">
                                         <div className={styles.subServiceCard}>
                                             Simple, streamlined UX
                                         </div>
                                     </Card>
                                 </div>
                                 <div className={styles.subServiceGroup}>
-                                    <Card customStyling>
+                                    <Card style="default">
                                         <div className={styles.subServiceCard}>
                                             Mobile responsive pages
                                         </div>
                                     </Card>
-                                    <Card customStyling>
+                                    <Card style="default">
                                         <div className={styles.subServiceCard}>
                                             Content management system
                                         </div>
@@ -78,20 +78,20 @@ const Services = () => {
                     <h1>THE JOURNEY</h1>
                     <div className={styles.jourenyBlock}>
                         <div className={styles.journeyCards}>
-                            <Card customStyling>
+                            <Card style="default">
                                 <div className={styles.journeyCard}>
                                     What are you looking to accomplish with the
                                     site?
                                 </div>
                             </Card>
-                            <Card customStyling>
+                            <Card style="default">
                                 <div className={styles.journeyCard}>
                                     What actions are your users intended to
                                     complete? (fill out a form, email for quote,
                                     etc).
                                 </div>
                             </Card>
-                            <Card customStyling>
+                            <Card style="default">
                                 <div className={styles.journeyCard}>
                                     What is your projected timeframe in regards
                                     to launching your website?

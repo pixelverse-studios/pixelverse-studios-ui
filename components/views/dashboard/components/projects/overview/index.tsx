@@ -13,14 +13,23 @@ const ProjectOverview = () => {
 
     return (
         <Card
-            customStyling
-            actions={
-                <IconButton
-                    onClick={() => router.push('/dashboard/projects/overview')}>
-                    <Visibility />
-                </IconButton>
-            }>
-            Projects: {completedProjects?.length} / {clients.length} completed
+            style="dark"
+            // actions={
+            //     <IconButton
+            //         onClick={() => router.push('/dashboard/projects/overview')}>
+            //         <Visibility />
+            //     </IconButton>
+            // }
+        >
+            <div className={styles.ProjectOverviewContent}>
+                <h1>Projects</h1>
+                <div>
+                    <span>
+                        {completedProjects?.length} / {clients.length}
+                    </span>
+                    <span>completed</span>
+                </div>
+            </div>
         </Card>
     )
 }
