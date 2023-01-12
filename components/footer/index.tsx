@@ -1,5 +1,4 @@
 import { format } from 'date-fns'
-import { FcLike } from 'react-icons/fc'
 
 import styles from './Footer.module.scss'
 

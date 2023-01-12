@@ -1,6 +1,4 @@
-import { FaHandsHelping, FaBullseye, FaClock } from 'react-icons/fa'
-import { Tooltip } from '@mui/material'
-
+import { Handshake, ModeStandby, WatchLater } from '@mui/icons-material'
 import styles from './Landing.module.scss'
 
 const WhyUs = () => {
@@ -9,7 +7,7 @@ const WhyUs = () => {
             <h2>Why use us?</h2>
             <div className={styles.reasonsList}>
                 <div className={styles.reason}>
-                    <FaClock />
+                    <WatchLater />
                     <span className={styles.primary}>Efficient</span>
                     <span className={styles.secondary}>
                         Your timeline is our schedule. We work fast and
@@ -18,7 +16,7 @@ const WhyUs = () => {
                     </span>
                 </div>
                 <div className={styles.reason}>
-                    <FaBullseye />
+                    <ModeStandby />
                     <span className={styles.primary}>Accurate</span>
                     <span className={styles.secondary}>
                         Attention to detail is key. You can trust us to provide
@@ -27,7 +25,7 @@ const WhyUs = () => {
                     </span>
                 </div>
                 <div className={styles.reason}>
-                    <FaHandsHelping />
+                    <Handshake />
                     <span className={styles.primary}>Committed</span>
                     <span className={styles.secondary}>
                         We're committed to getting the job done. You will be our

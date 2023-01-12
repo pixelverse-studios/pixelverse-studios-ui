@@ -1,5 +1,3 @@
-import { MdDashboard } from 'react-icons/md'
-
 export const routes = [
     {
         path: 'services',
