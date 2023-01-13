@@ -1,4 +1,7 @@
 import { ResponsiveLine } from '@nivo/line'
+import { useSelector } from 'react-redux'
+
+import { CHART_THEME } from '../chartTheme'
 
 type LineChartProps = {
     dataSource: {
@@ -46,6 +49,8 @@ const LineChart = ({
     yScale,
     colors
 }: LineChartProps) => {
+    const { mode } = useSelector((state: any) => state.theme)
+
     return (
         <ResponsiveLine
             data={dataSource}
@@ -66,10 +71,7 @@ const LineChart = ({
             useMesh={useMesh}
             colors={colors}
             legends={legends}
-            theme={{
-                fontSize: 15,
-                textColor: 'black'
-            }}
+            theme={CHART_THEME[mode]}
         />
     )
 }

@@ -4,6 +4,7 @@ import allUsersReducer from './slices/allUsers'
 import allClientsReducer from './slices/allClients'
 import bannerReducer from './slices/banner'
 import developerHoursReducer from './slices/developerHours'
+import themeReducer from './slices/theme'
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         allUsers: allUsersReducer,
         allClients: allClientsReducer,
         banner: bannerReducer,
-        developerHours: developerHoursReducer
+        developerHours: developerHoursReducer,
+        theme: themeReducer
     }
 })
 

@@ -30,6 +30,11 @@
                 align-items: center;
                 color: var(--sienna400);
                 cursor: pointer;
+                transition: 0.4s ease-in-out;
+
+                &:hover {
+                    color: var(--seagreen600);
+                }
             }
         }
 
@@ -70,7 +75,7 @@
         @include breakpoints.set-max-width('small') {
             width: 100% !important;
         }
-        @include breakpoints.set-min-width('medium') {
+        @include breakpoints.set-min-width('small') {
             width: 50% !important;
         }
     }
@@ -87,5 +92,9 @@
         button > svg {
             color: var(--off-black);
         }
+    }
+
+    fieldset {
+        padding-bottom: 1rem;
     }
 }

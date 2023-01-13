@@ -57,11 +57,6 @@
 }
 
 .logo {
-    flex-grow: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-
     img {
         cursor: pointer;
         height: 3rem;
@@ -168,17 +163,8 @@
 }
 
 .DashboardNav {
-    // border-bottom: 1px solid var(--off-white);
-    background-color: var(--off-black);
     display: flex;
-    padding: 0.5rem 1rem;
-
-    .dashboardMenuIcon {
-        color: var(--off-white);
-        transition: 0.4s;
-
-        &:hover {
-            color: var(--skyblue500);
-        }
-    }
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { IconButton, Menu, MenuItem, AppBar, Toolbar } from '@mui/material'
 import { Dashboard, Logout, MoreVert } from '@mui/icons-material'
 
+import ThemeSwitch from '../themeSwitch'
 import { Drawer } from '../../components/elements'
 import { logout } from '../../lib/redux/slices/user'
 import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
 import logo from '../../assets/logo.svg'
+import logo_black from '../../assets/logo_black.svg'
 import { routes, dashboardRoutes } from './routes'
 import styles from './Nav.module.scss'
 import { ProfileProps } from '../../utilities/types/userTypes'
+import { DARK, STORED_THEME_KEY } from '../../utilities/constants'
 
 const Hamburger = ({ onClick, open }: { open: boolean; onClick: any }) => {
     const onHamburgerClick = () => {
@@ -42,7 +44,9 @@ export const DashboardNav = () => {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
 
-    const handleButtonClick = (event: any) => {
+    const { mode } = useSelector((state: any) => state.theme)
+
+    const handleMenuClick = (event: any) => {
         if (open) {
             return setAnchorEl(null)
         }
@@ -57,40 +61,54 @@ export const DashboardNav = () => {
     }
 
     return (
-        <nav className={styles.DashboardNav}>
-            <div className={styles.logo}>
-                <Link href="/">
-                    <img src={logo.src} alt="logo" />
-                </Link>
-            </div>
-            <IconButton
-                className={styles.dashboardMenuIcon}
-                id="dashboard-menu"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleButtonClick}>
-                <MoreVert />
-            </IconButton>
-            <Menu
-                id="dashboard-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleMenuClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button'
-                }}>
-                {dashboardRoutes.map(
-                    ({ path, label }: { path: string; label: string }) => (
-                        <MenuItem
-                            key={label}
-                            onClick={() => onRouteClick(path)}>
-                            {label}
-                        </MenuItem>
-                    )
-                )}
-            </Menu>
-        </nav>
+        <AppBar position="static">
+            <Toolbar className={styles.DashboardNav}>
+                <div className={styles.logo}>
+                    <Link href="/">
+                        <img
+                            src={mode === 'dark' ? logo.src : logo_black.src}
+                            alt="logo"
+                        />
+                    </Link>
+                </div>
+                <div>
+                    <ThemeSwitch />
+                    <IconButton
+                        className={styles.dashboardMenuIcon}
+                        id="dashboard-menu"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleMenuClick}>
+                        <MoreVert />
+                    </IconButton>
+                    <Menu
+                        id="dashboard-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleMenuClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button'
+                        }}>
+                        {dashboardRoutes.map(
+                            ({
+                                path,
+                                label
+                            }: {
+                                path: string
+                                label: string
+                            }) => (
+                                <MenuItem
+                                    key={label}
+                                    onClick={() => onRouteClick(path)}>
+                                    {label}
+                                </MenuItem>
+                            )
+                        )}
+                    </Menu>
+                </div>
+            </Toolbar>
+        </AppBar>
     )
 }
 
@@ -177,7 +195,10 @@ const Nav = () => {
         setShowMobileNav(breakpoint === MOBILE_BREAKPOINT)
     }, [breakpoint])
 
-    const onLogoutClick = () => logout(dispatch, router)
+    const onLogoutClick = () => {
+        localStorage.setItem(STORED_THEME_KEY, DARK)
+        logout(dispatch, router)
+    }
 
     if (showMobileNav) {
         return (

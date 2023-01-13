@@ -1,5 +1,5 @@
+import { Button } from '@mui/material'
 import { MouseEventHandler } from 'react'
-import styles from './Button.module.scss'
 
 const CancelButton = ({
     label,
@@ -9,9 +9,9 @@ const CancelButton = ({
     onCancel: MouseEventHandler
 }) => {
     return (
-        <button className={styles.CancelButton} onClick={onCancel}>
+        <Button color="secondary" variant="contained" onClick={onCancel}>
             {label}
-        </button>
+        </Button>
     )
 }
 
