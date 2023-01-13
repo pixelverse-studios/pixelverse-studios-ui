@@ -1,6 +1,7 @@
 import PieChart from '.'
 import { useSelector } from 'react-redux'
 
+import CircleLoader from '../../loader/circle'
 import { Card } from '../../elements'
 import styles from './PieCharts.module.scss'
 
@@ -44,8 +45,10 @@ const DeveloperHoursPieChart = () => {
     })
 
     return (
-        <Card customStyling>
-            <div className={styles.DeveloperHoursPieChart}>
+        <div className={styles.DeveloperHoursPieChart}>
+            {dataSource == undefined ? (
+                <CircleLoader />
+            ) : (
                 <PieChart
                     dataSource={dataSource}
                     margin={margin}
@@ -53,8 +56,8 @@ const DeveloperHoursPieChart = () => {
                     legends={legends}
                     colors={colors}
                 />
-            </div>
-        </Card>
+            )}
+        </div>
     )
 }
 export default DeveloperHoursPieChart

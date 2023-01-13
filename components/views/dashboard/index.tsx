@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link'
+import { More } from '@mui/icons-material'
 
 import { GET_ALL_USERS, GET_DEV_HOURS } from '../../../lib/gql/queries/user'
 import { FETCH_ALL_CLIENTS } from '../../../lib/gql/queries/clients'
@@ -27,6 +29,7 @@ import ClientsOverview from './components/clients/overview'
 import { DeveloperHoursLineChart, DeveloperHoursPieChart } from '../../charts'
 import Loader from '../../loader/triangle'
 import styles from './Dashboard.module.scss'
+import { Card } from '../../elements'
 
 const DashboardWrapper = ({ children }: { children: any }) => (
     <section className={styles.Dashboard}>{children}</section>
@@ -120,15 +123,28 @@ const Dashboard = () => {
 
     return (
         <DashboardWrapper>
-            <div className={styles.personnelOverview}>
-                <ProjectOverview />
-                <UsersOverview />
+            <div className={styles.dashboardMain}>
+                <div className={styles.top}>
+                    <div className={styles.personnelOverview}>
+                        <ProjectOverview />
+                        <UsersOverview />
+                    </div>
+                    <Card style="dark">
+                        <DeveloperHoursPieChart />
+                    </Card>
+                </div>
+                <Card style="dark">
+                    <DeveloperHoursLineChart />
+                </Card>
             </div>
-            <h1>Clients</h1>
-            <ClientsOverview />
-            <div className={styles.productivityCharts}>
-                <DeveloperHoursLineChart />
-                <DeveloperHoursPieChart />
+            <div className={styles.clientsOverview}>
+                <div>
+                    <h1>Clients</h1>
+                    <Link href="/dashboard/clients">
+                        <More />
+                    </Link>
+                </div>
+                <ClientsOverview />
             </div>
         </DashboardWrapper>
     )

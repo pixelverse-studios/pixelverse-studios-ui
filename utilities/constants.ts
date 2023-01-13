@@ -1,6 +1,6 @@
 export const JWT_SECRET = 'ezpz-jwt'
-export const DARK = 'DARK'
-export const LIGHT = 'LIGHT'
+export const DARK = 'dark'
+export const LIGHT = 'light'
 export const STORED_THEME_KEY = 'EZPZ-THEME'
 export const LOGGED_IN_PAGES = ['dashboard']
 

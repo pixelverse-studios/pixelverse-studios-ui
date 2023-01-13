@@ -3,6 +3,7 @@
     text-decoration: none;
     position: relative;
     width: 100%;
+    height: 3rem;
     display: flex;
     justify-content: center;
     margin: 9px auto;
@@ -17,29 +18,5 @@
     &:disabled {
         opacity: 0.25;
         cursor: not-allowed;
-    }
-}
-
-.SuccessButton {
-    @include BaseButton;
-    background: var(--seagreen400);
-    color: var(--off-white);
-    border: 1px solid var(--seagreen400);
-
-    &:hover {
-        color: var(--seagreen400);
-        background: white;
-    }
-}
-
-.CancelButton {
-    @include BaseButton;
-    background: var(--sienna500);
-    color: var(--off-white);
-    border: 1px solid var(--sienna500);
-
-    &:hover {
-        color: var(--sienna500);
-        background: white;
     }
 }

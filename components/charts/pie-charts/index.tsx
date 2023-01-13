@@ -1,4 +1,7 @@
 import { ResponsivePie } from '@nivo/pie'
+import { useSelector } from 'react-redux'
+
+import { CHART_THEME } from '../chartTheme'
 
 type PieChartProps = {
     dataSource: {
@@ -25,6 +28,8 @@ const PieChart = ({
     legends,
     colors
 }: PieChartProps) => {
+    const { mode } = useSelector((state: any) => state.theme)
+
     return (
         <ResponsivePie
             data={dataSource}
@@ -49,6 +54,7 @@ const PieChart = ({
             }}
             colors={colors}
             legends={legends}
+            theme={CHART_THEME[mode]}
         />
     )
 }

@@ -1,7 +1,8 @@
 import TextField from './fields/TextField'
 import DateField from './fields/DateField'
 import FormRow from './row'
-import SubmitButton from './button/SubmitButton'
+import FormSubmitButton from './button/FormSubmitButton'
 import CancelButton from './button/CancelButton'
+import Button from './button/Button'
 
-export { TextField, DateField, FormRow, SubmitButton, CancelButton }
+export { TextField, DateField, FormRow, FormSubmitButton, CancelButton, Button }

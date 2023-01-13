@@ -12,7 +12,8 @@
     --slate500: #5d737e;
     --slate400: #95b8c9;
 
-    --off-black: #0a0a0a;
+    --off-black: #151419;
+    --less-black: #1f1e24;
     --off-white: #e8e8e8;
     --error-font: #ff4747;
     --error-background: rgba(255, 71, 71, 0.95);
@@ -28,4 +29,16 @@
     --footer-height: 4rem;
     --high-zindex: 10;
     --max-page-width: 1000px;
+}
+
+[data-theme='dark'] {
+    --primary-background: #1f1e24;
+    --primary-font: #a7b3b9;
+    --text: #a7b3b9;
+}
+
+[data-theme='light'] {
+    --primary-background: #a7b3b9;
+    --primary-font: #1f1e24;
+    --text: #1f1e24;
 }

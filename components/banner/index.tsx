@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BiBadgeCheck } from 'react-icons/bi'
-import { MdErrorOutline, MdClose } from 'react-icons/md'
+import { Verified, ErrorOutline, Close } from '@mui/icons-material'
 
 import { hideBanner } from '../../lib/redux/slices/banner'
 import styles from './Banner.module.scss'
@@ -34,9 +33,9 @@ const Banner = () => {
     const renderIcon = () => {
         switch (banner.type) {
             case 'Errors':
-                return <MdErrorOutline className={styles.statusIcon} />
+                return <ErrorOutline className={styles.statusIcon} />
             default:
-                return <BiBadgeCheck className={styles.statusIcon} />
+                return <Verified className={styles.statusIcon} />
         }
     }
 
@@ -49,7 +48,7 @@ const Banner = () => {
                 <div className={styles.bannerContent}>
                     {renderIcon()}
                     {banner.message}
-                    <MdClose
+                    <Close
                         className={styles.closeIcon}
                         onClick={onCloseClick}
                     />

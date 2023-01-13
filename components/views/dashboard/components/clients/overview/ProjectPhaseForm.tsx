@@ -2,7 +2,7 @@ import useForm from '../../../../../../utilities/hooks/useForm'
 import {
     DateField,
     FormRow,
-    SubmitButton,
+    FormSubmitButton,
     CancelButton,
     TextField
 } from '../../../../../form'
@@ -101,7 +101,7 @@ const ProjectPhaseForm = ({
                     {/* isActive field will be a switch */}
                 </FormRow>
                 <FormRow>
-                    <SubmitButton
+                    <FormSubmitButton
                         disabled={!isFormValid || loading}
                         label="Update"
                         loading={loading}

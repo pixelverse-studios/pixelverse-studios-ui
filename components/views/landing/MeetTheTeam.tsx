@@ -1,5 +1,3 @@
-import { FaUserCircle } from 'react-icons/fa'
-
 import samisHeadshot from '../../../assets/sami-headshot.jpeg'
 import philsHeadshot from '../../../assets/phil-headshot.jpg'
 import kevinsHeadshot from '../../../assets/kevin-headshot.jpeg'

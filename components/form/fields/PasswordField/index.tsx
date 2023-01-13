@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { stringInputType } from '../../../../utilities/types/formTypes'
 import styles from './PasswordField.module.scss'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 type PasswordFieldProps = {
     field: stringInputType
@@ -13,7 +13,6 @@ type PasswordFieldProps = {
     title?: string
     showMessage?: boolean
     message?: string
-    confirmationField?: stringInputType
 }
 
 const PasswordField = ({
@@ -25,8 +24,7 @@ const PasswordField = ({
     minLength,
     title,
     showMessage,
-    message,
-    confirmationField
+    message
 }: PasswordFieldProps) => {
     const [type, setType] = useState('password')
     const toggleView = () => {
@@ -72,9 +70,9 @@ const PasswordField = ({
             )}
 
             {type === 'password' ? (
-                <FaEye className={styles.icon} onClick={toggleView} />
+                <Visibility className={styles.icon} onClick={toggleView} />
             ) : (
-                <FaEyeSlash className={styles.icon} onClick={toggleView} />
+                <VisibilityOff className={styles.icon} onClick={toggleView} />
             )}
         </div>
     )

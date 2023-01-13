@@ -9,7 +9,7 @@ import {
     showBanner
 } from '../../../lib/redux/slices/banner'
 import useForm from '../../../utilities/hooks/useForm'
-import { TextField, FormRow, SubmitButton } from '../../form'
+import { TextField, FormRow, FormSubmitButton } from '../../form'
 import { FormProps } from '../../../utilities/types/formTypes'
 import { JWT_SECRET } from '../../../utilities/constants'
 import FormValidations from '../../../utilities/validations/forms'
@@ -136,7 +136,7 @@ const Register = () => {
                                 type="password"
                             />
                         </FormRow>
-                        <SubmitButton
+                        <FormSubmitButton
                             label="Submit"
                             disabled={!isFormValid}
                             loading={user.loading}

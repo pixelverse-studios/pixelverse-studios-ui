@@ -3,3 +3,7 @@
 .Card {
     @include Card.baseCard;
 }
+
+.DarkCard {
+    @include Card.darkCard;
+}

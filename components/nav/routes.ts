@@ -1,5 +1,3 @@
-import { MdDashboard } from 'react-icons/md'
-
 export const routes = [
     {
         path: 'services',
@@ -17,4 +15,10 @@ export const routes = [
         path: 'contact',
         label: 'Contact'
     }
+]
+
+export const dashboardRoutes = [
+    { path: '/dashboard/users', label: 'Users' },
+    { path: '/dashboard/projects', label: 'Projects' },
+    { path: '/dashboard/clients', label: 'Clients' }
 ]

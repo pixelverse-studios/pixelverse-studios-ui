@@ -18,9 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
-                <PageWrapper>
+                <PageWrapper isOnDashboard={isOnDashboard}>
                     {isOnDashboard ? (
-                        <div>
+                        <div className="dashboard">
                             <Component {...pageProps} />
                         </div>
                     ) : (
