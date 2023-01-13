@@ -31,8 +31,12 @@
     --max-page-width: 1000px;
 }
 
-[data-theme='DARK'] {
+[data-theme='dark'] {
+    --primary-background: #1f1e24;
+    --primary-font: #a7b3b9;
 }
 
-[data-theme='LIGHT'] {
+[data-theme='light'] {
+    --primary-background: #a7b3b9;
+    --primary-font: #1f1e24;
 }

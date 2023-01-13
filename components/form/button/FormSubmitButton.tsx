@@ -14,7 +14,7 @@ const FormSubmitButton = ({
 }) => {
     return (
         <Button
-            className={styles.FormSubmitButton}
+            color="primary"
             type="submit"
             variant="contained"
             disabled={disabled}>

@@ -7,19 +7,19 @@ const Button = ({
     loading,
     disabled,
     label,
-    style,
-    onClick
+    onClick,
+    color
 }: {
     loading: boolean
     disabled: boolean
     label: string
-    style: 'submit' | 'cancel' | 'general'
+    color: 'primary' | 'secondary'
     onClick: any
 }) => {
     return (
         <MuiButton
             onClick={onClick}
-            className={`${styles.Button} ${styles[style]}`}
+            color={color}
             type="submit"
             variant="outlined"
             disabled={disabled}>

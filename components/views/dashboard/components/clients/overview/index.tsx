@@ -95,6 +95,7 @@ const ClientsOverview = () => {
 
                 return (
                     <ClientCard
+                        key={name}
                         editTitleClick={onDrawerActivate}
                         title={client.project.title}
                         clientName={name}
