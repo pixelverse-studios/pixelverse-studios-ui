@@ -9,8 +9,8 @@ const DARK_THEME = {
         main: '#3066be'
     },
     background: {
-        default: '#151419',
-        paper: '#1f1e24'
+        paper: '#151419',
+        default: '#1f1e24'
     }
 }
 const LIGHT_THEME = {
@@ -24,8 +24,8 @@ const LIGHT_THEME = {
         main: '#3066be'
     },
     background: {
-        default: '#d0d0d0',
-        paper: '#e8e8e8'
+        paper: '#d0d0d0',
+        default: '#e8e8e8'
     }
 }
 
