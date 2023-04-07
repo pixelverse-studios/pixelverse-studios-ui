@@ -1,4 +1,4 @@
-import Services from '../components/views/services'
+import Services from '../views/services'
 
 const ServicesPage = () => {
     return <Services />

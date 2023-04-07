@@ -1,4 +1,4 @@
-import EditClient from '../../../components/views/dashboard/components/clients/edit'
+import EditClient from '../../../views/dashboard/components/clients/edit'
 
 const EditClientPage = () => <EditClient />
 
