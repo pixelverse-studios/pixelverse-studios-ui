@@ -1,4 +1,4 @@
-import Pricing from '../components/views/pricing'
+import Pricing from '../views/pricing'
 
 const PricingPage = () => {
     return <Pricing />

@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { useRouter } from 'next/router'
 
 import RouteTransition from '../components/transition'
-import PageWrapper from '../components/views/PageWrapper'
+import PageWrapper from '../views/PageWrapper'
 import { client } from '../lib/context/apolloProvider'
 import 'animate.css'
 
