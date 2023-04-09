@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Launch } from '@mui/icons-material'
 
+import { CLIENT_PAGES } from './utils'
 import { Card } from '../../components/elements'
-import ModelInsightsImg from '../../../assets/works/model-insights.png'
-import UnderConstructionImg from '../../../assets/works/under-construction.jpg'
+import { WorkCard } from '../../components/elements/card'
+import UnderConstructionImg from '../../assets/works/under-construction.jpg'
 import styles from './Works.module.scss'
 
 const WorksPage = () => {
@@ -26,31 +27,30 @@ const WorksPage = () => {
                     </p>
                 </div>
                 <ul className={styles.projectsDisplay}>
-                    <Card
-                        style="default"
-                        media={ModelInsightsImg.src}
-                        title="Model Insights"
-                        actions={
-                            <a
-                                href="https://model-insights.netlify.app/"
-                                target="_blank">
-                                <Launch /> Visit
-                            </a>
-                        }>
-                        <span>
-                            A portal for a successful model to show her works,
-                            and let aspiring models book coaching sessions.
-                        </span>
-                    </Card>
-                    <Card
-                        style="default"
+                    {CLIENT_PAGES?.length
+                        ? CLIENT_PAGES.map(
+                              (client: {
+                                  company: string
+                                  url: string
+                                  img: string
+                                  description: string
+                              }) => (
+                                  <WorkCard
+                                      key={client.company}
+                                      media={client.img}
+                                      title={client.company}
+                                      url={client.url}
+                                      description={client.description}
+                                  />
+                              )
+                          )
+                        : null}
+                    <WorkCard
                         media={UnderConstructionImg.src}
-                        title="More on the way">
-                        <span>
-                            We are always ready to take on new projects, working
-                            diligently to make your ideas a reality.
-                        </span>
-                    </Card>
+                        title="More on the way"
+                        url=""
+                        description="Always working on something new behind the scene"
+                    />
                 </ul>
             </div>
         </section>

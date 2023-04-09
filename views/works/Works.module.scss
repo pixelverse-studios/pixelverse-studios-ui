@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--off-white);
-    min-height: 85vh;
+    height: 100%;
 
     .worksHero {
         display: flex;
@@ -39,40 +39,9 @@
     }
 
     .projectsDisplay {
-        padding: 0;
-        list-style: none;
-
-        & > div {
-            width: calc(var(--max-page-width) / 2 - 2rem);
-
-            &:nth-of-type(odd) {
-                float: left;
-            }
-
-            &:nth-of-type(even) {
-                float: right;
-                margin-top: 4rem;
-            }
-
-            img {
-                object-fit: cover;
-                max-height: 250px !important;
-            }
-        }
-
-        @include breakpoints.set-max-width('small') {
-            & > div {
-                width: calc(100vw - 2rem);
-                margin: 1rem auto;
-
-                &:nth-of-type(odd) {
-                    float: unset;
-                }
-                &:nth-of-type(even) {
-                    float: unset;
-                    margin-top: unset;
-                }
-            }
-        }
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        grid-auto-flow: dense;
+        grid-gap: 1rem;
     }
 }

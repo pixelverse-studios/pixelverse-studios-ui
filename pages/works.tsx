@@ -1,8 +1,7 @@
-// import WorksPage from '../components/views/works'
+import WorksPage from '../views/works'
 
 const Portfolio = () => {
-    return <div>Under construction</div>
-    // return <WorksPage />
+    return <WorksPage />
 }
 
 export default Portfolio
