@@ -7,3 +7,55 @@
 .DarkCard {
     @include Card.darkCard;
 }
+
+.WorkCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 20rem;
+
+    div {
+        background-position: center;
+        background-size: cover;
+        border-radius: 7px;
+        border: 2px solid black;
+        height: 100%;
+        transition: 0.6s ease-in-out;
+
+        div {
+            background-color: rgba(0, 0, 0, 0.75);
+            opacity: 0;
+            transition: 0.6s ease-in-out;
+
+            p {
+                width: 75%;
+                margin: auto;
+                color: var(--seagreen500);
+                font-weight: bold;
+                font-size: 1rem;
+                text-align: center;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+    h3 {
+        text-align: center;
+        font-size: 1.3rem;
+        transition: 0.6s ease-in-out;
+    }
+
+    &:hover {
+        div {
+            div {
+                opacity: 1;
+            }
+        }
+
+        h3 {
+            color: var(--seagreen500);
+        }
+    }
+}

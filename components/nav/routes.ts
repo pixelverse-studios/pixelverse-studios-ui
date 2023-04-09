@@ -7,10 +7,10 @@ export const routes = [
         path: 'pricing',
         label: 'Pricing'
     },
-    // {
-    //     path: 'works',
-    //     label: 'Works'
-    // },
+    {
+        path: 'works',
+        label: 'Works'
+    },
     {
         path: 'contact',
         label: 'Contact'
