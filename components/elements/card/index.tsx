@@ -10,9 +10,9 @@ import styles from './Card.module.scss'
 
 interface CardProps {
     children?: JSX.Element | JSX.Element[]
-    media: string
-    title: string
-    url: string
+    media?: string
+    title?: string
+    url?: string
     actions?: any
     style?: 'dark' | 'default'
 }
