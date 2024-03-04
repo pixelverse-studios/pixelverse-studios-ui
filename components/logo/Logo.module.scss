@@ -1,0 +1,38 @@
+.PvsLogo {
+    font-size: 1.5rem;
+    color: #9f45b0;
+    // background: linear-gradient(
+    //     to bottom right,
+    //     #010b19 0%,
+    //     #021631 50%,
+    //     #03214a 50%,
+    //     #042c62 50%,
+    //     #05377b 100%
+    // );
+    background: rgb(1, 11, 25);
+    background: linear-gradient(
+        to bottom right,
+        rgba(1, 11, 25, 1) 0%,
+        rgba(2, 22, 49, 1) 35%,
+        rgba(3, 33, 74, 1) 46%,
+        rgba(4, 44, 98, 1) 55%,
+        rgba(5, 55, 123, 1) 100%
+    );
+
+    p {
+        span {
+            background: #42008d;
+            background: linear-gradient(
+                to bottom right,
+                #42008d 0%,
+                #5e00a0 50%,
+                #7a00b2 50%,
+                #9f45b0 50%,
+                #e54ed0 100%
+            );
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+        }
+    }
+}

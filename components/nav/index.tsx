@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { IconButton, Menu, MenuItem, AppBar, Toolbar } from '@mui/material'
 import { Dashboard, Logout, MoreVert } from '@mui/icons-material'
 
+import Logo from '../logo'
 import ThemeSwitch from '../themeSwitch'
 import { Drawer } from '../../components/elements'
 import { logout } from '../../lib/redux/slices/user'
@@ -245,11 +246,12 @@ const Nav = () => {
     return (
         <nav className={styles.Nav}>
             <div className={styles.navWrapper}>
-                <div className={styles.logo}>
+                <Logo />
+                {/* <div className={styles.logo}>
                     <Link href="/">
                         <img src={logo.src} alt="logo" />
                     </Link>
-                </div>
+                </div> */}
                 <ul className={styles.navContent}>
                     {routes.map(({ path, label }) => (
                         <li
