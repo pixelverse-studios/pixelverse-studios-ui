@@ -6,6 +6,7 @@ import {
     TimelineContent,
     TimelineDot
 } from '@mui/lab'
+import crypto from 'crypto'
 
 import { Card } from '../../components/elements'
 import styles from './Services.module.scss'
@@ -25,6 +26,7 @@ const Separator = () => (
 )
 
 const Services = () => {
+    console.log(crypto)
     return (
         <section className={styles.ServicesPageContent}>
             <div className={styles.contentBlock}>
@@ -125,7 +127,11 @@ const Services = () => {
                             together to accomplish your project in a timely
                             manner.
                         </p>
-                        <Timeline position="alternate">
+                        <Timeline
+                            nonce={crypto.createHash('sha256')}
+                            onResize={() => null}
+                            onResizeCapture={() => null}
+                            position="alternate">
                             <TimelineItem>
                                 <TimelineSeparator>
                                     <TimelineDot color="info" />
