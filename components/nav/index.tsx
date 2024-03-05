@@ -12,8 +12,6 @@ import { logout } from '../../lib/redux/slices/user'
 import useBreakpointSize, {
     MOBILE_BREAKPOINT
 } from '../../utilities/hooks/useBreakpointSize'
-import logo from '../../assets/logo.svg'
-import logo_black from '../../assets/logo_black.svg'
 import { routes, dashboardRoutes } from './routes'
 import styles from './Nav.module.scss'
 import { ProfileProps } from '../../utilities/types/userTypes'
@@ -65,12 +63,7 @@ export const DashboardNav = () => {
         <AppBar position="static">
             <Toolbar className={styles.DashboardNav}>
                 <div className={styles.logo}>
-                    <Link href="/">
-                        <img
-                            src={mode === 'dark' ? logo.src : logo_black.src}
-                            alt="logo"
-                        />
-                    </Link>
+                    <Logo useLink />
                 </div>
                 <div>
                     <ThemeSwitch />
@@ -132,12 +125,8 @@ const MobileNavContent = ({
 
     return (
         <>
-            <div className={styles.logo}>
-                <img
-                    src={logo.src}
-                    alt="logo"
-                    onClick={() => onItemClick('/')}
-                />
+            <div className={styles.logo} onClick={() => onItemClick('/')}>
+                <Logo useLink={false} />
             </div>
             <Hamburger onClick={setOpen} open={open} />
             <Drawer
@@ -208,37 +197,39 @@ const Nav = () => {
                     profile={profile}
                     onLogoutClick={onLogoutClick}
                 />
-                <ul>
-                    {protectedRoutes.map(({ path, icon }) => {
-                        if (path === 'logout') {
+                {profile?.email != '' ? (
+                    <ul>
+                        {protectedRoutes.map(({ path, icon }) => {
+                            if (path === 'logout') {
+                                return (
+                                    <li
+                                        className={
+                                            router.pathname.includes(path)
+                                                ? styles.active
+                                                : ''
+                                        }
+                                        key={path}
+                                        onClick={onLogoutClick}>
+                                        {icon}
+                                    </li>
+                                )
+                            }
                             return (
                                 <li
+                                    key={path}
                                     className={
                                         router.pathname.includes(path)
                                             ? styles.active
                                             : ''
-                                    }
-                                    key={path}
-                                    onClick={onLogoutClick}>
-                                    {icon}
+                                    }>
+                                    <Link key={path} href={`/${path}`}>
+                                        {icon}
+                                    </Link>
                                 </li>
                             )
-                        }
-                        return (
-                            <li
-                                key={path}
-                                className={
-                                    router.pathname.includes(path)
-                                        ? styles.active
-                                        : ''
-                                }>
-                                <Link key={path} href={`/${path}`}>
-                                    {icon}
-                                </Link>
-                            </li>
-                        )
-                    })}
-                </ul>
+                        })}
+                    </ul>
+                ) : null}
             </nav>
         )
     }
@@ -246,12 +237,7 @@ const Nav = () => {
     return (
         <nav className={styles.Nav}>
             <div className={styles.navWrapper}>
-                <Logo />
-                {/* <div className={styles.logo}>
-                    <Link href="/">
-                        <img src={logo.src} alt="logo" />
-                    </Link>
-                </div> */}
+                <Logo useLink />
                 <ul className={styles.navContent}>
                     {routes.map(({ path, label }) => (
                         <li

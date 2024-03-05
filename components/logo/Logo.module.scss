@@ -2,6 +2,7 @@
 
 .PvsLogo {
     @include logo.textColor;
+    cursor: pointer;
 
     p {
         font-size: 1.5rem;
