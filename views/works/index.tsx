@@ -1,20 +1,10 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { Launch } from '@mui/icons-material'
 
 import { CLIENT_PAGES } from './utils'
-import { Card } from '../../components/elements'
 import { WorkCard } from '../../components/elements/card'
-import UnderConstructionImg from '../../assets/works/under-construction.jpg'
 import styles from './Works.module.scss'
 
 const WorksPage = () => {
-    const router = useRouter()
-
-    const onItemClick = (page: string) => {
-        router.push(page)
-    }
-
     return (
         <section className={styles.WorksPageContent}>
             <div className="contentSize">
@@ -45,12 +35,12 @@ const WorksPage = () => {
                               )
                           )
                         : null}
-                    <WorkCard
+                    {/* <WorkCard
                         media={UnderConstructionImg.src}
                         title="More on the way"
                         url=""
                         description="Always working on something new behind the scene"
-                    />
+                    /> */}
                 </ul>
             </div>
         </section>

@@ -4,9 +4,8 @@ const Logo = () => {
     return (
         <div className={styles.PvsLogo}>
             <p>
-                <span>P</span>ixel<span>V</span>erse
+                <span>P</span>ixel<span>V</span>erse Studios
             </p>
-            <p>Studios</p>
         </div>
     )
 }

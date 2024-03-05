@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import backgroundImg from '../../assets/city-buildings.jpg'
+// import backgroundImg from '../../assets/city-buildings.jpg'
 import styles from './Landing.module.scss'
 
 const MissionStatement = () => {
@@ -12,7 +12,7 @@ const MissionStatement = () => {
         <div className={`${styles.missionStatement}`}>
             <img
                 className={styles.landingImage}
-                src={backgroundImg.src}
+                // src={backgroundImg.src}
                 alt="landingImage"
             />
             <h1 className="animate__animated animate__backInDown">
