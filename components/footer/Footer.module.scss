@@ -1,19 +1,19 @@
+@use 'styles/mixins/logo' as logo;
+
 .Footer {
     padding: 0.5rem;
     color: white;
     background-color: var(--slate500);
     text-align: center;
-    display: flex;
-    flex-direction: column;
     z-index: var(--high-zindex);
-    align-items: center;
-    justify-content: center;
-
+    
     .footerText {
         font-size: 1rem;
+        @include logo.textColor;
     }
 
     .copyright {
+        @include logo.textColor;
         font-size: 0.8rem;
     }
 }

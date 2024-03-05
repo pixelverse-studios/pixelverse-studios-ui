@@ -56,13 +56,6 @@
     }
 }
 
-.logo {
-    img {
-        cursor: pointer;
-        height: 3rem;
-    }
-}
-
 .MobileNav {
     display: flex;
     align-items: center;
@@ -70,6 +63,7 @@
     border-bottom: 1px solid var(--slate600);
     background-color: var(--slate500);
     z-index: var(--high-zindex);
+    width: 100vw;
 }
 .mobileNavContent {
     li {
@@ -97,7 +91,11 @@
 }
 
 .MobileNavDrawer {
+    height: calc(100% - 4rem) !important;
+    top: 4rem;
+
     :global(.MuiModal-backdrop) {
+        top: 4rem;
         opacity: 0 !important;
     }
 

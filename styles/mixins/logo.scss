@@ -1,0 +1,17 @@
+@mixin textColor {
+    background-color: rgba(5, 55, 123, 1);
+    background-image: linear-gradient(
+        45deg,
+        rgba(1, 11, 25, 1) 0%,
+        #42008d 25%,
+        #5e00a0 50%,
+        #05377b 100%,
+        rgba(5, 55, 123, 1) 100%
+    );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight: bold;
+}
