@@ -15,9 +15,10 @@ interface CardProps {
     url?: string
     actions?: any
     style?: 'dark' | 'default'
+    classes?: any
 }
 
-const Card = ({ children, media, title, actions }: CardProps) => {
+const Card = ({ children, media, title, actions, classes }: CardProps) => {
     // const cardClass = () => {
     //     switch (style) {
     //         case 'dark':
@@ -29,7 +30,9 @@ const Card = ({ children, media, title, actions }: CardProps) => {
     //     }
     // }
     return (
-        <MuiCard variant="outlined">
+        <MuiCard
+            className={classes != null ? classes : null}
+            variant="outlined">
             <CardMedia component="img" image={media} title={title} />
             <CardContent>{children}</CardContent>
             {actions != undefined ? <CardActions>{actions}</CardActions> : null}

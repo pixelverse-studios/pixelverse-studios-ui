@@ -7,7 +7,8 @@ const Footer = () => {
 
     return (
         <footer className={styles.Footer}>
-            <span className={styles.footerText}>Created by EZPZ Coders</span>
+            <span className={styles.footerText}>Created in the PixelVerse</span>
+            <br />
             <span className={styles.copyright}>&copy;{today}</span>
         </footer>
     )
